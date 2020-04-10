@@ -68,7 +68,7 @@ export default function ColumnChart() {
   );
   return (
       <div style={{ width: "100%", height: "200px" }}>
-        <Chart data={data} series={series} axes={axes} tooltip />
+        <Chart data={data} series={series} axes={axes} />
       </div>
   );
 }

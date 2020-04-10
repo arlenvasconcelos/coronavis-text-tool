@@ -43,9 +43,7 @@ export default function Dashboard () {
               <Card style={{margin: '10px 0'}}>
                 <Card.Body>
                   <Card.Title>Card Title</Card.Title>
-                  <Card.Text>
                     <ColumnChart/>
-                  </Card.Text>
                 </Card.Body>
               </Card>
               <Card style={{margin: '10px 0'}}>
