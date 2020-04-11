@@ -20,7 +20,7 @@ export default function Header(){
       </Col>
       <Col md={8} sm={12} className="text-center order-3 order-md-2">
         <h1>CORONAVIS</h1>
-        <h3>Text Analitics Tool for COVID-19 Researchs</h3>
+        <h3>Text Analytics Tool for COVID-19 Researchs</h3>
       </Col>
       <Col 
         md={2}
