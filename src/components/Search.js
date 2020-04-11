@@ -11,7 +11,7 @@ export default function Search(){
               <Form.Control placeholder="Type here" />
             </Col >
             <Col md={1}>
-              <Button style={{width: "100%"}}variant="dark" type="submit">
+              <Button variant="warning" type="submit" className="button">
                 Submit
               </Button>
             </Col>

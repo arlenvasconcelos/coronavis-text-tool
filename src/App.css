@@ -25,6 +25,10 @@
 .search {
   padding: 15px 0;
 }
+.search .button {
+  font-weight: bold;
+  overflow: hidden;
+}
 .card {
   margin: 15px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
