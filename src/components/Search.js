@@ -1,7 +1,25 @@
-import React from 'react'
+import React, {useEffect} from 'react'
 import {Row, Col, Form, Button} from 'react-bootstrap';
+import api from '../service/api'
 
 export default function Search(){
+
+  const handleSubmit = (word) => {
+    try {
+      const response = await api.post(`?query=${'human'}`);
+      console(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+    
+  }
+
+  useEffect(()=>{
+    console.log('fazendo a requisição')
+    handleSubmit();
+  },[])
+
+
   return (
     <Row className="search">
       <Col md={12}>

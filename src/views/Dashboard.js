@@ -16,7 +16,7 @@ export default function Dashboard () {
           <Col md="8">
             <Card className="card">
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
+                <Card.Title>Scatterplot</Card.Title>
                 <Card.Text>
                   Some quick example text to build on the card title and make up the bulk of
                   the card's content.
@@ -26,7 +26,7 @@ export default function Dashboard () {
             <Card className="card">
               <Card.Body>
                 <Card.Title>Card Title</Card.Title>
-                  <ColumnChart/>
+                <ColumnChart/>
               </Card.Body>
             </Card>
             <Card className="card">
