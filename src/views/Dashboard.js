@@ -4,6 +4,7 @@ import ColumnChart from '../components/ColumnChart'
 import Header from '../components/Header'
 import Search from '../components/Search'
 import PaperCard from '../components/PaperCard'
+import TableCard from '../components/TableCard'
 
 export default function Dashboard () {
   return (
@@ -30,7 +31,7 @@ export default function Dashboard () {
             </Card>
             <Card className="card">
               <Card.Body>
-                <Card.Title>Card Title</Card.Title>
+                <TableCard/>
               </Card.Body>
             </Card>
           </Col>
