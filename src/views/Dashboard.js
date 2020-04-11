@@ -2,29 +2,15 @@ import React from 'react'
 import {Container, Row, Col, Form, Button, Card} from 'react-bootstrap'
 import ColumnChart from '../components/ColumnChart'
 import Header from '../components/Header'
+import Search from '../components/Search'
 
 export default function Dashboard () {
   return (
     <>
       <div>
         <Container>
-          <Row className="py-2">
-            <Header/>
-            <Col md={12}>
-              <Form>
-                <Form.Row>
-                  <Col md={11}>
-                    <Form.Control placeholder="Type here" />
-                  </Col >
-                  <Col md={1}>
-                    <Button style={{width: "100%"}}variant="dark" type="submit">
-                      Submit
-                    </Button>
-                  </Col>
-                </Form.Row>
-              </Form>
-            </Col>
-          </Row>
+          <Header/>
+          <Search/>
           <Row>
             <Col md="8">
               <Card style={{margin: '10px 0'}}>
