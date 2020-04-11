@@ -7,10 +7,10 @@ export default function Search(){
       <Col md={12}>
         <Form>
           <Form.Row>
-            <Col md={11}>
+            <Col lg={11} md={10} className="my-2">
               <Form.Control placeholder="Type here" />
             </Col >
-            <Col md={1}>
+            <Col lg={1} md={2} className="d-flex justify-content-center my-2">
               <Button variant="warning" type="submit" className="button">
                 Submit
               </Button>
