@@ -1,9 +1,6 @@
 import React from 'react'
-//
-// import useChartConfig from 'hooks/useChartConfig'
-// import Box from 'components/Box'
-// import SyntaxHighlighter from 'components/SyntaxHighlighter'
 import { Chart } from 'react-charts'
+
 export default function ColumnChart() {
   const series = React.useMemo(
     () => ({

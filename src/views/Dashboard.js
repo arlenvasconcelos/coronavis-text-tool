@@ -1,6 +1,7 @@
 import React from 'react'
 import {Container, Row, Col, Form, Button, Card} from 'react-bootstrap'
 import ColumnChart from '../components/ColumnChart'
+import Header from '../components/Header'
 
 export default function Dashboard () {
   return (
@@ -8,9 +9,7 @@ export default function Dashboard () {
       <div>
         <Container>
           <Row className="py-2">
-            <Col md={12} className="d-flex justify-content-center"> 
-              <h1> Coronavis</h1>
-            </Col>
+            <Header/>
             <Col md={12}>
               <Form>
                 <Form.Row>
@@ -24,9 +23,6 @@ export default function Dashboard () {
                   </Col>
                 </Form.Row>
               </Form>
-            </Col>
-            <Col md="12">
-              Text Analitics tool for COVID-19 Researchs            
             </Col>
           </Row>
           <Row>
