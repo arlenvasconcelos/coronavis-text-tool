@@ -1,5 +1,5 @@
 import React from 'react'
-import {Container, Row, Col, Form, Button, Card} from 'react-bootstrap'
+import {Container, Row, Col, Card} from 'react-bootstrap'
 import ColumnChart from '../components/ColumnChart'
 import Header from '../components/Header'
 import Search from '../components/Search'

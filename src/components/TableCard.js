@@ -1,9 +1,7 @@
 import React  from 'react';
-import {Card, Table} from 'react-bootstrap';
+import {Table} from 'react-bootstrap';
 
-export default function TableCard(props){
-
-  const {title} = props;
+export default function TableCard(){
 
   return (
     <Table responsive="sm" className="table-card">
