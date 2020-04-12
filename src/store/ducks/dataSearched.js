@@ -1,7 +1,5 @@
-import api from '../../service/api';
-
 // Actions
-const LOAD = 'search/LOAD';
+const LOAD = 'dataSearched/LOAD';
 
 // State
 const initialState = {
@@ -22,6 +20,6 @@ export default function reducer(state = initialState, action) {
 }
 
 // Actions Creators
-export function loadProducts(data) {
+export function dataSearched(data) {
   return { type: LOAD, data };
 }

@@ -1,8 +1,7 @@
 import { combineReducers } from 'redux';
 
-import search from './search';
+import dataSearched from './dataSearched';
 
 export default combineReducers({
-  products,
-  auth,
+  dataSearched,
 });

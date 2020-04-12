@@ -1,8 +1,14 @@
 import React, {useEffect, useState} from 'react'
 import {Row, Col, Form, Button} from 'react-bootstrap';
+import { useDispatch } from 'react-redux';
+
 import api from '../service/api'
 
+import { dataSearched } from '../store/ducks/dataSearched';
+
 export default function Search(){
+
+  const dispatch = useDispatch();
 
   const [data, setData] = useState([]);
   const [inputValue, setInputValue] = useState("");
@@ -11,6 +17,7 @@ export default function Search(){
     e.preventDefault();
     try {
       const response = await api.post(`/search?query=${inputValue}`);
+      dispatch(dataSearched(response.data));
       setData(response.data);
     } catch (err) {
       console.log(err);
