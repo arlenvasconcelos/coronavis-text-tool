@@ -1,7 +1,9 @@
 import React from 'react'
 import { Chart } from 'react-charts'
 
-export default function ColumnChart() {
+export default function ColumnChart(props) {
+  const {dataSearched} = props;
+
   const series = React.useMemo(
     () => ({
       type: "bar"
@@ -16,47 +18,10 @@ export default function ColumnChart() {
     []
   );
   const data = React.useMemo(
-    () => [
+    () => [ 
       {
-        label: "Series 1",
-        datums: [
-          {
-            x: "bla1",
-            y: 15
-          },
-          {
-            x: "bla2",
-            y: 5
-          },
-          {
-            x: "bla3",
-            y: 10
-          },
-          {
-            x: "bla4",
-            y: 9
-          },
-          {
-            x: "bla10",
-            y: 8
-          },
-          {
-            x: "bla9",
-            y: 8
-          },
-          {
-            x: "bla8",
-            y: 8
-          },
-          {
-            x: "bla7",
-            y: 8
-          },
-          {
-            x: "bla6",
-            y: 8
-          },
-        ]
+        label: dataSearched.word_frequency.label,
+        datums: dataSearched.word_frequency.datums.slice(0, 50)
       }
     ],
     []
