@@ -37,6 +37,10 @@
 .card:hover {
   border-top: 3px solid orange;
 }
+.modal-paper {
+  background-color: #193142;
+  color: white;
+}
 .table-card {
   color: white;
 }

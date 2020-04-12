@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {useSelector} from 'react-redux'
 
 import {Container, Row, Col, Card} from 'react-bootstrap'
@@ -53,8 +53,8 @@ export default function Dashboard () {
                 <Row>
                   {dataSearched.papers ? (
                     dataSearched.papers.map((paper, key) => (
-                      <Col md="6">
-                        <PaperCard key={key} paper={paper}/>
+                      <Col md="6" key={key} >
+                        <PaperCard paper={paper} keyWord={dataSearched.query}/>
                       </Col>
                     ))
                   ) : (

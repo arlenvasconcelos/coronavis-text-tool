@@ -1,4 +1,4 @@
-import React,{useEffect} from 'react';
+import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss'
 import Dashboard from './views/Dashboard';
@@ -8,7 +8,6 @@ import store from './store';
 
 
 function App() {
-
   return (
     <Provider store={store}>
       <div className="App">
