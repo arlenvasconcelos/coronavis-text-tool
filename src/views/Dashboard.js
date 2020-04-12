@@ -23,12 +23,12 @@ export default function Dashboard () {
 
   return (
     <>
-      <Container>
+      <Container fluid>
         <Header/>
         <Search/>
           {dataSearched.papers ? (
             <Row>
-              <Col md="8">
+              <Col md="5">
                 <Card className="card">
                   <Card.Body>
                     <Card.Title>Scatterplot</Card.Title>
@@ -49,14 +49,18 @@ export default function Dashboard () {
                   </Card.Body>
                 </Card>
               </Col>
-              <Col md="4">
-                {dataSearched.papers ? (
-                  dataSearched.papers.map((paper, key) => (
-                    <PaperCard key={key} paper={paper}/>
-                  ))
-                ) : (
-                  <></>
-                )}
+              <Col md="7">
+                <Row>
+                  {dataSearched.papers ? (
+                    dataSearched.papers.map((paper, key) => (
+                      <Col md="6">
+                        <PaperCard key={key} paper={paper}/>
+                      </Col>
+                    ))
+                  ) : (
+                    <></>
+                  )}
+                </Row>
               </Col>
             </Row>
           ) : (

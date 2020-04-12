@@ -1,19 +1,27 @@
-import React  from 'react';
-import {Card} from 'react-bootstrap';
+import React, {useState}  from 'react';
+import {Card, Button} from 'react-bootstrap';
 
 export default function PaperCard(props){
 
-  const {title} = props;
+  const {paper} = props;
+
+  const [showModal, setShowModal] = useState(false);
 
   return (
     <Card className="card">
       <Card.Body>
-        <Card.Title>{title}</Card.Title>
+        <Card.Title>{paper.title}</Card.Title>
+        <Card.Subtitle>{paper.authors}</Card.Subtitle>
+        <hr/>
         <Card.Text>
-          Some quick example text to build on the card title and make up the bulk of
-          the card's content.
+          {paper.abstract.slice(0,100) + '...'}
         </Card.Text>
       </Card.Body>
+      <Card.Footer className="d-flex justify-content-end">
+        <Button variant="warning" onClick={() => setShowModal(true)}className="button">
+          See more
+        </Button>
+      </Card.Footer>
     </Card>
   )
 
