@@ -37,9 +37,9 @@ export default function Dashboard () {
                     </Card.Text>
                   </Card.Body>
                 </Card>
-                <Card className="card">
+                <Card className="card card-chart">
                   <Card.Body>
-                    {/* <Card.Title>Card Title</Card.Title> */}
+                    <Card.Title>Word Frequency</Card.Title>
                     <ColumnChart dataSearched={dataSearched}/>
                   </Card.Body>
                 </Card>

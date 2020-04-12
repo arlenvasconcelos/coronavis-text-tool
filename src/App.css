@@ -37,6 +37,9 @@
 .card:hover {
   border-top: 3px solid orange;
 }
+.card-chart {
+  z-index: 2;
+}
 .modal-paper {
   background-color: #193142;
   color: white;
