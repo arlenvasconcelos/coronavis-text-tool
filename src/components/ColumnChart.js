@@ -24,7 +24,7 @@ export default function ColumnChart(props) {
         datums: dataSearched.word_frequency.datums.slice(0, 50)
       }
     ],
-    []
+    [dataSearched.word_frequency.label, dataSearched.word_frequency.datums]
   );
   return (
       <div style={{ width: "100%", height: "200px" }}>

@@ -1,24 +1,21 @@
-import React from 'react'
-import {useSelector} from 'react-redux'
+import React, {useEffect} from 'react';
+import {useSelector} from 'react-redux';
 
-import {Container, Row, Col, Card} from 'react-bootstrap'
-import ColumnChart from '../components/ColumnChart'
-import Header from '../components/Header'
-import Search from '../components/Search'
-import PaperCard from '../components/PaperCard'
-import TableCard from '../components/TableCard'
+import {Container, Row, Col, Card} from 'react-bootstrap';
+import ColumnChart from '../components/ColumnChart';
+import Header from '../components/Header';
+import Search from '../components/Search';
+import PaperCard from '../components/PaperCard';
+import TableCard from '../components/TableCard';
 
 export default function Dashboard () {
 
   // const [dataSearched, setDataSearched] = useState();
-  const dataSearched = useSelector(state => state.dataSearched.data, [])
+  const dataSearched = useSelector(state => state.dataSearched.data, []); 
 
-  console.log(dataSearched)
-
-  // useEffect(()=>{
-  //   const data = 
-  //   setDataSearched(data);
-  // })
+  useEffect(()=>{
+    console.log(dataSearched)
+  }, [dataSearched])
   
 
   return (
