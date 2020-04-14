@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react'
-import {Row, Col, Form, Button} from 'react-bootstrap';
+import {Row, Col, Form, Button, Spinner} from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
 import api from '../service/api'
@@ -12,13 +12,16 @@ export default function Search(){
 
   const [data, setData] = useState([]);
   const [inputValue, setInputValue] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
     try {
       const response = await api.post(`/search?query=${inputValue}`);
       dispatch(dataSearched(response.data));
       setData(response.data);
+      setLoading(false);
     } catch (err) {
       console.log(err);
     }
@@ -37,9 +40,22 @@ export default function Search(){
               <Form.Control placeholder="Type here" onChange={(e) => setInputValue(e.target.value)}/>
             </Col >
             <Col lg={1} md={2} className="d-flex justify-content-center my-2">
-              <Button variant="warning" type="submit" className="button">
-                Submit
-              </Button>
+              { !loading ? (
+                <Button variant="warning" type="submit" className="button">
+                  Submit
+                </Button>
+              ) : (
+                <Button variant="warning" disabled>
+                  <Spinner
+                    as="span"
+                    animation="grow"
+                    size="sm"
+                    role="status"
+                    aria-hidden="true"
+                  />
+                  Loading
+                </Button>
+              )}
             </Col>
           </Form.Row>
         </Form>
