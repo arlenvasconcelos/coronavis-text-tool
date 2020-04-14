@@ -49,7 +49,7 @@ export default function Dashboard () {
               <Col lg="4">
                   {dataSearched.papers ? (
                     dataSearched.papers.map((paper, key) => (
-                      <PaperCard paper={paper} keyWord={dataSearched.query}/>
+                      <PaperCard key={key} paper={paper} keyWord={dataSearched.query}/>
                     ))
                   ) : (
                     <></>

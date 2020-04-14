@@ -1,4 +1,5 @@
 import React, {useState, useEffect}  from 'react';
+// import {Link} from 'react-router-dom' 
 import {Table} from 'react-bootstrap';
 
 import PaperModal from './PaperModal';
@@ -9,25 +10,27 @@ export default function TableCard({dataSearched}){
   const [paper, setPaper] = useState({});
 
   const [entityTable, setEntityTable] = useState([]);
+
+  const handleModal = (index) => {
+    setPaper(dataSearched.papers[index]);
+    setShowModal(true);
+  }
   
 
 
   useEffect(() => {
     let count = {}
     dataSearched.entities_table.map((entityPaper, index) => {
-      const a = entityPaper.reduce((object, item) => {  
+      entityPaper.reduce((object, item) => {  
         // console.log( object , item ); 
         if ( !count[item.term] ) {
           count[item.term] = {entityType: item.entity_type, quantity: 1, mentions: ""+(index+1) };
         } else {
           count[item.term] = {entityType: item.entity_type, quantity: count[item.term].quantity + 1, mentions: count[item.term].mentions + ',' + (index+1)};
         }
-        // console.log(count)
         return count; 
       },{})
-      console.log(a)  
     })
-
     setEntityTable(count);
   }, [dataSearched])
   
@@ -55,7 +58,13 @@ export default function TableCard({dataSearched}){
                 <td>{entityTable[item].quantity}</td>
                 {/* <td>{entityTable[item].mentions.split(",")
                   .reduce((a,b)=>(a!=b)?(a+b):a,"")}</td> */}
-                  <td> {Array.from(new Set(entityTable[item].mentions.split(','))).toString()}</td>
+                  <td> 
+                    {Array.from(new Set(entityTable[item].mentions.split(',')))
+                      .map((e, key)=>{
+                        return <a key={key} href="#!" onClick={()=> handleModal(e-1)}>{e+","}</a>
+                      })
+                    }
+                  </td>
               </tr>
             )
           })

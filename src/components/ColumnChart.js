@@ -12,7 +12,8 @@ export default function ColumnChart(props) {
   );
   const axes = React.useMemo(
     () => [
-      { primary: true, position: "bottom", type: "ordinal" },
+      // { primary: true, position: "bottom", type: "ordinal" },
+      { primary: true, position: "bottom", type: "ordinal"},
       { position: "left", type: "linear", stacked: false }
     ],
     []
