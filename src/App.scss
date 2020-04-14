@@ -38,6 +38,10 @@
   border-top: 3px solid white;
 }
 
+.card-table{
+  overflow-x: scroll;
+}
+
 .card:hover{
   border-top: 3px solid orange;
 }
@@ -53,6 +57,7 @@
 
 .table-card {
   color: white;
+  font-size: small;
 }
 
 

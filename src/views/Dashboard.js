@@ -25,7 +25,7 @@ export default function Dashboard () {
         <Search/>
           {dataSearched.papers ? (
             <Row>
-              <Col md="5">
+              <Col md="8">
                 <Card className="card">
                   <Card.Body>
                     <Card.Title>Scatterplot</Card.Title>
@@ -40,24 +40,25 @@ export default function Dashboard () {
                     <ColumnChart dataSearched={dataSearched}/>
                   </Card.Body>
                 </Card>
-                <Card className="card">
+                <Card className="card card-table">
                   <Card.Body>
-                    <TableCard/>
+                    <TableCard dataSearched={dataSearched}/>
                   </Card.Body>
                 </Card>
               </Col>
-              <Col md="7">
-                <Row>
+              {/* <Col lg="7" md="4"> */}
+              <Col md="4">
+                {/* <Row> */}
                   {dataSearched.papers ? (
                     dataSearched.papers.map((paper, key) => (
-                      <Col md="6" key={key} >
+                      // <Col lg="6" md="12" key={key} >
                         <PaperCard paper={paper} keyWord={dataSearched.query}/>
-                      </Col>
+                      // </Col>
                     ))
                   ) : (
                     <></>
                   )}
-                </Row>
+                {/* </Row> */}
               </Col>
             </Row>
           ) : (
