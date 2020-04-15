@@ -4,7 +4,7 @@ import PaperModal from './PaperModal';
 
 export default function PaperCard(props){
 
-  const {paper, keyWord} = props;
+  const {paper, index, keyWord} = props;
 
   const [showModal, setShowModal] = useState(false);
 
@@ -15,7 +15,7 @@ export default function PaperCard(props){
     {/* Card */}
     <Card className="card">
       <Card.Body>
-        <Card.Title>{paper.title}</Card.Title>
+        <Card.Title>{"["+index+"] "+paper.title}</Card.Title>
         <Card.Subtitle>{paper.authors}</Card.Subtitle>
         <hr/>
         <Card.Text>
@@ -30,6 +30,7 @@ export default function PaperCard(props){
     </Card>
     {/* Modal */}
     <PaperModal
+      index={index}
       paper={paper}
       showModal={showModal}
       setShowModal={setShowModal}

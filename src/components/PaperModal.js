@@ -4,7 +4,7 @@ import styled from 'styled-components'
 
 export default function PaperModal(props){
 
-  const {paper, showModal, setShowModal} = props;
+  const {index, paper, showModal, setShowModal} = props;
 
   return (
     <Modal
@@ -18,7 +18,7 @@ export default function PaperModal(props){
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
-          {paper.title}
+          {"["+index+"] "+paper.title}
           <Authors>{"Authors: " +  paper.authors}</Authors>
         </Modal.Title>
       </Modal.Header>

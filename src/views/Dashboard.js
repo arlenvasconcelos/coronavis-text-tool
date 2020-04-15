@@ -13,9 +13,9 @@ export default function Dashboard () {
   // const [dataSearched, setDataSearched] = useState();
   const dataSearched = useSelector(state => state.dataSearched.data, []); 
 
-  useEffect(()=>{
-    console.log(dataSearched)
-  }, [dataSearched])
+  // useEffect(()=>{
+  //   console.log(dataSearched)
+  // }, [dataSearched])
   
 
   return (
@@ -48,8 +48,8 @@ export default function Dashboard () {
               </Col>
               <Col lg="4">
                   {dataSearched.papers ? (
-                    dataSearched.papers.map((paper, key) => (
-                      <PaperCard key={key} paper={paper} keyWord={dataSearched.query}/>
+                    dataSearched.papers.map((paper, index) => (
+                      <PaperCard key={index} index={index} paper={paper} keyWord={dataSearched.query}/>
                     ))
                   ) : (
                     <></>
