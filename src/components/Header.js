@@ -16,10 +16,10 @@ export default function Header(){
         sm={6}  
         className="d-flex justify-content-center align-items-center order-1 order-md-1"
       >
-        <img alt="" src={infLogo}/>
+        <a href="https://www.inf.ufrgs.br/site/"><img alt="Logo INF" src={infLogo}/></a>
       </Col>
       <Col md={8} sm={12} className="text-center order-3 order-md-2">
-        <h1>CORONAVIS</h1>
+        <a className="header__title" href="/"><h1>CORONAVIS</h1></a>
         <h3>Text Analytics Tool for COVID-19 Literature</h3>
       </Col>
       <Col 
@@ -27,7 +27,7 @@ export default function Header(){
         sm={6} 
         className="d-flex justify-content-center align-items-center order-2 order-md-3"
       >
-        <img alt="" src={ufrgsLogo}/>
+        <a href="http://www.ufrgs.br/ufrgs/inicial"><img alt="" src={ufrgsLogo}/></a>
       </Col>
     </Row>
     </>

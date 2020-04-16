@@ -1,9 +1,16 @@
 .App {
   padding: 10px 0;
   background-color: #202020;
-  height: 100%;
   font-family: "Roboto", sans-serif;
   color: #fff;
+}
+.header__title {
+  text-decoration: none;
+  color: white;
+}
+.header__title:hover {
+  color: red;
+  text-decoration: none;
 }
 .header {
   color: white;
@@ -17,14 +24,13 @@
   font-weight: bold;
   margin: 20px 0;
 }
-.header h1:hover,
 .header h3:hover {
   color: red;
 }
 .search {
   padding: 15px 0;
 }
-.search .button {
+.search__button {
   font-weight: bold;
   overflow: hidden;
 }
@@ -33,6 +39,9 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #193142;
   border-top: 3px solid white;
+}
+.card-table {
+  overflow-x: scroll;
 }
 .card:hover {
   border-top: 3px solid orange;
@@ -46,4 +55,5 @@
 }
 .table-card {
   color: white;
+  font-size: small;
 }

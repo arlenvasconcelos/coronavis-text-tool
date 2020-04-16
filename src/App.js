@@ -1,7 +1,7 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss'
-import Dashboard from './views/Dashboard';
+import Home from './views/Home';
 
 import { Provider } from 'react-redux';
 import store from './store';
@@ -11,7 +11,7 @@ function App() {
   return (
     <Provider store={store}>
       <div className="App">
-        <Dashboard/>
+        <Home/>
       </div>
     </Provider>
   );

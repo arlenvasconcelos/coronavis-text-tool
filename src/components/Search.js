@@ -41,7 +41,7 @@ export default function Search(){
             </Col >
             <Col lg={1} md={2} className="d-flex justify-content-center my-2">
               { !loading ? (
-                <Button variant="warning" type="submit" className="button">
+                <Button variant="warning" type="submit" className="search__button">
                   Submit
                 </Button>
               ) : (
