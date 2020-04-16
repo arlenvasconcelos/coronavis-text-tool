@@ -10,7 +10,6 @@ import TableCard from '../components/TableCard';
 
 export default function Dashboard () {
 
-  // const [dataSearched, setDataSearched] = useState();
   const dataSearched = useSelector(state => state.dataSearched.data, []); 
 
   // useEffect(()=>{
@@ -26,14 +25,14 @@ export default function Dashboard () {
           {dataSearched.papers ? (
             <Row>
               <Col lg="8">
-                <Card className="card">
+                {/* <Card className="card">
                   <Card.Body>
                     <Card.Title>Scatterplot</Card.Title>
                     <Card.Text>
                       .....
                     </Card.Text>
                   </Card.Body>
-                </Card>
+                </Card> */}
                 <Card className="card card-chart">
                   <Card.Body>
                     <Card.Title>Word Frequency</Card.Title>

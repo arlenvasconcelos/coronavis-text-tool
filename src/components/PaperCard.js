@@ -19,7 +19,7 @@ export default function PaperCard(props){
         <Card.Subtitle>{paper.authors}</Card.Subtitle>
         <hr/>
         <Card.Text>
-          {paper.abstract.slice(0,100) + '...'}
+          {paper.abstract.slice(0,200) + '...'}
         </Card.Text>
       </Card.Body>
       <Card.Footer className="d-flex justify-content-end">
