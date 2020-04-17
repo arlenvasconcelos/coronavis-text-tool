@@ -24,7 +24,16 @@ export default function Home() {
         <Search/>
         {dataSearched.papers ? (
           <Row>
-            <Col lg="8">
+            <Col lg="6">
+                {dataSearched.papers ? (
+                  dataSearched.papers.map((paper, index) => (
+                    <PaperCard key={index} index={index} paper={paper} keyWord={dataSearched.query}/>
+                  ))
+                ) : (
+                  <></>
+                )}
+            </Col>
+            <Col lg="6">
               {/* <Card className="card">
                 <Card.Body>
                   <Card.Title>Scatterplot</Card.Title>
@@ -44,15 +53,6 @@ export default function Home() {
                   <TableCard dataSearched={dataSearched}/>
                 </Card.Body>
               </Card>
-            </Col>
-            <Col lg="4">
-                {dataSearched.papers ? (
-                  dataSearched.papers.map((paper, index) => (
-                    <PaperCard key={index} index={index} paper={paper} keyWord={dataSearched.query}/>
-                  ))
-                ) : (
-                  <></>
-                )}
             </Col>
           </Row>
         ) : (
