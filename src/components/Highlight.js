@@ -4,18 +4,28 @@ import React, {useState, useEffect} from 'react'
 export default function Highlight(props){
 
 
-  const {text, terms, subterms} = props;
+  const {text, terms, types} = props;
   const [parts, setParts] = useState([])
+  const [palette, setPalette] = useState([]);
 
   function getColour(){
+
+    const p = [];    
     var hex = '0123456789ABCDEF';
-    var color = '#';
   
-    // get random number
-    for (var i = 0; i < 6; i++ ) {
-        color += hex[Math.floor(Math.random() * 16)];
+    //deleting repeated types
+    const types_norepeated = [...new Set(types)]
+
+    
+    for (var i = 0; i < types_norepeated.length-1; i++ ) {
+      var colour = '#';
+      for (var j = 0; j < 6; j++ ) {
+        // get random number
+        colour += hex[Math.floor(Math.random() * 16)];
+      }
+      p[types_norepeated[i]] = colour;
     }
-    return color;
+    return p;
   }
 
   const getRegExp = () => {
@@ -31,12 +41,11 @@ export default function Highlight(props){
   }
   
   useEffect(()=>{
-    console.log(terms)
-    console.log(subterms)
     getRegExp();
+    setPalette(getColour()); //Creating colours palleta
   },[])
 
-  const verifyTerms   = (term) => {
+  const verifyTerms = (term) => {
     
     var eArr = terms.values();
     // seu navegador deve suportar for..of loop
@@ -53,15 +62,17 @@ export default function Highlight(props){
   const getHighlightedText = (part, i) => {
 
     var index = verifyTerms(part);
+    // setPalleta(getColour());
     
     if ( index >= 0) {
       return (
         <span key={i} 
           style= {{
+            display: 'inline-flex',
             fontWeight: 'bold', 
-            backgroundColor: `${getColour()}`, 
+            backgroundColor: `${palette[types[index]] || 'yellow'}`, 
             padding: "0 3px",
-            margin: "0 2px", 
+            margin: "1px 2px", 
             color:'black', 
             borderRadius: "3px"
           }}     
@@ -74,10 +85,13 @@ export default function Highlight(props){
               padding: "0 1px", 
               color:'black', 
               borderRadius: "3px",
-              fontSize: '0.5em'
+              margin: "0 2px",
+              fontSize: '0.6em',
+              alignSelf: 'center'
+              
             }}  
           >
-            {subterms[index].slice(0,3)}
+            {types[index].slice(0,3)}
           </b>
         </span>
       )

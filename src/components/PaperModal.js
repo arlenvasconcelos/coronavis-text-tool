@@ -37,7 +37,6 @@ export default function PaperModal(props){
   },[])
 
   useEffect(()=>{
-    // setTerms([...new Set(paper.entities.map(value => value.term))])
     setTerms(paper.entities.map(value => value.term))
     setTypes(paper.entities.map(value => value.type))
   },[paper.entities])
@@ -49,7 +48,7 @@ export default function PaperModal(props){
       aria-labelledby="contained-modal-title-vcenter"
       centered
       onHide={() => setShowModal(false)}
-      // dialogClassName="modal-paper"
+      dialogClassName="paper__modal"
       on
     >
       <Modal.Header closeButton>
@@ -62,10 +61,10 @@ export default function PaperModal(props){
           </Authors>
         </Modal.Title>
       </Modal.Header>
-      <Modal.Body>
+      <Modal.Body className="modal__body">
         <h4>Abstract</h4>
         <p>
-         <Highlight text={paper.abstract} terms={terms} subterms={types}/>
+         <Highlight text={paper.abstract} terms={terms} types={types}/>
         </p>
         DOI: 
         <a href={'https://doi.org/' + paper.doi} target="_blank">

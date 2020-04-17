@@ -49,9 +49,8 @@
 .card-chart {
   z-index: 2;
 }
-.modal-paper {
-  background-color: #193142;
-  color: white;
+.paper__modal {
+  text-align: justify;
 }
 .table-card {
   color: white;
