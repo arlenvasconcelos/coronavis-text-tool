@@ -24,16 +24,16 @@ export default function Home() {
         <Search/>
         {dataSearched.papers ? (
           <Row>
-            <Col lg="6">
+            <Col lg="8">
                 {dataSearched.papers ? (
                   dataSearched.papers.map((paper, index) => (
-                    <PaperCard key={index} index={index} paper={paper} keyWord={dataSearched.query}/>
+                    <PaperCard key={index} index={index+1} paper={paper} keyWord={dataSearched.query}/>
                   ))
                 ) : (
                   <></>
                 )}
             </Col>
-            <Col lg="6">
+            <Col lg="4">
               {/* <Card className="card">
                 <Card.Body>
                   <Card.Title>Scatterplot</Card.Title>

@@ -22,7 +22,7 @@ export default function ColumnChart(props) {
     () => [ 
       {
         label: dataSearched.word_frequency.label,
-        datums: dataSearched.word_frequency.datums.slice(0, 50)
+        datums: dataSearched.word_frequency.datums.slice(0, 20)
       }
     ],
     [dataSearched.word_frequency.label, dataSearched.word_frequency.datums]

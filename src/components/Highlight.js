@@ -78,7 +78,7 @@ export default function Highlight(props){
           }}     
         >
           { part }
-          <b 
+          {/* <b 
             style= {{
               fontWeight: 'bold', 
               backgroundColor: "white", 
@@ -92,7 +92,7 @@ export default function Highlight(props){
             }}  
           >
             {types[index].slice(0,3)}
-          </b>
+          </b> */}
         </span>
       )
     }

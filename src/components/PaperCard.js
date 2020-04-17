@@ -25,7 +25,7 @@ export default function PaperCard(props){
               } : {} 
             }
           >
-              { part }
+            { part }
           </span>)
         } 
       </span>
