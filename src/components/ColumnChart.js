@@ -1,4 +1,5 @@
 import React from 'react'
+import {Card} from 'react-bootstrap'
 import { Chart } from 'react-charts'
 
 export default function ColumnChart(props) {
@@ -28,8 +29,14 @@ export default function ColumnChart(props) {
     [dataSearched.word_frequency.label, dataSearched.word_frequency.datums]
   );
   return (
-      <div style={{ width: "100%", height: "200px" }}>
-        <Chart data={data} series={series} axes={axes} tooltip dark />
-      </div>
+    <Card className="home__card card__chart">
+      <Card.Body>
+        <Card.Title>Word Frequency</Card.Title>
+        <div style={{ width: "100%", height: "200px" }}>
+          <Chart data={data} series={series} axes={axes} tooltip dark />
+        </div>
+      </Card.Body>
+    </Card>
+      
   );
 }

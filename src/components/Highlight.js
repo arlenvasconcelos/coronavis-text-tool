@@ -4,29 +4,10 @@ import React, {useState, useEffect} from 'react'
 export default function Highlight(props){
 
 
-  const {text, terms, types} = props;
-  const [parts, setParts] = useState([])
-  const [palette, setPalette] = useState([]);
+  const {text, terms, types, palette} = props;
+  const [parts, setParts] = useState([]);
 
-  function getColour(){
-
-    const p = [];    
-    var hex = '0123456789ABCDEF';
-  
-    //deleting repeated types
-    const types_norepeated = [...new Set(types)]
-
-    
-    for (var i = 0; i < types_norepeated.length-1; i++ ) {
-      var colour = '#';
-      for (var j = 0; j < 6; j++ ) {
-        // get random number
-        colour += hex[Math.floor(Math.random() * 16)];
-      }
-      p[types_norepeated[i]] = colour;
-    }
-    return p;
-  }
+  console.log(terms, palette)
 
   const getRegExp = () => {
 
@@ -42,7 +23,6 @@ export default function Highlight(props){
   
   useEffect(()=>{
     getRegExp();
-    setPalette(getColour()); //Creating colours palleta
   },[])
 
   const verifyTerms = (term) => {
@@ -68,9 +48,9 @@ export default function Highlight(props){
       return (
         <span key={i} 
           style= {{
-            display: 'inline-flex',
+            // display: 'inline-flex',
             fontWeight: 'bold', 
-            backgroundColor: `${palette[types[index]] || 'yellow'}`, 
+            backgroundColor: `${types ? palette[types[index]] : 'yellow'}`, 
             padding: "0 3px",
             margin: "1px 2px", 
             color:'black', 

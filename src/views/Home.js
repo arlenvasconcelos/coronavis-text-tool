@@ -1,12 +1,13 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 
-import {Container, Row, Col, Card} from 'react-bootstrap';
+import {Container, Row, Col} from 'react-bootstrap';
 import ColumnChart from '../components/ColumnChart';
 import Header from '../components/Header';
 import Search from '../components/Search';
-import PaperCard from '../components/PaperCard';
 import TableCard from '../components/TableCard';
+import Papers from '../components/home/Papers';
+import Scatterplot from '../components/home/Scatterplot';
 
 export default function Home() {
 
@@ -25,34 +26,12 @@ export default function Home() {
         {dataSearched.papers ? (
           <Row>
             <Col lg="8">
-                {dataSearched.papers ? (
-                  dataSearched.papers.map((paper, index) => (
-                    <PaperCard key={index} index={index+1} paper={paper} keyWord={dataSearched.query}/>
-                  ))
-                ) : (
-                  <></>
-                )}
+              <Papers papers={dataSearched.papers} query={dataSearched.query}/>
             </Col>
             <Col lg="4">
-              {/* <Card className="card">
-                <Card.Body>
-                  <Card.Title>Scatterplot</Card.Title>
-                  <Card.Text>
-                    .....
-                  </Card.Text>
-                </Card.Body>
-              </Card> */}
-              <Card className="card card-chart">
-                <Card.Body>
-                  <Card.Title>Word Frequency</Card.Title>
-                  <ColumnChart dataSearched={dataSearched}/>
-                </Card.Body>
-              </Card>
-              <Card className="card card-table">
-                <Card.Body>
-                  <TableCard dataSearched={dataSearched}/>
-                </Card.Body>
-              </Card>
+              <Scatterplot/>
+              <ColumnChart dataSearched={dataSearched}/>
+              <TableCard dataSearched={dataSearched}/>
             </Col>
           </Row>
         ) : (

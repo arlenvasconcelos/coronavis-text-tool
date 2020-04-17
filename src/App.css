@@ -34,19 +34,19 @@
   font-weight: bold;
   overflow: hidden;
 }
-.card {
+.home__card {
   margin: 5px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   background-color: #193142;
   border-top: 3px solid white;
 }
-.card-table {
+.card__table {
   overflow-x: scroll;
 }
-.card:hover {
+.card__home:hover {
   border-top: 3px solid orange;
 }
-.card-chart {
+.card__chart {
   z-index: 2;
 }
 .paper__modal {
