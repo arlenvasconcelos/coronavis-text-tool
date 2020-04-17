@@ -16,7 +16,12 @@ export default function PaperCard(props){
         { parts.map((part, i) => 
           <span key={i} 
             style={part.toLowerCase() === highlight.toLowerCase() + (" " || "," || + ".") ? 
-              { fontWeight: 'bold', backgroundColor: "yellow", padding: "1px 5px", color:'black', borderRadius: "3px"
+              { fontWeight: 'bold', 
+                backgroundColor: "yellow", 
+                padding: "0px 3px", 
+                color:'black', 
+                borderRadius: "3px",
+                margin: "1px 2px", 
               } : {} 
             }
           >
