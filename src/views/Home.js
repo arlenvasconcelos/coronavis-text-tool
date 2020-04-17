@@ -12,9 +12,9 @@ export default function Home() {
 
   const dataSearched = useSelector(state => state.dataSearched.data, []); 
 
-  // useEffect(()=>{
-  //   console.log(dataSearched)
-  // }, [dataSearched])
+  useEffect(()=>{
+    console.log(dataSearched)
+  }, [dataSearched])
   
 
   return (

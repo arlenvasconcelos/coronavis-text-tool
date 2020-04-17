@@ -1,10 +1,46 @@
-import React from 'react'
+import React, {useState, useEffect} from 'react'
 import {Modal, Button} from 'react-bootstrap'
 import styled from 'styled-components'
 
+import api from '../service/api'
+
+import Highlight from '../components/Highlight'
+
 export default function PaperModal(props){
 
-  const {index, paper, showModal, setShowModal} = props;
+  const {index, paperId, showModal, setShowModal} = props;
+
+  const defaultValue = {
+    title: "",
+    author: [],
+    abstract: "",
+    entities: [],
+    doi: "",
+  }
+
+  const [paper, setPaper] = useState(defaultValue);
+  const [terms, setTerms] = useState([]);
+  const [types, setTypes] = useState([])
+
+  const loadPaper = async (id) => {
+    try {
+      const response = await api.get(`/document/${id}`);
+      console.log(response.data)
+      setPaper(response.data);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
+  useEffect(()=>{
+    loadPaper(paperId);
+  },[])
+
+  useEffect(()=>{
+    // setTerms([...new Set(paper.entities.map(value => value.term))])
+    setTerms(paper.entities.map(value => value.term))
+    setTypes(paper.entities.map(value => value.type))
+  },[paper.entities])
 
   return (
     <Modal
@@ -19,13 +55,17 @@ export default function PaperModal(props){
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           {"["+index+"] "+paper.title}
-          <Authors>{"Authors: " +  paper.authors}</Authors>
+          <Authors>
+            {"Authors: " + paper.author.map( item =>  
+              item.last+', '+item.first+'. ')
+            } 
+          </Authors>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <h4>Abstract</h4>
         <p>
-          {paper.abstract}
+         <Highlight text={paper.abstract} terms={terms} subterms={types}/>
         </p>
         DOI: 
         <a href={'https://doi.org/' + paper.doi} target="_blank">

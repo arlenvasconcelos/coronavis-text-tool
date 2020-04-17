@@ -8,6 +8,25 @@ export default function PaperCard(props){
 
   const [showModal, setShowModal] = useState(false);
 
+  const getHighlightedText = (text, highlight) => {
+    // Split on highlight term and include term into parts, ignore case
+    const parts = text.split(new RegExp(`(${highlight}[ ,.])`, 'gi'));
+    return (
+      <span> 
+        { parts.map((part, i) => 
+          <span key={i} 
+            style={part.toLowerCase() === highlight.toLowerCase() + (" " || "," || + ".") ? 
+              { fontWeight: 'bold', backgroundColor: "yellow", padding: "1px 5px", color:'black', borderRadius: "3px"
+              } : {} 
+            }
+          >
+              { part }
+          </span>)
+        } 
+      </span>
+    );
+  }
+
   // var r = new RegExp('(.{'+(textStart+lenMarks)+'})(.{'+(textStop-textStart)+'})(.*)');
 
   return (
@@ -19,7 +38,7 @@ export default function PaperCard(props){
         <Card.Subtitle>{paper.authors}</Card.Subtitle>
         <hr/>
         <Card.Text>
-          {paper.abstract.slice(0,200) + '...'}
+          {getHighlightedText(paper.abstract.slice(0,200) + '...', keyWord)}
         </Card.Text>
       </Card.Body>
       <Card.Footer className="d-flex justify-content-end">
@@ -31,7 +50,7 @@ export default function PaperCard(props){
     {/* Modal */}
     <PaperModal
       index={index}
-      paper={paper}
+      paperId={paper.id}
       showModal={showModal}
       setShowModal={setShowModal}
     />
