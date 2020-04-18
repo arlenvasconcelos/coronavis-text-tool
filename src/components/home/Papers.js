@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import PaperCard from '../paper/PaperCard';
 import Pagination from 'react-js-pagination';
 
@@ -6,13 +6,19 @@ export default function Papers (props) {
 
   const {papers, query} = props;
 
-  const [papersFilter, setPapersFilter] = useState({ page: 1 });
+  const defaultValue = { page: 1 };
+
+  const [papersFilter, setPapersFilter] = useState(defaultValue);
   const perPage = 5;
 
   const handlePapersPageChange = (page) => {
     setPapersFilter({ ...papersFilter, page });
   };
  
+  useEffect(() => {
+    setPapersFilter(defaultValue)
+  }, [papers])
+
   return (
     <>
       <div className="home__papers">
