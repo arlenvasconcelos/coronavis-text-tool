@@ -20,16 +20,16 @@ export default function Search(){
     try {
       const response = await api.post(`/search?query=${inputValue}`);
       dispatch(dataSearched(response.data));
-      setData(response.data);
+      // setData(response.data);
       setLoading(false);
     } catch (err) {
       console.log(err);
     }
   }
 
-  useEffect(()=>{
-    console.log(data);
-  },[data])
+  // useEffect(()=>{
+  //   console.log(data);
+  // },[data])
 
   return (
     <Row className="search">

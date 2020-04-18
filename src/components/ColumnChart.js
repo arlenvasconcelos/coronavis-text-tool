@@ -37,6 +37,5 @@ export default function ColumnChart(props) {
         </div>
       </Card.Body>
     </Card>
-      
   );
 }

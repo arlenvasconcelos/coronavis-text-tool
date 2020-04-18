@@ -2,44 +2,25 @@ import React, {useState, useEffect} from 'react'
 import {Modal, Button} from 'react-bootstrap'
 import styled from 'styled-components'
 
-import api from '../../service/api'
 
 import Highlight from '../Highlight'
 
 export default function PaperModal(props){
 
-  const {index, paperId, showModal, setShowModal} = props;
+  const {index, paper, showModal, setShowModal} = props;
 
-  const defaultValue = {
-    title: "",
-    author: [],
-    abstract: "",
-    entities: [],
-    doi: "",
-  }
 
-  const [paper, setPaper] = useState(defaultValue);
   const [terms, setTerms] = useState([]);
   const [types, setTypes] = useState([]);
-  const [palette, setPalette] = useState([])
+  const [palette, setPalette] = useState([]);
 
-  const loadPaper = async (id) => {
-    try {
-      const response = await api.get(`/document/${id}`);
-      console.log(response.data)
-      setPaper(response.data);
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
-  const getColour = () => {
+  const createPalette = () => {
 
     const p = [];    
     var hex = 'FEDCBA9876543210';
   
     //deleting repeated types
-    const types_norepeated = [...new Set(types)]
+    const types_norepeated = [...new Set(types)];
 
     for (var i = 0; i < types_norepeated.length-1; i++ ) {
       var colour = '#';
@@ -53,24 +34,17 @@ export default function PaperModal(props){
   }
 
   useEffect(()=>{
-    loadPaper(paperId);
-  },[])
-
-  useEffect(()=>{
     setTerms(paper.entities.map(value => value.term));
     setTypes(paper.entities.map(value => value.type));
-  },[paper.entities])
+  },[paper])
 
   useEffect(()=>{
-    console.log(types)
-    setPalette(getColour());
-    console.log("entrou aqui") //Creating colours palleta
+    setPalette(createPalette());
   },[types])
 
-  console.log(palette)
-
-  return (
+  return (    
     <Modal
+      index={index}
       show={showModal}
       size="lg"
       aria-labelledby="contained-modal-title-vcenter"
@@ -91,9 +65,20 @@ export default function PaperModal(props){
       </Modal.Header>
       <Modal.Body className="modal__body">
         <h4>Abstract</h4>
-        <p>
-          <Highlight text={paper.abstract} terms={terms} types={types} palette={palette}/>
-        </p>
+        {
+          (paper.abstract) ? (
+            <p>
+              <Highlight 
+                text={paper.abstract} 
+                terms={terms} 
+                types={types} 
+                palette={palette}
+              />
+            </p>
+          ) : (
+            <p>There is no abstract</p>
+          )
+        }
         DOI: 
         <a href={'https://doi.org/' + paper.doi} target="_blank">
           {'https://doi.org/' + paper.doi}
@@ -116,8 +101,7 @@ export default function PaperModal(props){
               </span>
             )
           ) : (
-            <>
-            </>
+            <></>
           )}
         </div>
       </Modal.Body>
@@ -126,6 +110,7 @@ export default function PaperModal(props){
       </Modal.Footer>
     </Modal>
   )
+  
 }
 
 const Authors = styled.p`
