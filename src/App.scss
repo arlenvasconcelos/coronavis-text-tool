@@ -78,10 +78,12 @@
   font-size: small;
 }
 
-.pagination{
+.papers__pagination{
   margin: 10px 0px;
+  display: flex;
+  list-style: none;
   justify-content: center;
-  a{
+  .page-link{
     background-color: transparent;
     border: none;
   }

@@ -56,11 +56,13 @@
   color: white;
   font-size: small;
 }
-.pagination {
+.papers__pagination {
   margin: 10px 0px;
+  display: flex;
+  list-style: none;
   justify-content: center;
 }
-.pagination a {
+.papers__pagination .page-link {
   background-color: transparent;
   border: none;
 }
