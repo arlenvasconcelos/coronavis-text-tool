@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react'
-import {Modal, Button} from 'react-bootstrap'
-import styled from 'styled-components'
+import React, {useState, useEffect, useRef} from 'react'
+import {Modal, Button, Overlay, Popover} from 'react-bootstrap'
 
 
 import Highlight from '../utils/Highlight'
@@ -9,10 +8,13 @@ export default function PaperModal(props){
 
   const {index, paper, showModal, setShowModal} = props;
 
-
   const [terms, setTerms] = useState([]);
   const [types, setTypes] = useState([]);
   const [palette, setPalette] = useState([]);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [targetOverlay, setTargetOverlay] = useState(null);
+  const [contentOverlay, setContentOverlay] = useState("")
+  const ref = useRef(null);
 
   const createPalette = () => {
 
@@ -33,6 +35,22 @@ export default function PaperModal(props){
     return p;
   }
 
+  const handleOverlay = (event, show, data) => {
+    setShowOverlay(show);
+    setTargetOverlay(event.target);
+    setContentOverlay(
+      <>
+        <span style={{fontWeight: "bold"}}>Laboratory:</span> {data.affiliation.institution}
+        <br/>
+        <span style={{fontWeight: "bold"}}>Institution:</span> {data.affiliation.institution}
+        <br/>
+        <span style={{fontWeight: "bold"}}>Location:</span> 
+        {data.affiliation.location ? (data.affiliation.location.settlement +", "+ data.affiliation.location.country) : ""}
+      </>
+    );
+
+  };
+
   useEffect(()=>{
     setTerms(paper.entities.map(value => value.term));
     setTypes(paper.entities.map(value => value.type));
@@ -51,16 +69,38 @@ export default function PaperModal(props){
       centered
       onHide={() => setShowModal(false)}
       dialogClassName="paper__modal"
-      on
     >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           {"["+index+"] "+paper.title}
-          <Authors>
-            {"Authors: " + paper.author.map( item =>  
-              item.last+', '+item.first+'. ')
+          <br/>
+          <span className="modal__author" >
+          Authors:
+            {paper.author.map( item =>  
+              <span 
+                onMouseEnter={(e)=>handleOverlay(e,true, item)} 
+                onMouseLeave={(e)=>handleOverlay(e,false, item)}
+              >
+                {item.last+', '+item.first+'. '}
+              </span>
+            )
             } 
-          </Authors>
+          </span>
+          
+          <Overlay
+            show={showOverlay}
+            target={targetOverlay}
+            placement="bottom"
+            container={ref.current}
+            containerPadding={20}
+          >
+            <Popover id="popover-contained">
+              {/* <Popover.Title as="h3">Popover bottom</Popover.Title> */}
+              <Popover.Content>
+                {contentOverlay}
+              </Popover.Content>
+            </Popover>
+          </Overlay>
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal__body">
@@ -116,9 +156,3 @@ export default function PaperModal(props){
   )
   
 }
-
-const Authors = styled.p`
-  font-style: italic;
-  font-size: medium;
-  color: grey;
-`;
