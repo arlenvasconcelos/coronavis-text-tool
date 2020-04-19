@@ -27,7 +27,7 @@ export default function PaperCard(props){
       const response = await api.get(`/document/${id}`);
       console.log(response.data)
       setPaperModal(response.data);
-      setShowModal(true)
+      setShowModal(true);
       setLoading(false);
     } catch (err) {
       setPaperModal(defaultValue);
@@ -46,7 +46,7 @@ export default function PaperCard(props){
         <Card.Subtitle>{paper.authors}</Card.Subtitle>
         <hr/>
         <Card.Text>
-          <Highlight text={paper.abstract.slice(0,200)+'...'} terms={[query]}/>
+          <Highlight text={paper.abstract.slice(0,200)+'...'} terms={query}/>
           <br/>
           <br/>
           <span style={{fontStyle:"italic"}}>Publish time: {paper.publish_time}</span>
@@ -72,14 +72,17 @@ export default function PaperCard(props){
         
       </Card.Footer>
     </Card>
-    {/* Modal */}
-    <PaperModal
-      key={index}
-      index={index}
-      paper={paperModal}
-      showModal={showModal}
-      setShowModal={setShowModal}
-    />
+    {
+      showModal ? (
+        <PaperModal
+          key={index}
+          index={index}
+          paper={paperModal}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
+  ): (<></>)
+    /* Modal */}
     </>
   )
 }
