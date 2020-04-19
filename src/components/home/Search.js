@@ -2,9 +2,9 @@ import React, {useEffect, useState} from 'react'
 import {Row, Col, Form, Button, Spinner} from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
-import api from '../service/api'
+import api from '../../service/api'
 
-import { dataSearched } from '../store/ducks/dataSearched';
+import { dataSearched } from '../../store/ducks/dataSearched';
 
 export default function Search(){
 

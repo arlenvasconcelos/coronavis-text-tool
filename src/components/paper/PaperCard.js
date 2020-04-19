@@ -1,7 +1,7 @@
 import React, {useState}  from 'react';
 import {Card, Button, Spinner} from 'react-bootstrap';
 import PaperModal from './PaperModal';
-import Highlight from '../Highlight';
+import Highlight from '../utils/Highlight';
 
 import api from '../../service/api'
 
@@ -47,6 +47,9 @@ export default function PaperCard(props){
         <hr/>
         <Card.Text>
           <Highlight text={paper.abstract.slice(0,200)+'...'} terms={[query]}/>
+          <br/>
+          <br/>
+          <span style={{fontStyle:"italic"}}>Publish time: {paper.publish_time}</span>
         </Card.Text>
       </Card.Body>
       <Card.Footer className="d-flex justify-content-end">

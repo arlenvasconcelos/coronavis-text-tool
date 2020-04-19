@@ -2,10 +2,10 @@ import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 
 import {Container, Row, Col} from 'react-bootstrap';
-import ColumnChart from '../components/ColumnChart';
-import Header from '../components/Header';
-import Search from '../components/Search';
-import TableCard from '../components/TableCard';
+import ColumnChart from '../components/home/ColumnChart';
+import Header from '../components/home/Header';
+import Search from '../components/home/Search';
+import TableCard from '../components/home/TableCard';
 import Papers from '../components/home/Papers';
 import Scatterplot from '../components/home/Scatterplot';
 

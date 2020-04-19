@@ -42,6 +42,7 @@ export default function Papers (props) {
           itemsCountPerPage={perPage}
           totalItemsCount={papers.length}
           onChange={page => handlePapersPageChange(page)}
+          disabledClass
         />
       </div>
     </>

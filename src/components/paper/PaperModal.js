@@ -3,7 +3,7 @@ import {Modal, Button} from 'react-bootstrap'
 import styled from 'styled-components'
 
 
-import Highlight from '../Highlight'
+import Highlight from '../utils/Highlight'
 
 export default function PaperModal(props){
 
@@ -83,6 +83,10 @@ export default function PaperModal(props){
         <a href={'https://doi.org/' + paper.doi} target="_blank">
           {'https://doi.org/' + paper.doi}
         </a>
+        <br/>
+        <span>
+          Publish time: {paper.publish_time}
+        </span>
         
         <div>
           {palette.length ? (

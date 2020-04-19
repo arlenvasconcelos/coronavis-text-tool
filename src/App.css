@@ -56,3 +56,11 @@
   color: white;
   font-size: small;
 }
+.pagination {
+  margin: 10px 0px;
+  justify-content: center;
+}
+.pagination a {
+  background-color: transparent;
+  border: none;
+}
