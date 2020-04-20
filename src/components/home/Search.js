@@ -10,7 +10,6 @@ export default function Search(){
 
   const dispatch = useDispatch();
 
-  const [data, setData] = useState([]);
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
 
@@ -20,16 +19,12 @@ export default function Search(){
     try {
       const response = await api.post(`/search?query=${inputValue}`);
       dispatch(dataSearched(response.data));
-      // setData(response.data);
       setLoading(false);
     } catch (err) {
       console.log(err);
     }
   }
 
-  // useEffect(()=>{
-  //   console.log(data);
-  // },[data])
 
   return (
     <Row className="search">
@@ -41,11 +36,11 @@ export default function Search(){
             </Col >
             <Col lg={1} md={2} className="d-flex justify-content-center my-2">
               { !loading ? (
-                <Button variant="warning" type="submit" className="search__button">
+                <Button type="submit" className="search__button">
                   Submit
                 </Button>
               ) : (
-                <Button variant="warning" disabled>
+                <Button disabled className="search__button">
                   <Spinner
                     as="span"
                     animation="grow"

@@ -33,7 +33,7 @@ export default function ColumnChart(props) {
       <Card.Body>
         <Card.Title>Word Frequency</Card.Title>
         <div style={{ width: "100%", height: "200px" }}>
-          <Chart data={data} series={series} axes={axes} tooltip dark />
+          <Chart data={data} series={series} axes={axes} tooltip />
         </div>
       </Card.Body>
     </Card>

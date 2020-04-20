@@ -74,8 +74,9 @@ export default function PaperModal(props){
         <Modal.Title id="contained-modal-title-vcenter">
           {"["+index+"] "+paper.title}
           <br/>
-          <span className="modal__author" >
-          Authors:
+          
+          <span className="modal__author">
+            Authors: 
             {paper.author.map( item =>  
               <span 
                 onMouseEnter={(e)=>handleOverlay(e,true, item)} 
@@ -83,10 +84,16 @@ export default function PaperModal(props){
               >
                 {item.last+', '+item.first+'. '}
               </span>
-            )
-            } 
+            )}
           </span>
-          
+          <p className="modal__subtitle" >
+            DOI: 
+            <a href={'https://doi.org/' + paper.doi} target="_blank">
+              {'https://doi.org/' + paper.doi}
+            </a>
+            <br/>
+            Publish time: {paper.publish_time} 
+          </p>
           <Overlay
             show={showOverlay}
             target={targetOverlay}
@@ -101,6 +108,7 @@ export default function PaperModal(props){
               </Popover.Content>
             </Popover>
           </Overlay>
+          
         </Modal.Title>
       </Modal.Header>
       <Modal.Body className="modal__body">
@@ -118,16 +126,7 @@ export default function PaperModal(props){
           ) : (
             <p>There is no abstract</p>
           )
-        }
-        DOI: 
-        <a href={'https://doi.org/' + paper.doi} target="_blank">
-          {'https://doi.org/' + paper.doi}
-        </a>
-        <br/>
-        <p>
-          Publish time: {paper.publish_time}
-        </p>
-        
+        }        
         <p>
           {
             Object.entries(palette).map((value, index) => 

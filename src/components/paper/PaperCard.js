@@ -54,11 +54,11 @@ export default function PaperCard(props){
       </Card.Body>
       <Card.Footer className="d-flex justify-content-end">
         { !loading ? (
-          <Button variant="warning" onClick={() => loadPaperModal(paper.id)} className="button">
+          <Button className="home__button" onClick={() => loadPaperModal(paper.id)} className="button">
             See more
           </Button>
         ) : (
-          <Button variant="warning" disabled>
+          <Button className="home__button" disabled>
             <Spinner
               as="span"
               animation="grow"
