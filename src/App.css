@@ -52,6 +52,14 @@
 .paper__modal {
   text-align: justify;
 }
+.paper__words-highlight {
+  display: inline-block;
+  font-weight: bold;
+  padding: 0 1px;
+  margin: 1px 2px;
+  color: black;
+  border-radius: 5px;
+}
 .table-card {
   color: white;
   font-size: small;

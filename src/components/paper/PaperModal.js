@@ -10,21 +10,21 @@ export default function PaperModal(props){
 
   const [terms, setTerms] = useState([]);
   const [types, setTypes] = useState([]);
-  const [palette, setPalette] = useState([]);
+  const [palette, setPalette] = useState({});
   const [showOverlay, setShowOverlay] = useState(false);
   const [targetOverlay, setTargetOverlay] = useState(null);
   const [contentOverlay, setContentOverlay] = useState("")
   const ref = useRef(null);
 
-  const createPalette = () => {
+  const createPalette = (types) => {
 
-    const p = [];    
+    const p = {};    
     var hex = 'FEDCBA9876543210';
   
     //deleting repeated types
     const types_norepeated = [...new Set(types)];
-
-    for (var i = 0; i < types_norepeated.length-1; i++ ) {
+    console.log(types_norepeated)
+    for (var i = 0; i < types_norepeated.length; i++ ) {
       var colour = '#';
       for (var j = 0; j < 6; j++ ) {
         // get random number
@@ -57,7 +57,7 @@ export default function PaperModal(props){
   },[paper])
 
   useEffect(()=>{
-    setPalette(createPalette());
+    setPalette(createPalette(types));
   },[types])
 
   return (    
@@ -124,30 +124,26 @@ export default function PaperModal(props){
           {'https://doi.org/' + paper.doi}
         </a>
         <br/>
-        <span>
+        <p>
           Publish time: {paper.publish_time}
-        </span>
+        </p>
         
-        <div>
-          {palette.length ? (
-            palette.map((value, index) => 
+        <p>
+          {
+            Object.entries(palette).map((value, index) => 
               <span
+                className="paper__words-highlight"
+                key={index}
                 style={{
-                  fontWeight: 'bold', 
-                  backgroundColor: `${value || 'yellow'}`, 
-                  padding: "0 3px",
-                  margin: "1px 2px", 
-                  color:'black', 
-                  borderRadius: "3px"
+                  fontSize:'0.7em',
+                  backgroundColor: `${value[1] || 'yellow'}`, 
                 }}
               >
-                {index}
+                {value[0]}
               </span>
             )
-          ) : (
-            <></>
-          )}
-        </div>
+          }
+        </p>
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={() => setShowModal(false)}>Close</Button>

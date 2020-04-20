@@ -6,6 +6,7 @@ export default function Highlight(props){
 
   const {text, terms, types, palette} = props;
   const [parts, setParts] = useState([]);
+  console.log(palette)
 
   const getRegExp = () => {
 
@@ -42,15 +43,11 @@ export default function Highlight(props){
 
     if ( index >= 0) {
       return (
+        
         <span key={i} 
+          className="paper__words-highlight"
           style= {{
-            // display: 'inline-flex',
-            fontWeight: 'bold', 
             backgroundColor: `${types ? palette[types[index]] : 'yellow'}`, 
-            padding: "0 3px",
-            margin: "1px 2px", 
-            color:'black', 
-            borderRadius: "3px"
           }}     
         >
           { part }
