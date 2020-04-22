@@ -3,7 +3,7 @@ import React, {useState, useEffect} from 'react'
 
 export default function Highlight(props){
 
-
+  
   const {text, terms, types, palette} = props;
   const [parts, setParts] = useState([]);
   console.log(palette)
@@ -27,9 +27,9 @@ export default function Highlight(props){
   const verifyTerms = (term) => {
     
     var eArr = terms.values();
-    
+
     for (let item of eArr) {
-      if (term.toLowerCase() === (item.toLowerCase() + (" " || "," || + "."))){
+      if (term.toLowerCase() === (item.toLowerCase() + (" " || "," || + "." + "(" + ")"))){
         return terms.indexOf(item);
       } 
     }
@@ -43,7 +43,6 @@ export default function Highlight(props){
 
     if ( index >= 0) {
       return (
-        
         <span key={i} 
           className="paper__words-highlight"
           style= {{
@@ -77,7 +76,7 @@ export default function Highlight(props){
       )
     }
   }
-
+  
   return (
     <> 
         { parts.map((part, i) => {

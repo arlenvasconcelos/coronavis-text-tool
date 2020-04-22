@@ -10,14 +10,14 @@
   color: black;
   text-decoration: none;
 }
-.header img {
-  width: 100%;
-  max-width: 100px;
-}
 .header h1,
 .header h3 {
   font-weight: bold;
   margin: 20px 0;
+}
+.header__img {
+  width: 75%;
+  max-width: 250px;
 }
 .search {
   padding: 15px 0;
@@ -26,10 +26,14 @@
   font-weight: bold;
   overflow: hidden;
 }
+.search__button-loading {
+  font-weight: bold;
+  overflow: hidden;
+  font-size: 0.8em;
+}
 .home__card {
   margin: 5px 0;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  border-top: 3px solid #81c784;
 }
 .card__table {
   overflow-x: scroll;
@@ -60,6 +64,9 @@
 .papers__pagination .page-link {
   background-color: transparent;
   border: none;
+}
+.modal__subtitle {
+  font-size: medium;
 }
 .modal__author {
   font-style: italic;

@@ -40,7 +40,7 @@ export default function Search(){
                   Submit
                 </Button>
               ) : (
-                <Button disabled className="search__button">
+                <Button disabled className="search__button-loading">
                   <Spinner
                     as="span"
                     animation="grow"

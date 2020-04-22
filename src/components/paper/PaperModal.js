@@ -20,17 +20,37 @@ export default function PaperModal(props){
 
     const p = {};    
     var hex = 'FEDCBA9876543210';
+
+    const defaultColours = [
+      '#8dd3c7',
+      '#ffffb3',
+      '#bebada',
+      '#fb8072',
+      '#80b1d3',
+      '#fdb462',
+      '#b3de69',
+      '#fccde5',
+      '#d9d9d9',
+      '#bc80bd',
+      '#ccebc5',
+      '#ffed6f',
+    ]
   
     //deleting repeated types
     const types_norepeated = [...new Set(types)];
-    console.log(types_norepeated)
+
     for (var i = 0; i < types_norepeated.length; i++ ) {
-      var colour = '#';
-      for (var j = 0; j < 6; j++ ) {
-        // get random number
-        colour += hex[Math.floor(Math.random() * 10)];//times ten for light colors
+      if (i < 12){
+        p[types_norepeated[i]] = defaultColours[i];
       }
-      p[types_norepeated[i]] = colour;
+      else {
+        let colour = "";
+        for (var j = 0; j < 6; j++ ) {
+          // get random number
+          colour += hex[Math.floor(Math.random() * 10)];//times ten for light colors
+        }
+        p[types_norepeated[i]] = colour;
+      }
     }
     return p;
   }
