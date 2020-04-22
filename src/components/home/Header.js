@@ -2,7 +2,6 @@ import React from 'react';
 import {Col, Row} from 'react-bootstrap';
 
 import logo from '../../assets/images/logo-inf-ufrgs.png';
-import ufrgsLogo from '../../assets/images/ufrgs-logo.png';
 
 export default function Header(){
 
@@ -23,9 +22,7 @@ export default function Header(){
         sm={6} 
         className="d-flex justify-content-center align-items-center order-2 order-md-3"
       >
-        {/* <a href="https://www.inf.ufrgs.br/site/"> */}
-          <img className="header__img" alt="Logo INF" src={logo}/>
-        {/* </a> */}
+        <img className="header__img" alt="Logo INF" src={logo}/>
       </Col>
     </Row>
     </>

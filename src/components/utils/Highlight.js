@@ -6,7 +6,6 @@ export default function Highlight(props){
   
   const {text, terms, types, palette} = props;
   const [parts, setParts] = useState([]);
-  console.log(palette)
 
   const getRegExp = () => {
 
@@ -20,8 +19,9 @@ export default function Highlight(props){
     setParts(text.split(new RegExp(`(${exp})`, 'gi')));
   }
   
-  useEffect(()=>{
-    getRegExp();
+  useEffect(()=>{ 
+    if (terms)
+      getRegExp();
   },[terms])
 
   const verifyTerms = (term) => {
@@ -50,21 +50,6 @@ export default function Highlight(props){
           }}     
         >
           { part }
-          {/* <b 
-            style= {{
-              fontWeight: 'bold', 
-              backgroundColor: "white", 
-              padding: "0 1px", 
-              color:'black', 
-              borderRadius: "3px",
-              margin: "0 2px",
-              fontSize: '0.6em',
-              alignSelf: 'center'
-              
-            }}  
-          >
-            {types[index].slice(0,3)}
-          </b> */}
         </span>
       )
     }

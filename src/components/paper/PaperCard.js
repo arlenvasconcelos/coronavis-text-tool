@@ -54,7 +54,7 @@ export default function PaperCard(props){
       </Card.Body>
       <Card.Footer className="d-flex justify-content-end">
         { !loading ? (
-          <Button className="home__button" onClick={() => loadPaperModal(paper.id)} className="button">
+          <Button className="home__button" onClick={() => loadPaperModal(paper.id)}>
             See more
           </Button>
         ) : (

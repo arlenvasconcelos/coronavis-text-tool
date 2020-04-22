@@ -15,8 +15,10 @@ export default function Papers (props) {
     setPapersFilter({ ...papersFilter, page });
   };
  
+  //If update the papers, update the pagination for first page  
   useEffect(() => {
-    setPapersFilter(defaultValue)
+    if (papers)
+      setPapersFilter(defaultValue)
   }, [papers])
 
   return (
@@ -42,7 +44,6 @@ export default function Papers (props) {
           itemsCountPerPage={perPage}
           totalItemsCount={papers.length}
           onChange={page => handlePapersPageChange(page)}
-          disabledClass={"pagination__link"} //this class didn't be used
           innerClass={'papers__pagination'}
         />
       </div>

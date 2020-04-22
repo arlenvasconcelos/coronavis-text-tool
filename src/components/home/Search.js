@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react'
+import React, {useState} from 'react'
 import {Row, Col, Form, Button, Spinner} from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
@@ -21,6 +21,7 @@ export default function Search(){
       dispatch(dataSearched(response.data));
       setLoading(false);
     } catch (err) {
+      setLoading(false);
       console.log(err);
     }
   }
