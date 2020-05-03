@@ -88,3 +88,17 @@
   font-weight: bold;
   font-size: 17px;
 }
+.suggested__questions {
+  margin: 15px 0px;
+}
+.questions__section {
+  width: 100%;
+}
+.answer__item {
+  display: flex;
+  justify-content: space-between;
+}
+.answer__link {
+  text-decoration: none;
+  color: black;
+}
