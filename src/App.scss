@@ -92,3 +92,27 @@
   color: grey;
 }
 
+/* Seggested Topics */
+
+.suggested {
+  background-color: #eee;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 5px;
+  border-bottom: 1px solid black;
+}
+
+.suggested__card {
+  font-size: 16px;
+}
+
+.suggested__topic{
+  font-weight: bold;
+  font-size: 17px;
+  margin: 10px;
+}
+
+.suggested__cardtitle{
+  font-weight: bold;
+  font-size: 17px;
+}

@@ -6,7 +6,7 @@ import api from '../../service/api'
 
 import { dataSearched } from '../../store/ducks/dataSearched';
 
-export default function Search(){
+export default function NavSearch(){
 
   const dispatch = useDispatch();
 

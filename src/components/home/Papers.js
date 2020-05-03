@@ -15,7 +15,7 @@ export default function Papers (props) {
     setPapersFilter({ ...papersFilter, page });
   };
  
-  //If update the papers, update the pagination for first page  
+  //If update the papers, update the pagination to first page  
   useEffect(() => {
     if (papers)
       setPapersFilter(defaultValue)
