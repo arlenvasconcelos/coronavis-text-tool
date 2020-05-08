@@ -1,20 +1,33 @@
 import React from 'react';
+import { Provider } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+
+//Store
+import store from './store';
+//CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.scss'
-import Home from './views/Home';
+import Routes from './routes';
 
-import { Provider } from 'react-redux';
-import store from './store';
+import Footer from './components/home/Footer';
+import Header from './components/home/Header';
+import NavSearch from './components/home/NavSearch';
 
 
-function App() {
+export default function App() {
   return (
     <Provider store={store}>
-      <div className="App">
-        <Home/>
-      </div>
+      <Header/>
+      <NavSearch/>
+      
+      <Routes />
+      
+      <Footer/>
     </Provider>
   );
 }
-
-export default App;

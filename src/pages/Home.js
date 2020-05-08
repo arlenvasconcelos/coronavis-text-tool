@@ -3,12 +3,10 @@ import {useSelector} from 'react-redux';
 
 import {Container, Row, Col} from 'react-bootstrap';
 import ColumnChart from '../components/home/ColumnChart';
-import Header from '../components/home/Header';
-import NavSearch from '../components/home/NavSearch';
 import TableCard from '../components/home/TableCard';
 import Papers from '../components/home/Papers';
 import Scatterplot from '../components/home/Scatterplot';
-import SuggestedTopics from '../components/home/SuggestedTopics';
+import SuggestedTopics from './SuggestedTopics';
 
 export default function Home() {
 
@@ -22,8 +20,7 @@ export default function Home() {
   return (
     <div className="home">
       <Container fluid>
-        <Header/>
-        <NavSearch/>
+        
         {dataSearched.papers ? (
           <Row>
             <Col lg="8">
@@ -32,7 +29,7 @@ export default function Home() {
             <Col lg="4">
               <Scatterplot/>
               <ColumnChart dataSearched={dataSearched}/>
-              <TableCard dataSearched={dataSearched}/>
+              {/* <TableCard dataSearched={dataSearched}/> */}
             </Col>
           </Row>
         ) : (
@@ -40,7 +37,9 @@ export default function Home() {
             <SuggestedTopics/>
           </>
         )}
+        
       </Container>
+      {/* <Footer/> */}
     </div>
   )
 }

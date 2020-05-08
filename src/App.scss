@@ -3,26 +3,32 @@
   font-family: 'Roboto', sans-serif;
 }
 
-.header__title{
+.header__link{
   text-decoration: none;
   color: black;
 }
 
-.header__title:hover{
+.header__link:hover{
   color: black;
   text-decoration: none;
 }
 
 .header{
-  h1, h3{
+  h1{
+    font-size: 28px;
     font-weight: bold;
-    margin: 20px 0;
+    margin-top: 20px;
   }
+  
+  h3{
+    font-size: 16px;
+    // margin: 20px 0;
+  }
+  
 }
 
 .header__img{
-  width: 75%;
-  max-width: 250px;
+  max-height: 100px;
 }
 
 .search {
@@ -45,7 +51,7 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.card__table{
+.home__tablecard{
   overflow-x: scroll;
 }
 
@@ -72,7 +78,7 @@
   border-radius: 5px;
 }
 
-.table-card {
+.card__table {
   font-size: small;
 }
 
@@ -94,12 +100,14 @@
 
 /* Seggested Topics */
 
-.suggested {
-  background-color: #eee;
-  padding-top: 10px;
-  padding-bottom: 10px;
+.suggested__section {
+  // background-color: #fcfcfc;
+  padding: 10px 0px;
   border-radius: 5px;
-  border-bottom: 1px solid black;
+  // border-bottom: 1px solid black;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  background-color: #f5f5f5;
 }
 
 .suggested__card {
@@ -110,6 +118,7 @@
   font-weight: bold;
   font-size: 17px;
   margin: 10px;
+  width: 100%;
 }
 
 .suggested__cardtitle{
@@ -123,6 +132,7 @@
 
 .questions__section{
   width: 100%;
+  margin: 10px;
 }
 
 .answer__item{
@@ -131,6 +141,27 @@
 }
 
 .answer__link{
+  text-decoration: none;
+  color: black;
+}
+
+// Footer
+
+// .app__footer{
+//   background-color: #babdbe;
+//   height: 150px;
+// }
+
+.footer__content{
+  padding: 30px;
+}
+
+.footer__link{
+  text-decoration: none;
+  color: black;
+}
+
+.footer__link:hover{
   text-decoration: none;
   color: black;
 }

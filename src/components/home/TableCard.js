@@ -13,9 +13,9 @@ export default function TableCard({dataSearched}){
   return (
     <>
 
-    <Card className="home__card card__table">
+    <Card className="home__card home__tablecard">
       <Card.Body>
-        <Table striped responsive="sm" size="sm" className="table-card">
+        <Table striped responsive="sm" size="sm" className="card__table">
           <thead>
             <tr>
               <th>#</th>
