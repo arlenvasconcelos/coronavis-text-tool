@@ -71,10 +71,10 @@ export default function SuggestedTopics(){
       ) : (
         <></>
       )}
-      {topic ? (
+      {topic.questions ? (
         <Row bsPrefix="row suggested__section ">
           <div className="questions__section">
-            <a href="#"><h6>{topic.topic}</h6></a>
+            <h6>{topic.topic}</h6>
             <Table size="sm">
               <tbody>
                 {
