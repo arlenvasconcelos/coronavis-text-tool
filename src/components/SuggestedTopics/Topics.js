@@ -33,7 +33,7 @@ export default function Topics(){
 
   return (
     <>
-      {topic.questions? (
+      {/* {topic.questions ? ( */}
         <>
           <Row bsPrefix="row suggested__section ">
             <div className="questions__section">
@@ -41,7 +41,7 @@ export default function Topics(){
               <Table size="sm">
                 <tbody>
                   {
-                    topic.questions.map((item, key)=> (
+                    topic.questions && topic.questions.map((item, key)=> (
                       // <tr key={key} className="answer__item">
                       <tr key={key}>
                         <td>
@@ -58,9 +58,9 @@ export default function Topics(){
             </div>
           </Row>
         </>
-      ) : (
+      {/* ) : (
         <></>
-      )}
+      )} */}
     </>
   )
 }
