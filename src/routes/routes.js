@@ -1,12 +1,12 @@
 //import pages
 import Searched from '../pages/Searched';
-import Answers from '../pages/Questions';
+import Questions from '../pages/Questions';
 import SuggestedTopics from '../pages/SuggestedTopics';
 
 const routes = [
   {
-    path: "/answers/:id",
-    component: Answers
+    path: "/questions/:id/answers",
+    component: Questions
   },
   {
     path: "/searched",

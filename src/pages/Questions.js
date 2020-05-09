@@ -19,7 +19,7 @@ export default function Answers(props){
     .catch((err)=> {
       console.log(err)
     })
-  },[]);
+  },[props.location.pathname]);
 
   return (
     <>
