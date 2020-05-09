@@ -1,10 +1,12 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
+import {Redirect} from 'react-router-dom'
 
 import {Row, Col} from 'react-bootstrap'
 import Scatterplot from '../components/Searched/Scatterplot'
 import ColumnChart from '../components/Searched/ColumnChart'
 import Papers from '../components/Searched/Papers'
+import SuggestedTopics from './SuggestedTopics';
 
 export default function Searched(){
 
@@ -27,9 +29,10 @@ export default function Searched(){
           </Col>
         </Row>
       ) : (
-        <>
+        <>    
         </>
       )}
+      <SuggestedTopics/>
   </>
   )
 }

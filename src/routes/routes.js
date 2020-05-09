@@ -9,13 +9,13 @@ const routes = [
     component: Questions
   },
   {
-    path: "/searched",
+    path: "/home",
     component: Searched
   },
-  {
-    path: "/featured",
-    component: SuggestedTopics
-  }
+  // {
+  //   path: "/featured",
+  //   component: SuggestedTopics
+  // }
 ]
 
 export default routes;

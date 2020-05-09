@@ -1,11 +1,11 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Row, Col, Form, Button, Spinner, Container} from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
 import api from '../../service/api'
 
 import { dataSearched } from '../../store/ducks/dataSearched';
-import { Link } from 'react-router-dom';
+import { Link, Redirect} from 'react-router-dom';
 
 export default function NavSearch(props){
 
@@ -20,7 +20,7 @@ export default function NavSearch(props){
     try {
       const response = await api.post(`/search?query=${inputValue}`);
       dispatch(dataSearched(response.data));
-      console.log(props)
+      console.log(response.data)
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -40,10 +40,12 @@ export default function NavSearch(props){
                 </Col >
                 <Col lg={1} md={2} className="d-flex justify-content-center my-2">
                   { !loading ? (
-                    <Button type="submit" onClick={() => (<Link to="/tools/searched" />)} className="search__button">
+                    <Button type="submit" className="search__button">
                       Submit
                     </Button>
                   ) : (
+                    <>
+                      <Redirect to="/tools/home"/>
                       <Button disabled className="search__button-loading">
                         <Spinner
                           as="span"
@@ -54,6 +56,7 @@ export default function NavSearch(props){
                         />
                         Loading
                       </Button>
+                    </>
                   )}
                 </Col>
               </Form.Row>

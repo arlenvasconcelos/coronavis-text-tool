@@ -1,4 +1,5 @@
 import React, {useEffect} from 'react';
+import {useSelector} from 'react-redux';
 import {BronserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 
 import {Container} from 'react-bootstrap';
@@ -19,16 +20,17 @@ const switchRoutes = (
         );
       })
     }
-    {/* <Redirect from="/tools" to="/tools/featured" /> */}
+    <Redirect from="/tools" to="/tools/home" />
   </Switch>
 );
 
 export default function Tools(props) { 
 
+  const dataSearched = useSelector(state => state.dataSearched.data, []); 
+
   useEffect(() => {
-    console.log(props)
-    // props.history.push('/foo')
-  }, [])
+    console.log(dataSearched)
+  }, [dataSearched])
 
   return (
     <div className="home">

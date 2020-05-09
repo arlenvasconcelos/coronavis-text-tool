@@ -17,7 +17,7 @@ export default function App() {
         <Router>
           <Switch>
             <Route path="/tools" component={Tools} />
-            {/* <Redirect from="*" to="/tools/featured" /> */}
+            <Redirect from="*" to="/tools/home" />
           </Switch>
         </Router>
       </Provider>
