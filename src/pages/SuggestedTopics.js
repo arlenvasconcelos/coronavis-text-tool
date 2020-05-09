@@ -79,7 +79,8 @@ export default function SuggestedTopics(){
               <tbody>
                 {
                   topic.questions && topic.questions.map((item, key)=> (
-                    <tr key={key} className="answer__item">
+                    // <tr key={key} className="answer__item">
+                    <tr key={key}>
                       <td>
                         <Link to={`/tools/questions/${item.qid}/answers`} className="answer__link">{`${key+1}. ${item.text}`}</Link>
                       </td>
