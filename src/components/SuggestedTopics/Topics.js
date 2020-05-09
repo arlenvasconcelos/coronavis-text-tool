@@ -13,27 +13,26 @@ export default function Topics(){
   const [previousPage, setPreviousPage] = useState("")
   const [nextPage, setNextPage] = useState("")
 
-  const loadTopics= async () => {
-    try {
-      const response = await api.get(`/topics?page=${currentPage}`);
-      setPreviousPage(response.data.previous)
-      setCurrentPage(response.data.current)
-      setNextPage(response.data.next)
-      setLastPage(response.data.last)
-      console.log(response.data.data)
-      setTopic(response.data.data)
-    } catch (err) {
-      console.log(err);
-    }
-  }
-
   useEffect(()=>{
+    const loadTopics = async () => {
+      try {
+        const response = await api.get(`/topics?page=${currentPage}`);
+        setPreviousPage(response.data.previous)
+        setCurrentPage(response.data.current)
+        setNextPage(response.data.next)
+        setLastPage(response.data.last)
+        console.log(response.data.data)
+        setTopic(response.data.data)
+      } catch (err) {
+        console.log(err);
+      }
+    }
     loadTopics();
   },[])
 
   return (
     <>
-      {/* {topic.questions ? ( */}
+      {topic ? (
         <>
           <Row bsPrefix="row suggested__section ">
             <div className="questions__section">
@@ -58,9 +57,9 @@ export default function Topics(){
             </div>
           </Row>
         </>
-      {/* ) : (
+      ) : (
         <></>
-      )} */}
+      )}
     </>
   )
 }

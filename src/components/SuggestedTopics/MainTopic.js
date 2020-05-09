@@ -14,26 +14,26 @@ export default function MainTopic(){
   const [previousPage, setPreviousPage] = useState("")
   const [nextPage, setNextPage] = useState("")
 
-  const loadFeatured = async () => {
-    setLoading(true);
-    try {
-      const response = await api.get('/featured');
-      console.log(response.data.data[0])
-      setMainTopic(response.data.data[0])
-      setLoading(false);
-    } catch (err) {
-      setLoading(false);
-      console.log(err);
-    }
-  }
 
   useEffect(()=>{
+    const loadFeatured = async () => {
+      setLoading(true);
+      try {
+        const response = await api.get('/featured');
+        console.log(response.data.data[0])
+        setMainTopic(response.data.data[0])
+        setLoading(false);
+      } catch (err) {
+        setLoading(false);
+        console.log(err);
+      }
+    }
     loadFeatured();
   },[])
 
   return (
     <>
-      {mainTopic? (
+      {mainTopic ? (
           <Row bsPrefix="row suggested__section">
             <h6 className="suggested__topic">{mainTopic.topic}</h6>
             {
