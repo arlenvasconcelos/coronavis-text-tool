@@ -14,13 +14,11 @@ export default function MainTopic(){
   const [previousPage, setPreviousPage] = useState("")
   const [nextPage, setNextPage] = useState("")
 
-
   useEffect(()=>{
     const loadFeatured = async () => {
       setLoading(true);
       try {
         const response = await api.get('/featured');
-        console.log(response.data.data[0])
         setMainTopic(response.data.data[0])
         setLoading(false);
       } catch (err) {
@@ -31,32 +29,31 @@ export default function MainTopic(){
     loadFeatured();
   },[])
 
+  if (!mainTopic){
+    return (<></>)
+  }
+
   return (
     <>
-      {mainTopic ? (
-          <Row bsPrefix="row suggested__section">
-            <h6 className="suggested__topic">{mainTopic.topic}</h6>
-            {
-              mainTopic.questions && mainTopic.questions.map((item, key)=> (
-                <Col key={key} md={6}>
-                  <Card bsPrefix="suggested__card card">
-                    <Card.Body>
-                      <Card.Title bsPrefix="suggested__cardtitle">{item.question}</Card.Title>
-                      {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
-                      <Card.Text>
-                        {item.summary}
-                      </Card.Text>
-                      <Card.Link href={`/tools/questions/${item.qid}/answers`}>[{item.total_results} results]</Card.Link>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              ))
-            }
-          </Row>
-      ) : (
-        <>
-        </>
-      )} 
+      <Row bsPrefix="row suggested__section">
+        <h6 className="suggested__topic">{mainTopic.topic}</h6>
+        {
+          mainTopic.questions && mainTopic.questions.map((item, key)=> (
+            <Col key={key} md={6}>
+              <Card bsPrefix="suggested__card card">
+                <Card.Body>
+                  <Card.Title bsPrefix="suggested__cardtitle">{item.question}</Card.Title>
+                  {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
+                  <Card.Text>
+                    {item.summary}
+                  </Card.Text>
+                  <Card.Link href={`/tools/questions/${item.qid}/answers`}>[{item.total_results} results]</Card.Link>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))
+        }
+      </Row>
     </>
   )
 }

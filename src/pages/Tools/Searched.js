@@ -3,18 +3,14 @@ import {useSelector} from 'react-redux';
 import {Redirect} from 'react-router-dom'
 
 import {Row, Col} from 'react-bootstrap'
-import Scatterplot from '../components/Searched/Scatterplot'
-import ColumnChart from '../components/Searched/ColumnChart'
-import Papers from '../components/Searched/Papers'
+import Scatterplot from '../../components/Searched/Scatterplot'
+import ColumnChart from '../../components/Searched/ColumnChart'
+import Papers from '../../components/Searched/Papers'
 import SuggestedTopics from './SuggestedTopics';
 
 export default function Searched(){
 
-  const dataSearched = useSelector(state => state.dataSearched.data, []); 
-
-  useEffect(()=>{
-    console.log(dataSearched)
-  }, [dataSearched])
+  const dataSearched = useSelector(state => state.dataSearched.data, []);
 
   return (
     <>

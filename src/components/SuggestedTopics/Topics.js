@@ -44,7 +44,6 @@ export default function Topics(){
         setCurrentPage(response.data.current)
         setNextPage(response.data.next)
         setLastPage(response.data.last)
-        console.log(response.data.data)
         setTopic(response.data.data)
       } catch (err) {
         console.log(err);
@@ -52,10 +51,6 @@ export default function Topics(){
     }
     loadTopics();
   },[])
-
-  
-
-  console.log(topic)
 
   if (!topic) {
     return (<></>)

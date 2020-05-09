@@ -1,7 +1,7 @@
 import React from 'react';
 
-import Topics from '../components/SuggestedTopics/Topics'
-import MainTopic from '../components/SuggestedTopics/MainTopic'
+import Topics from '../../components/SuggestedTopics/Topics'
+import MainTopic from '../../components/SuggestedTopics/MainTopic'
 
 
 

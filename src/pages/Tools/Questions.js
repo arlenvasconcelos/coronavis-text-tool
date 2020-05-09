@@ -2,23 +2,30 @@ import React, {useEffect, useState} from 'react';
 import {Row, Card, Col, } from 'react-bootstrap';
 
 //import api
-import api from '../service/api';
+import api from '../../service/api';
 
 export default function Questions(props){
 
-  const [question, setQuestion] = useState({});
+  const [question, setQuestion] = useState({
+    topic: "",
+    text: "",
+    data: []
+  });
 
   useEffect(()=>{
-    const path = props.location.pathname.split('tools')
-    console.log(path)
-    api.get(path[1])
-    .then((response)=>{
-      console.log(response)
-      setQuestion(response.data.data)
-    })
-    .catch((err)=> {
-      console.log(err)
-    })
+    const loadQuestion = async () => {
+      const path = props.location.pathname.split('tools')
+      console.log(path)
+      try{
+        const response = await api.get(path[1])
+        console.log(response.data)
+        setQuestion(response.data.data)
+      }
+      catch(err){
+        console.log(err)
+      }
+    }
+    loadQuestion()
   },[props.location.pathname]);
 
   return (
@@ -29,10 +36,10 @@ export default function Questions(props){
           <Row>
             {
               question.answers && question.answers.map(( (answer, key) => (
-                <Col sm={6}>
+                <Col key={key} sm={6}>
                   <Card className="home__card">
                     <Card.Body>
-                      <Card.Title>{"["+key+"] "+answer.title}</Card.Title>
+                      <Card.Title>{`[${key+1}] ${answer.title}`}</Card.Title>
                       {/* <Card.Title>{paper.title}</Card.Title> */}
                       <Card.Subtitle>Authors: {answer.authors}</Card.Subtitle>
                       <br/>

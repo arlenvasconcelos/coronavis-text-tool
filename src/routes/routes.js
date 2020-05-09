@@ -1,7 +1,6 @@
 //import pages
-import Searched from '../pages/Searched';
-import Questions from '../pages/Questions';
-import SuggestedTopics from '../pages/SuggestedTopics';
+
+import SuggestedTopics from '../pages/Tools/SuggestedTopics';
 
 const routes = [
   {
