@@ -48,55 +48,53 @@ export default function SuggestedTopics(){
 
   return (
     <>
-      {mainTopic ? (
-        <Row bsPrefix="row suggested__section">
-          <h6 className="suggested__topic">{mainTopic.topic}</h6>
-          {
-            mainTopic.questions && mainTopic.questions.map((item, key)=> (
-              <Col key={key} md={6}>
-                <Card bsPrefix="suggested__card card">
-                  <Card.Body>
-                    <Card.Title bsPrefix="suggested__cardtitle">{item.question}</Card.Title>
-                    {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
-                    <Card.Text>
-                      {item.summary}
-                    </Card.Text>
-                    <Card.Link href={`/tools/questions/${item.qid}/answers`}>[{item.total_results} results]</Card.Link>
-                  </Card.Body>
-                </Card>
-              </Col>
-            ))
-          }
-        </Row>
+      {mainTopic && topic.questions? (
+        <>
+          <Row bsPrefix="row suggested__section">
+            <h6 className="suggested__topic">{mainTopic.topic}</h6>
+            {
+              mainTopic.questions && mainTopic.questions.map((item, key)=> (
+                <Col key={key} md={6}>
+                  <Card bsPrefix="suggested__card card">
+                    <Card.Body>
+                      <Card.Title bsPrefix="suggested__cardtitle">{item.question}</Card.Title>
+                      {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
+                      <Card.Text>
+                        {item.summary}
+                      </Card.Text>
+                      <Card.Link href={`/tools/questions/${item.qid}/answers`}>[{item.total_results} results]</Card.Link>
+                    </Card.Body>
+                  </Card>
+                </Col>
+              ))
+            }
+          </Row>
+          <Row bsPrefix="row suggested__section ">
+            <div className="questions__section">
+              <h6 className="suggested__topic">{topic.topic}</h6>
+              <Table size="sm">
+                <tbody>
+                  {
+                    topic.questions.map((item, key)=> (
+                      // <tr key={key} className="answer__item">
+                      <tr key={key}>
+                        <td>
+                          <Link to={`/tools/questions/${item.qid}/answers`} className="answer__link">{`${key+1}. ${item.text}`}</Link>
+                        </td>
+                        <td>
+                          [{item.total_answers} results]
+                        </td>
+                      </tr>
+                    ))
+                  }
+                </tbody>
+              </Table>
+            </div>
+          </Row>
+        </>
       ) : (
         <></>
       )}
-      {topic.questions ? (
-        <Row bsPrefix="row suggested__section ">
-          <div className="questions__section">
-            <h6>{topic.topic}</h6>
-            <Table size="sm">
-              <tbody>
-                {
-                  topic.questions && topic.questions.map((item, key)=> (
-                    // <tr key={key} className="answer__item">
-                    <tr key={key}>
-                      <td>
-                        <Link to={`/tools/questions/${item.qid}/answers`} className="answer__link">{`${key+1}. ${item.text}`}</Link>
-                      </td>
-                      <td>
-                        [{item.total_answers} results]
-                      </td>
-                    </tr>
-                  ))
-                }
-              </tbody>
-            </Table>
-          </div>
-        </Row>
-      ):(
-        <></>
-      )}    
     </>
   )
 }
