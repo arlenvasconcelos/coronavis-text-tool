@@ -61,7 +61,7 @@ export default function SuggestedTopics(){
                     <Card.Text>
                       {item.summary}
                     </Card.Text>
-                    <Card.Link href="#">[{item.total_results} results]</Card.Link>
+                    <Card.Link href={`/answer/${item.qid}`}>[{item.total_results} results]</Card.Link>
                   </Card.Body>
                 </Card>
               </Col>
@@ -75,13 +75,13 @@ export default function SuggestedTopics(){
         <Row bsPrefix="row suggested__section ">
           <div className="questions__section">
             <a href="#"><h6>{topic.topic}</h6></a>
-            <Table borderless size="sm">
+            <Table size="sm">
               <tbody>
                 {
                   topic.questions && topic.questions.map((item, key)=> (
                     <tr key={key} className="answer__item">
                       <td>
-                        <a href={`/answer/${item.id}`} className="answer__link">{`${key+1}. ${item.question}`}</a>
+                        <a href={`/answer/${item.qid}`} className="answer__link">{`${key+1}. ${item.question}`}</a>
                       </td>
                       <td>
                         [{item.total_answers} results]

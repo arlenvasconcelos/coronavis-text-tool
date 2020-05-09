@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import api from '../../service/api'
 
 import { dataSearched } from '../../store/ducks/dataSearched';
+import { Link } from 'react-router-dom';
 
 export default function NavSearch(){
 
@@ -39,20 +40,22 @@ export default function NavSearch(){
                 </Col >
                 <Col lg={1} md={2} className="d-flex justify-content-center my-2">
                   { !loading ? (
-                    <Button type="submit" className="search__button">
-                      Submit
-                    </Button>
+                    
+                      <Button type="submit" onClick={() => (<Link to="/" ></Link>)}className="search__button">
+                        Submit
+                      </Button>
                   ) : (
-                    <Button disabled className="search__button-loading">
-                      <Spinner
-                        as="span"
-                        animation="grow"
-                        size="sm"
-                        role="status"
-                        aria-hidden="true"
-                      />
-                      Loading
-                    </Button>
+                      <Button disabled className="search__button-loading">
+                        <Spinner
+                          as="span"
+                          animation="grow"
+                          size="sm"
+                          role="status"
+                          aria-hidden="true"
+                        />
+                        Loading
+                        
+                      </Button>
                   )}
                 </Col>
               </Form.Row>

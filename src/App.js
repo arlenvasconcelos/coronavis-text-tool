@@ -1,33 +1,26 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link
-} from "react-router-dom";
+import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 //Store
 import store from './store';
 //CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.scss'
-import Routes from './routes';
-
-import Footer from './components/home/Footer';
-import Header from './components/home/Header';
-import NavSearch from './components/home/NavSearch';
+import './App.scss';
+import Tools from './layout/Tools';
 
 
 export default function App() {
   return (
-    <Provider store={store}>
-      <Header/>
-      <NavSearch/>
-      
-      <Routes />
-      
-      <Footer/>
-    </Provider>
+    <div className="App">
+      <Provider store={store}>
+        <Router>
+          <Switch>
+            <Route path="/tools" component={Tools} />
+            <Redirect from="*" to="/tools/searched" />
+          </Switch>
+        </Router>
+      </Provider>
+    </div>
   );
 }
