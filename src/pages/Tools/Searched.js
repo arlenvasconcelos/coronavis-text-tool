@@ -1,6 +1,5 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {useSelector} from 'react-redux';
-import {Redirect} from 'react-router-dom'
 
 import {Row, Col} from 'react-bootstrap'
 import Scatterplot from '../../components/Searched/Scatterplot'

@@ -26,31 +26,29 @@ export default function Topics(){
     questions: [],
     topic: ""
   })
-  const [loading, setLoading] = useState(false)
+  // const [loading, setLoading] = useState(false)
   const [currentPage, setCurrentPage] = useState(1)
-  const [lastPage, setLastPage] = useState("")
-  const [previousPage, setPreviousPage] = useState("")
-  const [nextPage, setNextPage] = useState("")
+  // const [lastPage, setLastPage] = useState("")
+  // const [previousPage, setPreviousPage] = useState("")
+  // const [nextPage, setNextPage] = useState("")
 
-  useEffect(()=>{
-    
-  },[])
+  
 
   useEffect(()=>{
     const loadTopics = async () => {
       try {
         const response = await api.get(`/topics?page=${currentPage}`);
-        setPreviousPage(response.data.previous)
+        // setPreviousPage(response.data.previous)
         setCurrentPage(response.data.current)
-        setNextPage(response.data.next)
-        setLastPage(response.data.last)
+        // setNextPage(response.data.next)
+        // setLastPage(response.data.last)
         setTopic(response.data.data)
       } catch (err) {
         console.log(err);
       }
     }
     loadTopics();
-  },[])
+  },[currentPage])
 
   if (!topic) {
     return (<></>)
