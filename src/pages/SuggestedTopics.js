@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react'
-import {Card, Row, Col, Container, Table} from 'react-bootstrap'
+import {Card, Row, Col, Table} from 'react-bootstrap'
+import {Link} from 'react-router-dom'
 
 import api from '../service/api'
 
@@ -33,8 +34,8 @@ export default function SuggestedTopics(){
       setCurrentPage(response.data.current)
       setNextPage(response.data.next)
       setLastPage(response.data.last)
-      console.log(response.data.results)
-      setTopic(response.data.results[0])
+      console.log(response.data.data)
+      setTopic(response.data.data)
     } catch (err) {
       console.log(err);
     }
@@ -47,13 +48,12 @@ export default function SuggestedTopics(){
 
   return (
     <>
-      <Container fluid>
       {mainTopic ? (
         <Row bsPrefix="row suggested__section">
           <h6 className="suggested__topic">{mainTopic.topic}</h6>
           {
-            mainTopic.questions && mainTopic.questions.map((item)=> (
-              <Col md={6}>
+            mainTopic.questions && mainTopic.questions.map((item, key)=> (
+              <Col key={key} md={6}>
                 <Card bsPrefix="suggested__card card">
                   <Card.Body>
                     <Card.Title bsPrefix="suggested__cardtitle">{item.question}</Card.Title>
@@ -61,7 +61,7 @@ export default function SuggestedTopics(){
                     <Card.Text>
                       {item.summary}
                     </Card.Text>
-                    <Card.Link href={`/answer/${item.qid}`}>[{item.total_results} results]</Card.Link>
+                    <Card.Link href={`/tools/answers/${item.qid}`}>[{item.total_results} results]</Card.Link>
                   </Card.Body>
                 </Card>
               </Col>
@@ -81,7 +81,7 @@ export default function SuggestedTopics(){
                   topic.questions && topic.questions.map((item, key)=> (
                     <tr key={key} className="answer__item">
                       <td>
-                        <a href={`/answer/${item.qid}`} className="answer__link">{`${key+1}. ${item.question}`}</a>
+                        <Link to={`/tools/answers/${item.qid}`} className="answer__link">{`${key+1}. ${item.text}`}</Link>
                       </td>
                       <td>
                         [{item.total_answers} results]
@@ -95,9 +95,7 @@ export default function SuggestedTopics(){
         </Row>
       ):(
         <></>
-      )}
-      </Container>
-    
+      )}    
     </>
   )
 }

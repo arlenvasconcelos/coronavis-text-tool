@@ -7,7 +7,7 @@ import api from '../../service/api'
 import { dataSearched } from '../../store/ducks/dataSearched';
 import { Link } from 'react-router-dom';
 
-export default function NavSearch(){
+export default function NavSearch(props){
 
   const dispatch = useDispatch();
 
@@ -20,6 +20,7 @@ export default function NavSearch(){
     try {
       const response = await api.post(`/search?query=${inputValue}`);
       dispatch(dataSearched(response.data));
+      console.log(props)
       setLoading(false);
     } catch (err) {
       setLoading(false);
@@ -27,10 +28,9 @@ export default function NavSearch(){
     }
   }
 
-
   return (
     <div className="search">
-      <Container fluid>
+      <Container fluid className="mx-2">
         <Row >
           <Col md={12}>
             <Form onSubmit={(e) => handleSubmit(e)}>
@@ -40,10 +40,9 @@ export default function NavSearch(){
                 </Col >
                 <Col lg={1} md={2} className="d-flex justify-content-center my-2">
                   { !loading ? (
-                    
-                      <Button type="submit" onClick={() => (<Link to="/" ></Link>)}className="search__button">
-                        Submit
-                      </Button>
+                    <Button type="submit" onClick={() => (<Link to="/tools/searched" />)} className="search__button">
+                      Submit
+                    </Button>
                   ) : (
                       <Button disabled className="search__button-loading">
                         <Spinner
@@ -54,7 +53,6 @@ export default function NavSearch(){
                           aria-hidden="true"
                         />
                         Loading
-                        
                       </Button>
                   )}
                 </Col>

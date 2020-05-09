@@ -1,10 +1,10 @@
 import React, {useEffect} from 'react';
 import {useSelector} from 'react-redux';
 
-import {Row, Col, Container} from 'react-bootstrap'
-import Scatterplot from '../components/home/Scatterplot'
-import ColumnChart from '../components/home/ColumnChart'
-import Papers from '../components/home/Papers'
+import {Row, Col} from 'react-bootstrap'
+import Scatterplot from '../components/Searched/Scatterplot'
+import ColumnChart from '../components/Searched/ColumnChart'
+import Papers from '../components/Searched/Papers'
 
 export default function Searched(){
 
@@ -15,8 +15,7 @@ export default function Searched(){
   }, [dataSearched])
 
   return (
-    <Container>
-      searched
+    <>
       {dataSearched.papers ? (
         <Row>
           <Col lg="8">
@@ -25,14 +24,12 @@ export default function Searched(){
           <Col lg="4">
             <Scatterplot/>
             <ColumnChart dataSearched={dataSearched}/>
-            {/* <TableCard dataSearched={dataSearched}/> */}
           </Col>
         </Row>
       ) : (
         <>
-          {/* <SuggestedTopics/> */}
         </>
       )}
-  </Container>
+  </>
   )
 }

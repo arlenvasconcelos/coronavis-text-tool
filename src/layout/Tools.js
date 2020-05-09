@@ -1,17 +1,10 @@
 import React, {useEffect} from 'react';
-import {useSelector} from 'react-redux';
-
 import {BronserRouter as Router, Switch, Route, Redirect} from 'react-router-dom'
 
-import {Container, Row, Col} from 'react-bootstrap';
-import ColumnChart from '../components/home/ColumnChart';
-import TableCard from '../components/home/TableCard';
-import Papers from '../components/home/Papers';
-import Scatterplot from '../components/home/Scatterplot';
-import Header from '../components/home/Header';
-import NavSearch from '../components/home/NavSearch';
-import SuggestedTopics from '../pages/SuggestedTopics';
-import routes from '../routes'
+import {Container} from 'react-bootstrap';
+import Header from '../components/Tools/Header';
+import NavSearch from '../components/Tools/NavSearch';
+import routes from '../routes/routes'
 
 const switchRoutes = (
   <Switch>
@@ -26,17 +19,22 @@ const switchRoutes = (
         );
       })
     }
-    <Redirect from="/tools" to="/tools/searched" />
+    {/* <Redirect from="/tools" to="/tools/featured" /> */}
   </Switch>
 );
 
-export default function Tools() { 
+export default function Tools(props) { 
+
+  useEffect(() => {
+    console.log(props)
+    // props.history.push('/foo')
+  }, [])
 
   return (
     <div className="home">
       <Header/>
       <NavSearch/>
-      <Container fluid>
+      <Container fluid className="px-5">
         <div>{switchRoutes}</div>
       </Container>
     </div>
