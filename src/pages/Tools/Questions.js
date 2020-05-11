@@ -28,32 +28,38 @@ export default function Questions(props){
     text: "",
     answers: []
   });
-  const [index, setIndex] = useState(1)
-  
-
-  console.log(props.location)
+  const [lastPage, setLastPage] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(()=>{
     const loadQuestion = async () => {
+      setLoading(true)
       const path = props.location.pathname.split('tools')
       try{
         const response = await api.get(path[1]+props.location.search)
         console.log(response.data)
+        setLastPage(response.data.last ? response.data.last.split('?page=')[1] : response.data.current)
         setQuestion(response.data.data)
+        setLoading(false);
       }
       catch(err){
+        setLoading(false);
         console.log(err)
       }
     }
     loadQuestion();
   },[props.location]);
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [props.location])
+
   return (
     <Box className={classes.section}>
-      <Box component="h4" noWrap mb={1} fontSize="subtitle1.fontSize" color="grey.800" fontWeight="fontWeightBold"> 
+      <Box component="h4" mb={1} fontSize="subtitle1.fontSize" color="grey.800" fontWeight="fontWeightBold"> 
         Topic: {question.topic} 
       </Box>
-      <Box component="h6" noWrap fontWeight="fontWeightBold" mb={2} fontSize="subtitle1.fontSize">
+      <Box component="h6" fontWeight="fontWeightBold" mb={2} fontSize="subtitle1.fontSize">
         Question: {question.text}
       </Box>
       <Grid container spacing={3}>
@@ -66,7 +72,7 @@ export default function Questions(props){
         }
       </Grid>
       <Box mt={2}>
-        <Pagination />
+        <Pagination lastPage={lastPage} />
       </Box>
     </Box>
   );

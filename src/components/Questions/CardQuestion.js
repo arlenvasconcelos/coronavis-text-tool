@@ -30,7 +30,7 @@ export default ({answer, index}) => {
     <>
     <Card className={classes.root}>
       <CardContent>
-        <Typography component="body1">
+        <Typography component="div">
           <Box fontWeight="fontWeightBold">
             {/* {`[${index+1}] ${answer.title}`} */}
             {answer.title}
