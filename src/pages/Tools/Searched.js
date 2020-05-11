@@ -5,7 +5,7 @@ import {Row, Col} from 'react-bootstrap'
 import Scatterplot from '../../components/Searched/Scatterplot'
 import ColumnChart from '../../components/Searched/ColumnChart'
 import Papers from '../../components/Searched/Papers'
-import SuggestedTopics from './SuggestedTopics';
+import SuggestedTopics from '../../components/Searched/SuggestedTopics';
 
 export default function Searched(){
 
