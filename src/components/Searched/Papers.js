@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import PaperCard from '../paper/PaperCard';
+import PaperCard from '../Paper/PaperCard';
 import Pagination from 'react-js-pagination';
 
 export default function Papers (props) {
