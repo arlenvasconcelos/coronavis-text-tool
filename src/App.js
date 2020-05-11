@@ -10,7 +10,8 @@ import Tools from './pages/Tools.js'
 import store from './store';
 //CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.scss';
+import './App.css';
+
 
 
 const ToolsRoute = ({ component: Component, ...rest }) => (
@@ -32,6 +33,7 @@ export default function App() {
           <Switch>
             <ToolsRoute path="/tools/home" exact component={Searched} />
             <ToolsRoute path="/tools/questions/:id/answers" exact component={Questions} />
+            <ToolsRoute path="/tools/questions/:id/answers?page=:page" exact component={Questions} />
             <Redirect from="*" to="/tools/home" />
           </Switch>
         </Router>

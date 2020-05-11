@@ -1,61 +1,79 @@
 import React, {useEffect, useState} from 'react';
-import {Row, Card, Col, } from 'react-bootstrap';
+import Grid from '@material-ui/core/Grid';
+import Box from '@material-ui/core/Box';
+import {makeStyles} from '@material-ui/core/styles';
+
+import CardAnswer from '../../components/Questions/CardAnswer';
+import Pagination from '../../components/utils/Pagination';
 
 //import api
 import api from '../../service/api';
 
+const useStyles = makeStyles((theme) => ({
+  section: {
+    flexGrow: 1,
+    backgroundColor: '#ddd',
+    padding: theme.spacing(2),
+    borderRadius: '5px',
+  },
+}))
+
+
 export default function Questions(props){
+
+  const classes = useStyles();
 
   const [question, setQuestion] = useState({
     topic: "",
     text: "",
-    data: []
+    answers: []
   });
+  const [lastPage, setLastPage] = useState(0);
+  const [loading, setLoading] = useState(false);
 
   useEffect(()=>{
     const loadQuestion = async () => {
+      setLoading(true)
       const path = props.location.pathname.split('tools')
-      console.log(path)
       try{
-        const response = await api.get(path[1])
+        const response = await api.get(path[1]+props.location.search)
         console.log(response.data)
+        setLastPage(response.data.last ? response.data.last.split('?page=')[1] : response.data.current)
         setQuestion(response.data.data)
+        setLoading(false);
       }
       catch(err){
+        setLoading(false);
         console.log(err)
       }
     }
-    loadQuestion()
-  },[props.location.pathname]);
+    loadQuestion();
+  },[props.location]);
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [props.location])
 
   return (
-    <>
-        <Row bsPrefix="row suggested__section" >
-          <h4 className="suggested__topic" >Topic: {question.topic}</h4>
-          <h6>Question: {question.text}</h6>
-          <Row>
-            {
-              question.answers && question.answers.map(( (answer, key) => (
-                <Col key={key} sm={6}>
-                  <Card className="home__card">
-                    <Card.Body>
-                      <Card.Title>{`[${key+1}] ${answer.title}`}</Card.Title>
-                      {/* <Card.Title>{paper.title}</Card.Title> */}
-                      <Card.Subtitle>Authors: {answer.authors}</Card.Subtitle>
-                      <br/>
-                      <Card.Text>
-                        Answer: {answer.sentence_beginning}<span style={{backgroundColor: '#77f161'}}>{answer.answer}</span>{answer.sentence_ending}
-                        <br/>
-                        <br/>
-                        <span style={{fontStyle:"italic"}}>Publish time: {answer.publish_time}</span>
-                      </Card.Text>
-                    </Card.Body>
-                  </Card>
-                </Col>
-              )))
-            }
-          </Row>
-        </Row>      
-    </>
+    <Box className={classes.section}>
+      <Box component="h4" mb={1} fontSize="subtitle1.fontSize" color="grey.800" fontWeight="fontWeightBold"> 
+        Topic: {question.topic} 
+      </Box>
+      <Box component="h6" fontWeight="fontWeightBold" mb={2} fontSize="subtitle1.fontSize">
+        Question: {question.text}
+      </Box>
+      <Grid container spacing={3}>
+        {
+          question.answers.map(( (answer, key) => (
+            <Grid key={key} item xs={6}>
+              <CardAnswer answer={answer}/>
+            </Grid>
+          )))
+        }
+      </Grid>
+      <Box mt={2}>
+        <Pagination lastPage={lastPage} />
+      </Box>
+    </Box>
   );
 }

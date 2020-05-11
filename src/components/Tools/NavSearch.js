@@ -1,11 +1,11 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import {Row, Col, Form, Button, Spinner, Container} from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 
 import api from '../../service/api'
 
 import { dataSearched } from '../../store/ducks/dataSearched';
-import { Link, Redirect} from 'react-router-dom';
+import { Redirect} from 'react-router-dom';
 
 export default function NavSearch(props){
 

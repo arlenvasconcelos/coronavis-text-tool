@@ -8,21 +8,21 @@ import {Row, Col, Card} from 'react-bootstrap';
 export default function MainTopic(){
 
   const [mainTopic, setMainTopic] = useState({})
-  const [loading, setLoading] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1)
-  const [lastPage, setLastPage] = useState("")
-  const [previousPage, setPreviousPage] = useState("")
-  const [nextPage, setNextPage] = useState("")
+  // const [loading, setLoading] = useState(false)
+  // const [currentPage, setCurrentPage] = useState(1)
+  // const [lastPage, setLastPage] = useState("")
+  // const [previousPage, setPreviousPage] = useState("")
+  // const [nextPage, setNextPage] = useState("")
 
   useEffect(()=>{
     const loadFeatured = async () => {
-      setLoading(true);
+      // setLoading(true);
       try {
         const response = await api.get('/featured');
-        setMainTopic(response.data.data[0])
-        setLoading(false);
+        setMainTopic(response.data.data)
+        // setLoading(false);
       } catch (err) {
-        setLoading(false);
+        // setLoading(false);
         console.log(err);
       }
     }
