@@ -57,7 +57,7 @@ export default function Questions(props){
   },[]);
 
   return (
-    <div className={classes.root}>
+    <Box className={classes.root}>
       <Box component="h4" noWrap mb={1} fontSize="subtitle1.fontSize" color="grey.800" fontWeight="fontWeightBold"> 
         Topic: {question.topic} 
       </Box>
@@ -72,8 +72,8 @@ export default function Questions(props){
             </Grid>
           )))
         }
-        
       </Grid>
-    </div>
+      <Pagination count={10} />
+    </Box>
   );
 }
