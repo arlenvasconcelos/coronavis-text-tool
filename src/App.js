@@ -10,7 +10,7 @@ import Tools from './pages/Tools.js'
 import store from './store';
 //CSS
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.scss';
+import './App.css';
 
 
 
