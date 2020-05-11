@@ -4,7 +4,7 @@ import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom
 
 //components
 import Searched from './pages/Tools/Searched';
-import Questions from './pages/Tools/Questions';
+import Answers from './pages/Tools/Answers';
 import Tools from './pages/Tools.js'
 //Store
 import store from './store';
@@ -32,8 +32,8 @@ export default function App() {
         <Router>
           <Switch>
             <ToolsRoute path="/tools/home" exact component={Searched} />
-            <ToolsRoute path="/tools/questions/:id/answers" exact component={Questions} />
-            <ToolsRoute path="/tools/questions/:id/answers?page=:page" exact component={Questions} />
+            <ToolsRoute path="/tools/questions/:id/answers" exact component={Answers} />
+            <ToolsRoute path="/tools/questions/:id/answers?page=:page" exact component={Answers} />
             <Redirect from="*" to="/tools/home" />
           </Switch>
         </Router>

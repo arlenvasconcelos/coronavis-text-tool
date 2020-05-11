@@ -36,8 +36,7 @@ export default function Questions(props){
       setLoading(true)
       const path = props.location.pathname.split('tools')
       try{
-        const response = await api.get(path[1]+props.location.search)
-        console.log(response.data)
+        const response = await api.get(path[1]+props.location.search);
         setLastPage(response.data.last ? response.data.last.split('?page=')[1] : response.data.current)
         setQuestion(response.data.data)
         setLoading(false);
