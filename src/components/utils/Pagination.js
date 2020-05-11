@@ -3,7 +3,7 @@ import { Link, Route} from 'react-router-dom';
 import Pagination from '@material-ui/lab/Pagination';
 import PaginationItem from '@material-ui/lab/PaginationItem';
 
-export default function PaginationLink({lastPage}) {
+export default function PaginationLink({lastPage, path}) {
   return (
     <Route>
       {({ location }) => {
@@ -12,11 +12,11 @@ export default function PaginationLink({lastPage}) {
         return (
           <Pagination
             page={page}
-            count={22}
+            count={lastPage}
             renderItem={(item) => (
               <PaginationItem
                 component={Link}
-                to={`/tools/questions/23/answers${item.page === 1 ? '' : `?page=${item.page}`}`}
+                to={`${path}${item.page === 1 ? '' : `?page=${item.page}`}`}
                 {...item}
               />
             )}

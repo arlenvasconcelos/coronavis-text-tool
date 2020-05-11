@@ -29,20 +29,21 @@ export default function Questions(props){
     answers: []
   });
   const [lastPage, setLastPage] = useState(0);
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
 
   useEffect(()=>{
     const loadQuestion = async () => {
-      setLoading(true)
+      // setLoading(true)
       const path = props.location.pathname.split('tools')
       try{
         const response = await api.get(path[1]+props.location.search);
         setLastPage(response.data.last ? response.data.last.split('?page=')[1] : response.data.current)
         setQuestion(response.data.data)
-        setLoading(false);
+        console.log(response.data)
+        // setLoading(false);
       }
       catch(err){
-        setLoading(false);
+        // setLoading(false);
         console.log(err)
       }
     }
@@ -71,7 +72,10 @@ export default function Questions(props){
         }
       </Grid>
       <Box mt={2}>
-        <Pagination lastPage={lastPage} />
+        <Pagination 
+          lastPage={lastPage} 
+          path={`/tools/questions/${question.qid}/answers`}
+        />
       </Box>
     </Box>
   );
