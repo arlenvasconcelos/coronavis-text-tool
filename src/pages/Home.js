@@ -3,7 +3,7 @@ import {useSelector} from 'react-redux';
 
 import Searched from '../components/Home/Searched';
 import MainTopic from '../components/Home/MainTopic';
-import Questions from '../components/Home/Questions';
+import Topics from '../components/Home/Topics';
 
 export default function Home(){
 
@@ -16,7 +16,7 @@ export default function Home(){
         : <></>
       }
       <MainTopic />
-      <Questions />
+      <Topics />
   </>
   )
 }
