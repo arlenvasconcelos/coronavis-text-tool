@@ -31,6 +31,31 @@ export default function CardAnswer({answer}) {
 
   const [open, setOpen] = useState(false);
 
+  const titleModal = <>
+    <Typography component="div">
+      <Box fontWeight="fontWeightBold">
+        {/* {`[${index+1}] ${answer.title}`} */}
+        {answer.title}
+      </Box>
+      <Box fontStyle="italic" mb={2} fontSize="subtitle2.fontSize">
+        Authors: {answer.authors}
+      </Box>
+    </Typography>
+  </>
+  
+  const bodyModal = <>
+    <Typography component="div">
+      <Box component="p" >
+        <span>Abstract: </span>{answer.abstract}
+      </Box>
+      
+      
+      Publish Time: {answer.publish_time}
+      <br/>
+      DOI: <a href={answer.DOI ? `https://doi.org/${answer.doi}`: '#'} >https://doi.org/{answer.doi}</a>
+    </Typography>
+  </>
+
   return (
     <>
       <Card className={classes.root}>
@@ -60,7 +85,8 @@ export default function CardAnswer({answer}) {
       <ModalAnswer 
         open={open}
         setOpen={setOpen}
-        // title={title}
+        title={titleModal}
+        body={bodyModal}
       />
     </>
   );
