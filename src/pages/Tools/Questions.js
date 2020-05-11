@@ -3,33 +3,21 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import {makeStyles} from '@material-ui/core/styles';
 
-import CardQuestion from '../../components/Questions/CardQuestion'
+import CardQuestion from '../../components/Questions/CardQuestion';
+import Pagination from '../../components/utils/Pagination';
 
+//import api
 import api from '../../service/api';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  section: {
     flexGrow: 1,
     backgroundColor: '#ddd',
     padding: theme.spacing(2),
     borderRadius: '5px',
   },
-  question: {
-    color: theme.palette.common.black,
-    fontWeight: theme.typography.fontWeightBold,
-    flexGrow: 1,
-  },
-  paper: {
-    padding: theme.spacing(2),
-    color: theme.palette.common.black,
-  },
-  highlight: {
-    backgroundColor: theme.palette.primary[100],
-    fontWeight: theme.typography.fontWeightMedium
-  }
 }))
 
-//import api
 
 export default function Questions(props){
 
@@ -40,12 +28,16 @@ export default function Questions(props){
     text: "",
     answers: []
   });
+  const [index, setIndex] = useState(1)
+  
+
+  console.log(props.location)
 
   useEffect(()=>{
     const loadQuestion = async () => {
       const path = props.location.pathname.split('tools')
       try{
-        const response = await api.get(path[1])
+        const response = await api.get(path[1]+props.location.search)
         console.log(response.data)
         setQuestion(response.data.data)
       }
@@ -54,10 +46,10 @@ export default function Questions(props){
       }
     }
     loadQuestion();
-  },[]);
+  },[props.location]);
 
   return (
-    <Box className={classes.root}>
+    <Box className={classes.section}>
       <Box component="h4" noWrap mb={1} fontSize="subtitle1.fontSize" color="grey.800" fontWeight="fontWeightBold"> 
         Topic: {question.topic} 
       </Box>
@@ -73,7 +65,9 @@ export default function Questions(props){
           )))
         }
       </Grid>
-      <Pagination count={10} />
+      <Box mt={2}>
+        <Pagination />
+      </Box>
     </Box>
   );
 }

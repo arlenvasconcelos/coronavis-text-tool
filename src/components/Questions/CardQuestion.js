@@ -32,16 +32,17 @@ export default ({answer, index}) => {
       <CardContent>
         <Typography component="body1">
           <Box fontWeight="fontWeightBold">
-            {`[${index+1}] ${answer.title}`}
+            {/* {`[${index+1}] ${answer.title}`} */}
+            {answer.title}
           </Box>
           <Box fontStyle="italic" mb={2} fontSize="subtitle2.fontSize">
             Authors: {answer.authors}
           </Box>
-          <Typography paragraph >
+          <Box component="p" >
             Answer: {answer.sentence_beginning}
             <span className={classes.highlight}>{answer.answer}</span>
             {answer.sentence_ending}
-          </Typography>
+          </Box>
           Publish Time: {answer.publish_time}
           <br/>
           DOI: <a href={answer.DOI ? `https://doi.org/${answer.doi}`: '#'} >https://doi.org/{answer.doi}</a>
