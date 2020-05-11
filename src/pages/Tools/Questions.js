@@ -3,7 +3,7 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import {makeStyles} from '@material-ui/core/styles';
 
-import CardQuestion from '../../components/Questions/CardQuestion';
+import CardAnswer from '../../components/Questions/CardAnswer';
 import Pagination from '../../components/utils/Pagination';
 
 //import api
@@ -66,7 +66,7 @@ export default function Questions(props){
         {
           question.answers.map(( (answer, key) => (
             <Grid key={key} item xs={6}>
-              <CardQuestion answer={answer} index={key}/>
+              <CardAnswer answer={answer}/>
             </Grid>
           )))
         }

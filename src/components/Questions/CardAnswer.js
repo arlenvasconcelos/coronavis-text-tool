@@ -1,7 +1,6 @@
 import React from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import Paper from '@material-ui/core/Paper';
 import Card from '@material-ui/core/Card';
 import CardActions from '@material-ui/core/CardActions';
 import CardContent from '@material-ui/core/CardContent';
@@ -21,7 +20,7 @@ const useStyles = makeStyles((theme) => ({
 }))
 
 
-export default ({answer, index}) => {
+export default function CardAnswer({answer}) {
 
   const classes = useStyles();
   const Highlight = (props) => <span className={classes.highlight}>{props.children}</span>;
@@ -40,7 +39,7 @@ export default ({answer, index}) => {
           </Box>
           <Box component="p" >
             Answer: {answer.sentence_beginning}
-            <span className={classes.highlight}>{answer.answer}</span>
+            <Highlight>{answer.answer}</Highlight>
             {answer.sentence_ending}
           </Box>
           Publish Time: {answer.publish_time}

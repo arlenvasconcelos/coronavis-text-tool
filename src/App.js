@@ -34,7 +34,7 @@ export default function App() {
             <ToolsRoute path="/tools/home" exact component={Searched} />
             <ToolsRoute path="/tools/questions/:id/answers" exact component={Questions} />
             <ToolsRoute path="/tools/questions/:id/answers?page=:page" exact component={Questions} />
-            {/* <Redirect from="*" to="/tools/home" /> */}
+            <Redirect from="*" to="/tools/home" />
           </Switch>
         </Router>
       </Provider>
