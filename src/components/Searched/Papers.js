@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
-import PaperCard from '../paper/PaperCard';
 import Pagination from 'react-js-pagination';
+
+//import components
+import PaperCard from '../Papers/PaperCard';
 
 export default function Papers (props) {
 

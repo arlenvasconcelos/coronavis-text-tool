@@ -1,5 +1,11 @@
 import React,{useState, useEffect} from 'react';
 import {Link} from 'react-router-dom';
+import Box from '@material-ui/core/Box';
+import Pagination from '@material-ui/lab/Pagination';
+
+//import components
+
+//import api
 import api from '../../service/api';
 
 import {Row, Table} from 'react-bootstrap';
@@ -26,28 +32,26 @@ export default function Topics(){
     questions: [],
     topic: ""
   })
-  // const [loading, setLoading] = useState(false)
-  const [currentPage, setCurrentPage] = useState(1)
-  // const [lastPage, setLastPage] = useState("")
-  // const [previousPage, setPreviousPage] = useState("")
-  // const [nextPage, setNextPage] = useState("")
 
-  
+  const [lastPage, setLastPage] = useState(0);
+  const [currentPage, setCurrentPage] = useState(1)
+
+  const handleChangePage = (event, value) => {
+    setCurrentPage(value); 
+  };
 
   useEffect(()=>{
-    const loadTopics = async () => {
+    const loadTopics = async (page) => {
       try {
-        const response = await api.get(`/topics?page=${currentPage}`);
-        // setPreviousPage(response.data.previous)
-        setCurrentPage(response.data.current)
-        // setNextPage(response.data.next)
-        // setLastPage(response.data.last)
+        const response = await api.get(`/topics?page=${page}`);
+        setLastPage(response.data.last ? response.data.last.split('?page=')[1] : response.data.current)
+        console.log(response.data)
         setTopic(response.data.data)
       } catch (err) {
         console.log(err);
       }
     }
-    loadTopics();
+    loadTopics(currentPage);
   },[currentPage])
 
   if (!topic) {
@@ -69,6 +73,13 @@ export default function Topics(){
             </tbody>
           </Table>
         </div>
+        <Box mt={2}>
+          <Pagination 
+            page={currentPage}
+            count={lastPage}
+            onChange={handleChangePage}
+          />
+        </Box>
       </Row>
     </>
   )

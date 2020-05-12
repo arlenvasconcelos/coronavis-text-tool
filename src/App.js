@@ -3,9 +3,9 @@ import { Provider } from 'react-redux';
 import {BrowserRouter as Router, Switch, Route, Redirect} from 'react-router-dom';
 
 //components
-import Searched from './pages/Tools/Searched';
-import Questions from './pages/Tools/Questions';
-import Tools from './pages/Tools.js'
+import Home from './pages/Home';
+import Answers from './pages/Answers';
+import Tools from './template/Tools.js' 
 //Store
 import store from './store';
 //CSS
@@ -31,9 +31,9 @@ export default function App() {
       <Provider store={store}>
         <Router>
           <Switch>
-            <ToolsRoute path="/tools/home" exact component={Searched} />
-            <ToolsRoute path="/tools/questions/:id/answers" exact component={Questions} />
-            <ToolsRoute path="/tools/questions/:id/answers?page=:page" exact component={Questions} />
+            <ToolsRoute path="/tools/home" exact component={Home} />
+            <ToolsRoute path="/tools/questions/:id/answers" exact component={Answers} />
+            <ToolsRoute path="/tools/questions/:id/answers?page=:page" exact component={Answers} />
             <Redirect from="*" to="/tools/home" />
           </Switch>
         </Router>
