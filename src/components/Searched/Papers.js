@@ -21,7 +21,7 @@ export default function Papers (props) {
   useEffect(() => {
     if (papers)
       setPapersFilter(defaultValue)
-  }, [papers, defaultValue])
+  }, [papers])
 
   return (
     <>

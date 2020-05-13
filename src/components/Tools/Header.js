@@ -48,7 +48,7 @@ export default function Header(){
           </Typography>
         </Box>
       </Box>
-      <Box>
+      <Box height={90}>
         <img className={classes.image} alt="Logo INF" src={logoInf}/>
       </Box>
     </Box>

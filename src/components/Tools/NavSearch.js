@@ -1,5 +1,7 @@
 import React, {useState} from 'react'
-import {Row, Col, Form, Button, Spinner, Container} from 'react-bootstrap';
+import {Container, Grid, TextField, Button, CircularProgress } from '@material-ui/core';
+import SearchIcon from '@material-ui/icons/Search';
+import {makeStyles} from '@material-ui/core/styles'
 import { useDispatch } from 'react-redux';
 
 import api from '../../service/api'
@@ -7,7 +9,30 @@ import api from '../../service/api'
 import { dataSearched } from '../../store/ducks/dataSearched';
 import { Redirect} from 'react-router-dom';
 
-export default function NavSearch(props){
+const useStyles = makeStyles((theme) => ({
+  root: {
+    margin: theme.spacing(1),
+  },
+  button: {
+    margin: theme.spacing(1),
+  },
+  gridButton: {
+    display: 'flex',
+    alignItems: 'center'
+  },
+  buttonProgress: {
+    color: theme.palette.grey[500],
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    marginTop: -12,
+    marginLeft: -12,
+  },
+}));
+
+export default function NavSearch(){
+
+  const classes = useStyles()
 
   const dispatch = useDispatch();
 
@@ -16,6 +41,7 @@ export default function NavSearch(props){
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(e)
     setLoading(true);
     try {
       const response = await api.post(`/search?query=${inputValue}`);
@@ -29,41 +55,37 @@ export default function NavSearch(props){
   }
 
   return (
-    <div className="search">
-      <Container fluid className="mx-2">
-        <Row >
-          <Col md={12}>
-            <Form onSubmit={(e) => handleSubmit(e)}>
-              <Form.Row>
-                <Col lg={11} md={10} className="my-2">
-                  <Form.Control placeholder="Type here" onChange={(e) => setInputValue(e.target.value)}/>
-                </Col >
-                <Col lg={1} md={2} className="d-flex justify-content-center my-2">
-                  { !loading ? (
-                    <Button type="submit" className="search__button">
-                      Submit
-                    </Button>
-                  ) : (
-                    <>
-                      <Redirect to="/tools/home"/>
-                      <Button disabled className="search__button-loading">
-                        <Spinner
-                          as="span"
-                          animation="grow"
-                          size="sm"
-                          role="status"
-                          aria-hidden="true"
-                        />
-                        Loading
-                      </Button>
-                    </>
-                  )}
-                </Col>
-              </Form.Row>
-            </Form>
-          </Col>
-        </Row>
-      </Container>
-    </div>
+    <Container>
+      <form onSubmit={(e) => handleSubmit(e)}>
+        <Grid container className={classes.root}>
+          <Grid item sm={11}>
+            <TextField
+              label=""
+              fullWidth
+              id="input-search"
+              placeholder="Type here"
+              variant="outlined"
+              size="small"
+              value={inputValue}
+              onChange={(e) => setInputValue(e.target.value)}
+            />
+          </Grid>
+          <Grid item sm={1}>
+            <Button
+              type="submit"
+              variant="contained"
+              color="primary"
+              size="small"
+              className={classes.button}
+              endIcon={<SearchIcon/>}
+              disabled={loading}
+            >
+              Submit
+              {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </Container>
   )
 }
