@@ -81,19 +81,6 @@ export default function PaperCard(props){
           <Typography variant="body2" color="textSecondary" component="p">
             Publish Time: {paper.publish_time}
           </Typography>
-          
-            {/* <Typography component="div">
-              <Box fontWeight="fontWeightBold">
-                {"["+index+"] "+paper.title}
-              </Box>
-              <Box fontStyle="italic" mb={2} fontSize="subtitle2.fontSize">
-                {paper.authors}
-              </Box>
-              <Box component="p" className={classes.cardText}>
-                <Highlight text={paper.abstract.slice(0,200)+'...'} terms={query}/>
-              </Box>
-              Publish Time: {paper.publish_time}
-            </Typography> */}
         </CardContent>
         <CardActions className={classes.footer}>
           <Button 

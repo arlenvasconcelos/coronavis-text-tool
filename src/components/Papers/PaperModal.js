@@ -6,6 +6,7 @@ import {makeStyles} from '@material-ui/core/styles';
 
 
 import Highlight from '../utils/Highlight'
+import Authors from '../PaperModal/Authors';
 
 const useStyles = makeStyles((theme) => ({
   popover: {
@@ -25,18 +26,6 @@ export default function PaperModal(props){
   const [terms, setTerms] = useState([]);
   const [types, setTypes] = useState([]);
   const [palette, setPalette] = useState({});
-  const [anchorEl, setAnchorEl] = useState(null);
-
-  const handlePopoverOpen = (event) => {
-    console.log(event.currentTarget, event);
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handlePopoverClose = () => {
-    setAnchorEl(null);
-  };
-
-  const openPopover = Boolean(anchorEl);
 
   const createPalette = (types) => {
 
@@ -98,47 +87,11 @@ export default function PaperModal(props){
               Authors: 
               {paper.author.map( (author, index) => 
                 <> 
-                  <Typography
-                    key={'typ'+index}
-                    aria-owns={openPopover ? author.first + index : undefined}
-                    aria-haspopup="true"
-                    onMouseEnter={handlePopoverOpen}
-                    onMouseLeave={handlePopoverClose}
-                    component="span"
-                  >
-                    {author.last+', '+author.first+'. '}
-                  </Typography>
-                  <Popover
-                    key={'pop'+index}
-                    id={author.first + index}
-                    className={classes.popover}
-                    classes={{
-                      paper: classes.paper,
-                    }}
-                    open={openPopover}
-                    anchorEl={anchorEl}
-                    anchorOrigin={{
-                      vertical: 'bottom',
-                      horizontal: 'left',
-                    }}
-                    transformOrigin={{
-                      vertical: 'top',
-                      horizontal: 'left',
-                    }}
-                    onClose={handlePopoverClose}
-                    disableRestoreFocus
-                  >
-                    <Typography>
-                      <span style={{fontWeight: "bold"}}>Laboratory:</span> {author.affiliation.institution}
-                    </Typography>
-                    <Typography>
-                      <span style={{fontWeight: "bold"}}>Institution:</span> {author.affiliation.institution}
-                    </Typography>
-                    <Typography>
-                      <span style={{fontWeight: "bold"}}>Location:</span> 
-                      {author.affiliation.location ? (author.affiliation.location.settlement +", "+ author.affiliation.location.country) : ""}
-                    </Typography>
-                  </Popover>
+                  <Authors
+                    key={index}
+                    index={index}
+                    author={author}
+                  />
                 </>
               )}
             </Box>
