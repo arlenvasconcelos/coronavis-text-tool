@@ -62,7 +62,7 @@ export default function Questions(props){
       <Box component="h6" fontWeight="fontWeightBold" mb={2} fontSize="subtitle1.fontSize">
         Question: {question.text}
       </Box>
-      <Grid container spacing={3}>
+      <Grid container spacing={1}>
         {
           question.answers.map(( (answer, key) => (
             <Grid key={key} item xs={6}>

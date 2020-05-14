@@ -34,13 +34,15 @@ export default function CardAnswer({answer}) {
   
   const bodyModal = <>
     <Typography component="div">
-      <Box component="p" >
+      <Box component="p">
         <span>Abstract: </span>{answer.abstract}
       </Box>
-
       Publish Time: {answer.publish_time}
       <br/>
-      DOI: <a href={answer.doi ? `https://doi.org/${answer.doi}`: '#'} >https://doi.org/{answer.doi}</a>
+      DOI:
+      <a href={answer.doi ? `https://doi.org/${answer.doi}`: '#'}>
+        https://doi.org/{answer.doi}
+      </a>
     </Typography>
   </>
 
