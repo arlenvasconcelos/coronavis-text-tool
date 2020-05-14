@@ -1,7 +1,7 @@
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 import {Container, Grid, TextField, Button, CircularProgress } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/Search';
-import {makeStyles} from '@material-ui/core/styles'
+import { makeStyles } from '@material-ui/core/styles'
 import { useDispatch } from 'react-redux';
 
 import api from '../../service/api'
@@ -38,27 +38,32 @@ export default function NavSearch(){
 
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
+  const [redirect, setRedirect] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(e)
     setLoading(true);
+    setRedirect(false);
     try {
       const response = await api.post(`/search?query=${inputValue}`);
       dispatch(dataSearched(response.data));
-      console.log(response.data)
       setLoading(false);
+      setRedirect(true);
     } catch (err) {
       setLoading(false);
       console.log(err);
     }
   }
 
+  if (redirect){
+    return <Redirect to="/"/>
+  }
+
   return (
     <Container>
       <form onSubmit={(e) => handleSubmit(e)}>
         <Grid container className={classes.root}>
-          <Grid item sm={11}>
+          <Grid item xs={12} sm={10} md={10} lg={11}>
             <TextField
               label=""
               fullWidth
@@ -70,7 +75,7 @@ export default function NavSearch(){
               onChange={(e) => setInputValue(e.target.value)}
             />
           </Grid>
-          <Grid item sm={1}>
+          <Grid item xs={2} sm={2} md={2} lg={1}>
             <Button
               type="submit"
               variant="contained"
@@ -81,7 +86,10 @@ export default function NavSearch(){
               disabled={loading}
             >
               Submit
-              {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+              {loading && <>
+                <CircularProgress size={24} className={classes.buttonProgress} />
+                </>
+              }
             </Button>
           </Grid>
         </Grid>

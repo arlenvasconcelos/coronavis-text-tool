@@ -58,7 +58,7 @@ export default function CardAnswer({answer}) {
 
   return (
     <>
-      <Card className={classes.root}>
+      <Card>
         <CardContent>
           <Typography component="div">
             <Box fontWeight="fontWeightBold">
