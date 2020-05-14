@@ -9,12 +9,7 @@ import Highlight from '../utils/Highlight'
 import Authors from '../PaperModal/Authors';
 
 const useStyles = makeStyles((theme) => ({
-  popover: {
-    pointerEvents: 'none',
-  },
-  paper: {
-    padding: theme.spacing(1),
-  },
+  
 }));
 
 export default function PaperModal(props){
@@ -77,38 +72,41 @@ export default function PaperModal(props){
 
   return (    
     <>
-      <Dialog key={index} onClose={() => setShowModal(false)} aria-labelledby="customized-dialog-title" open={showModal}>
+      <Dialog 
+        key={index} 
+        onClose={() => setShowModal(false)} 
+        aria-labelledby="customized-dialog-title" 
+        open={showModal}
+      >
         <DialogTitle id="customized-dialog-title" onClose={() => setShowModal(false)}>
           <Typography component="div">
             <Box fontWeight="fontWeightBold">
               {"["+index+"] "+paper.title}
             </Box>
-            <Box fontStyle="italic" mb={2} fontSize="subtitle2.fontSize">
+            <Box fontStyle="italic" mb={2}>
               Authors: 
-              {paper.author.map( (author, index) => 
-                <> 
-                  <Authors
-                    key={index}
-                    index={index}
-                    author={author}
-                  />
-                </>
+              {paper.author.map( (author, index) =>  
+                <Authors
+                  key={index}
+                  index={index}
+                  author={author}
+                />
               )}
             </Box>
-            <p className="modal__subtitle" >
+            <Typography variant="body2">
               DOI: 
               <a href={'https://doi.org/' + paper.doi} target="_blank">
                 {'https://doi.org/' + paper.doi}
               </a>
               <br/>
               Publish time: {paper.publish_time} 
-            </p>
+            </Typography>
           </Typography>
         </DialogTitle>
         <DialogContent dividers>
           <Typography component="div">
-            <Box component="p" >
-              <span>Abstract: </span>
+            <Box>
+              <Typography component="span">Abstract: </Typography>
               {
                 (paper.abstract) ? (
                   <p>

@@ -1,19 +1,19 @@
 import React, {useState}  from 'react';
 // import {Card, Button, Spinner} from 'react-bootstrap';
-import {Card, CardActions, CardContent, Typography, Button, Box, CircularProgress, CardHeader} from '@material-ui/core';
+import {Card, CardActions, CardContent, Typography, Button, Box, CircularProgress, CardHeader, Divider} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 //import components
 import PaperModal from './PaperModal';
 import Highlight from '../utils/Highlight';
+import CustomCard from '../utils/CustomCard';
 
 //import service
 import api from '../../service/api'
 
 const useStyles = makeStyles((theme) => ({
   paper: {
-    padding: theme.spacing(2),
-    marginBottom: theme.spacing(2),
+    margin: theme.spacing(1),
   },
   cardText : {
     borderTop: "1px solid rgba(0,0,0,.125)",
@@ -69,33 +69,22 @@ export default function PaperCard(props){
 
   return (
     <>
-      <Card className={classes.paper} variant="outlined">
-        <CardHeader
-          title={"["+index+"] "+paper.title}
-          subheader={paper.authors}
-        />
-        <CardContent >
-          <Typography variant="body1" color="textPrimary" component="p">
-            <Highlight text={paper.abstract.slice(0,200)+'...'} terms={query}/>
-          </Typography>
-          <Typography variant="body2" color="textSecondary" component="p">
-            Publish Time: {paper.publish_time}
-          </Typography>
-        </CardContent>
-        <CardActions className={classes.footer}>
-          <Button 
-            size="small" 
-            color="primary" 
-            variant="contained" 
-            onClick={() => loadPaperModal(paper.id)}
-            disabled={loading}
+      <CustomCard 
+        title={
+          <Box 
+            component="h6" 
+            variant="subtitle1" 
+            fontWeight="fontWeightBold"
           >
-            See More
-            {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
-          </Button>
-
-        </CardActions>
-      </Card>
+            {"["+index+"] "+paper.title}
+          </Box>
+        }
+        authors={paper.authors}
+        body={<Highlight text={paper.abstract.slice(0,200)+'...'} terms={query}/>}
+        secondarybody={`Publish Time: ${paper.publish_time}`}
+        button="See more"
+        buttonAction={() => loadPaperModal(paper.id)}
+      />
       {
         showModal ? (
           <PaperModal
