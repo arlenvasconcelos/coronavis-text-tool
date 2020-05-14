@@ -1,20 +1,42 @@
-import React, {useState, useEffect, useRef} from 'react'
-import {Modal, Button, Overlay, Popover} from 'react-bootstrap'
+import React, {useState, useEffect, useRef} from 'react';
+// import {Overlay, Popover} from 'react-bootstrap';
+import {Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Box} from '@material-ui/core';
+import Popover from '@material-ui/core/Popover';
+import {makeStyles} from '@material-ui/core/styles';
 
 
 import Highlight from '../utils/Highlight'
+
+const useStyles = makeStyles((theme) => ({
+  popover: {
+    pointerEvents: 'none',
+  },
+  paper: {
+    padding: theme.spacing(1),
+  },
+}));
 
 export default function PaperModal(props){
 
   const {index, paper, showModal, setShowModal} = props;
 
+  const classes = useStyles();
+
   const [terms, setTerms] = useState([]);
   const [types, setTypes] = useState([]);
   const [palette, setPalette] = useState({});
-  const [showOverlay, setShowOverlay] = useState(false);
-  const [targetOverlay, setTargetOverlay] = useState(null);
-  const [contentOverlay, setContentOverlay] = useState("")
-  const ref = useRef(null);
+  const [anchorEl, setAnchorEl] = useState(null);
+
+  const handlePopoverOpen = (event) => {
+    console.log(event.currentTarget, event);
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null);
+  };
+
+  const openPopover = Boolean(anchorEl);
 
   const createPalette = (types) => {
 
@@ -55,22 +77,6 @@ export default function PaperModal(props){
     return p;
   }
 
-  const handleOverlay = (event, show, data) => {
-    setShowOverlay(show);
-    setTargetOverlay(event.target);
-    setContentOverlay(
-      <>
-        <span style={{fontWeight: "bold"}}>Laboratory:</span> {data.affiliation.institution}
-        <br/>
-        <span style={{fontWeight: "bold"}}>Institution:</span> {data.affiliation.institution}
-        <br/>
-        <span style={{fontWeight: "bold"}}>Location:</span> 
-        {data.affiliation.location ? (data.affiliation.location.settlement +", "+ data.affiliation.location.country) : ""}
-      </>
-    );
-
-  };
-
   useEffect(()=>{
     setTerms(paper.entities.map(value => value.term));
     setTypes(paper.entities.map(value => value.type));
@@ -81,93 +87,122 @@ export default function PaperModal(props){
   },[types])
 
   return (    
-    <Modal
-      index={index}
-      show={showModal}
-      size="lg"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-      onHide={() => setShowModal(false)}
-      dialogClassName="paper__modal"
-    >
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          {"["+index+"] "+paper.title}
-          <br/>
-          
-          <span className="modal__author">
-            Authors: 
-            {paper.author.map( item =>  
-              <span 
-                onMouseEnter={(e)=>handleOverlay(e,true, item)} 
-                onMouseLeave={(e)=>handleOverlay(e,false, item)}
-              >
-                {item.last+', '+item.first+'. '}
-              </span>
-            )}
-          </span>
-          <p className="modal__subtitle" >
-            DOI: 
-            <a href={'https://doi.org/' + paper.doi} target="_blank">
-              {'https://doi.org/' + paper.doi}
-            </a>
-            <br/>
-            Publish time: {paper.publish_time} 
-          </p>
-          <Overlay
-            show={showOverlay}
-            target={targetOverlay}
-            placement="bottom"
-            container={ref.current}
-            containerPadding={20}
-          >
-            <Popover id="popover-contained">
-              {/* <Popover.Title as="h3">Popover bottom</Popover.Title> */}
-              <Popover.Content>
-                {contentOverlay}
-              </Popover.Content>
-            </Popover>
-          </Overlay>
-          
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body className="modal__body">
-        <h4>Abstract</h4>
-        {
-          (paper.abstract) ? (
-            <p>
-              <Highlight 
-                text={paper.abstract} 
-                terms={terms} 
-                types={types} 
-                palette={palette}
-              />
+    <>
+      <Dialog key={index} onClose={() => setShowModal(false)} aria-labelledby="customized-dialog-title" open={showModal}>
+        <DialogTitle id="customized-dialog-title" onClose={() => setShowModal(false)}>
+          <Typography component="div">
+            <Box fontWeight="fontWeightBold">
+              {"["+index+"] "+paper.title}
+            </Box>
+            <Box fontStyle="italic" mb={2} fontSize="subtitle2.fontSize">
+              Authors: 
+              {paper.author.map( (author, index) => 
+                <> 
+                  <Typography
+                    key={'typ'+index}
+                    aria-owns={openPopover ? author.first + index : undefined}
+                    aria-haspopup="true"
+                    onMouseEnter={handlePopoverOpen}
+                    onMouseLeave={handlePopoverClose}
+                    component="span"
+                  >
+                    {author.last+', '+author.first+'. '}
+                  </Typography>
+                  <Popover
+                    key={'pop'+index}
+                    id={author.first + index}
+                    className={classes.popover}
+                    classes={{
+                      paper: classes.paper,
+                    }}
+                    open={openPopover}
+                    anchorEl={anchorEl}
+                    anchorOrigin={{
+                      vertical: 'bottom',
+                      horizontal: 'left',
+                    }}
+                    transformOrigin={{
+                      vertical: 'top',
+                      horizontal: 'left',
+                    }}
+                    onClose={handlePopoverClose}
+                    disableRestoreFocus
+                  >
+                    <Typography>
+                      <span style={{fontWeight: "bold"}}>Laboratory:</span> {author.affiliation.institution}
+                    </Typography>
+                    <Typography>
+                      <span style={{fontWeight: "bold"}}>Institution:</span> {author.affiliation.institution}
+                    </Typography>
+                    <Typography>
+                      <span style={{fontWeight: "bold"}}>Location:</span> 
+                      {author.affiliation.location ? (author.affiliation.location.settlement +", "+ author.affiliation.location.country) : ""}
+                    </Typography>
+                  </Popover>
+                </>
+              )}
+            </Box>
+            <p className="modal__subtitle" >
+              DOI: 
+              <a href={'https://doi.org/' + paper.doi} target="_blank">
+                {'https://doi.org/' + paper.doi}
+              </a>
+              <br/>
+              Publish time: {paper.publish_time} 
             </p>
-          ) : (
-            <p>There is no abstract</p>
-          )
-        }        
-        <p>
-          {
-            Object.entries(palette).map((value, index) => 
-              <span
-                className="paper__words-highlight"
-                key={index}
-                style={{
-                  fontSize:'0.7em',
-                  backgroundColor: `${value[1] || 'yellow'}`, 
-                }}
-              >
-                {value[0]}
-              </span>
-            )
-          }
-        </p>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={() => setShowModal(false)}>Close</Button>
-      </Modal.Footer>
-    </Modal>
+          </Typography>
+        </DialogTitle>
+        <DialogContent dividers>
+          <Typography component="div">
+            <Box component="p" >
+              <span>Abstract: </span>
+              {
+                (paper.abstract) ? (
+                  <p>
+                    <Highlight 
+                      text={paper.abstract} 
+                      terms={terms} 
+                      types={types} 
+                      palette={palette}
+                    />
+                  </p>
+                ) : (
+                  <p>There is no abstract</p>
+                )
+              }
+              {/* Show entities with its marker (background color) */}
+              <p>
+                {
+                  Object.entries(palette).map((value, index) => 
+                    <span
+                      className="paper__words-highlight"
+                      key={index}
+                      style={{
+                        fontSize:'0.7em',
+                        backgroundColor: `${value[1] || 'yellow'}`, 
+                      }}
+                    >
+                      {value[0]}
+                    </span>
+                  )
+                }
+              </p>
+            </Box>
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button 
+            autoFocus 
+            onClick={() => setShowModal(false)} 
+            size="small" 
+            color="primary" 
+            variant="contained"
+          >
+            Close
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </>
   )
   
 }
