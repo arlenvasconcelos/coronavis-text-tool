@@ -1,7 +1,16 @@
 import React  from 'react';
-// import {Card, Button, Spinner} from 'react-bootstrap';
-import {Card, CardActions, CardContent, Typography, Button, CircularProgress, CardHeader, Divider} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import {
+  Card,
+  CardActions,
+  CardContent,
+  Typography,
+  Button,
+  CircularProgress,
+  CardHeader,
+  Divider,
+  Box
+} from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -31,7 +40,15 @@ export default function CustomCard(props){
     <>
       <Card className={classes.paper} variant="outlined">
         <CardHeader
-          title={title}
+          title={
+            <Box 
+              component="h6" 
+              variant="subtitle1" 
+              fontWeight="fontWeightBold"
+            >
+              {title}
+            </Box>
+          }
           subheader={authors}
         />
         <Divider variant="middle" />

@@ -70,20 +70,13 @@ export default function PaperCard(props){
   return (
     <>
       <CustomCard 
-        title={
-          <Box 
-            component="h6" 
-            variant="subtitle1" 
-            fontWeight="fontWeightBold"
-          >
-            {"["+index+"] "+paper.title}
-          </Box>
-        }
+        title={"["+index+"] "+paper.title}
         authors={paper.authors}
         body={<Highlight text={paper.abstract.slice(0,200)+'...'} terms={query}/>}
         secondarybody={`Publish Time: ${paper.publish_time}`}
         button="See more"
         buttonAction={() => loadPaperModal(paper.id)}
+        loading={loading}
       />
       {
         showModal ? (
