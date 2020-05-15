@@ -10,7 +10,13 @@ const theme = createMuiTheme({
   typography: {
     // fontSize: 13,
     // htmlFontSize: 16,
-    fontFamily: `Lato, Helvetica, Arial, Helvetica-serif`,
+    fontFamily: [
+      "Lato",
+      "'Helvetica Neue'",
+      "Arial",
+      "Helvetica",
+      "sans-serif"
+    ].join(',')
   },
   palette: {
     primary: blue,

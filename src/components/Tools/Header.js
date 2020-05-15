@@ -9,6 +9,7 @@ import logoUfrgs from '../../assets/images/ufrgs-logo-2.png';
 const useStyle = makeStyles((theme) => ({
   title: {
     fontWeight: theme.typography.fontWeightBold,
+    fontSize: '28px',
     '& *': {
       color: theme.palette.common.black,
     },
@@ -36,14 +37,13 @@ export default function Header(){
         <Box>
           <Typography 
             component="h1"
-            variant="h5"
+            variant="h4"
             align="center"
             className={classes.title}
           >
-            {/* <a className="header__link" href="/"><h1>COVID-19 Analysis Tools</h1></a> */}
             <Link to="/">COVID-19 Analysis Tools</Link>
           </Typography>
-          <Typography component="h3" variant="subtitle1" align="center">
+          <Typography component="h3" variant="subtitle1" align="center" color="textSecondary">
             Text Analytics for the COVID-19 Literature
           </Typography>
         </Box>
