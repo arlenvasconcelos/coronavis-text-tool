@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import { Chart } from 'react-charts'
 import {Card, CardContent, CardHeader, Box} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
@@ -10,7 +10,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function ColumnChart(props) {
+
   const {dataSearched} = props;
+  const [dataFormated, setDataFormated] = useState([]);
 
   const classes = useStyles();
 
@@ -22,25 +24,15 @@ export default function ColumnChart(props) {
   );
   const axes = React.useMemo(
     () => [
-      // { primary: true, position: "bottom", type: "ordinal" },
-      { primary: true, position: "left", type: "ordinal"},
-      { position: "bottom", type: "linear" }
+      { primary: true, position: "bottom", type: "ordinal"},
+      { position: "left", type: "linear", stacked: false }
     ],
     []
-  );
-  const data = React.useMemo(
-    () => [ 
-      {
-        label: dataSearched.word_frequency.label,
-        datums: dataSearched.word_frequency.datums.slice(0, 20)
-      }
-    ],
-    [dataSearched.word_frequency.label, dataSearched.word_frequency.datums]
-  );
+  ); 
 
   const getSeriesStyle = React.useCallback(
     () => ({
-      transition: 'all 1s ease'
+      transition: 'all 1s ease',
     }),
     []
   );
@@ -50,6 +42,22 @@ export default function ColumnChart(props) {
     }),
     []
   );
+
+  useEffect(() => {
+    setDataFormated(dataSearched.word_frequency.datums.slice(0, 20).map((element)=>{
+      return ({
+        label: element.x,
+        datums: [{
+          x: 'Words',
+          y: element.y
+        }]
+      })
+    }))
+  }, [])
+
+  if (!dataFormated){
+    return <></>
+  }
   
   return (
       <Card className={classes.paper} variant="outlined">
@@ -57,14 +65,15 @@ export default function ColumnChart(props) {
           title="Word Frequency"
         />
         <CardContent>
-          <Box width="100%" height={400}>
+          <Box width="100%" height={300}>
             <Chart 
-            data={data} 
-            series={series} 
-            axes={axes} 
-            tooltip 
-            getSeriesStyle={getSeriesStyle}
-            getDatumStyle={getDatumStyle}/>
+              data={dataFormated} 
+              series={series} 
+              axes={axes} 
+              tooltip 
+              getSeriesStyle={getSeriesStyle}
+              getDatumStyle={getDatumStyle}
+            />
           </Box>
         </CardContent>
       </Card>
