@@ -8,13 +8,16 @@ import blue from '@material-ui/core/colors/blue';
 
 const theme = createMuiTheme({
   typography: {
-    fontSize: 13,
-    htmlFontSize: 16,
+    // fontSize: 13,
+    // htmlFontSize: 16,
+    fontFamily: `Lato, Helvetica, Arial, Helvetica-serif`,
   },
   palette: {
     primary: blue,
   },
 });
+
+console.log(theme)
 
 ReactDOM.render(
   <React.StrictMode>

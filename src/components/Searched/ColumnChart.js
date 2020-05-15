@@ -54,9 +54,7 @@ export default function ColumnChart(props) {
   return (
       <Card className={classes.paper} variant="outlined">
         <CardHeader
-          title={
-              "Word Frequency"
-          }
+          title="Word Frequency"
         />
         <CardContent>
           <Box width="100%" height={400}>

@@ -36,14 +36,14 @@ export default function Header(){
         <Box>
           <Typography 
             component="h1"
-            variant="h6"
+            variant="h5"
             align="center"
             className={classes.title}
           >
             {/* <a className="header__link" href="/"><h1>COVID-19 Analysis Tools</h1></a> */}
             <Link to="/">COVID-19 Analysis Tools</Link>
           </Typography>
-          <Typography component="h4" variant="subtitle1" align="center">
+          <Typography component="h3" variant="subtitle1" align="center">
             Text Analytics for the COVID-19 Literature
           </Typography>
         </Box>
