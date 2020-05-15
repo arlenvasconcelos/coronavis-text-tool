@@ -1,28 +1,44 @@
 import React,{useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
+import {Grid, Typography, Box, Card, CardContent, CardActions} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles';
 
+//import service
 import api from '../../service/api';
 
-import {Row, Col, Card} from 'react-bootstrap';
-
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2)
+  },
+  title: {
+    fontSize:theme.typography.subtitle1,
+    fontWeight: theme.typography.fontWeightBold,
+    width:"100%",
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2)
+  },
+  footer: {
+    justifyContent: 'flex-end'
+  },
+}))
 
 export default function MainTopic(){
 
+  const classes = useStyles()
+
   const [mainTopic, setMainTopic] = useState({})
-  // const [loading, setLoading] = useState(false)
-  // const [currentPage, setCurrentPage] = useState(1)
-  // const [lastPage, setLastPage] = useState("")
-  // const [previousPage, setPreviousPage] = useState("")
-  // const [nextPage, setNextPage] = useState("")
+  const [loading, setLoading] = useState(false);
 
   useEffect(()=>{
     const loadFeatured = async () => {
-      // setLoading(true);
+      setLoading(true);
       try {
         const response = await api.get('/featured');
         setMainTopic(response.data.data)
-        // setLoading(false);
+        setLoading(false);
       } catch (err) {
-        // setLoading(false);
+        setLoading(false);
         console.log(err);
       }
     }
@@ -35,25 +51,32 @@ export default function MainTopic(){
 
   return (
     <>
-      <Row bsPrefix="row suggested__section">
-        <h6 className="suggested__topic">{mainTopic.topic}</h6>
+      <Grid container className={classes.root} spacing={2}>
+        <Box 
+          component="h6" 
+          className={classes.title}
+        >
+          {mainTopic.topic}
+        </Box>
         {
           mainTopic.questions && mainTopic.questions.map((item, key)=> (
-            <Col key={key} md={6}>
-              <Card bsPrefix="suggested__card card">
-                <Card.Body>
-                  <Card.Title bsPrefix="suggested__cardtitle">{item.question}</Card.Title>
-                  {/* <Card.Subtitle className="mb-2 text-muted">Card Subtitle</Card.Subtitle> */}
-                  <Card.Text>
+            <Grid key={key} item xs={12} sm={6}>
+              <Card variant="outlined">
+                <CardContent >
+                  <Typography variant="body1" color="textPrimary" component="p">
                     {item.summary}
-                  </Card.Text>
-                  <Card.Link href={`/tools/questions/${item.qid}/answers`}>[{item.total_results} results]</Card.Link>
-                </Card.Body>
+                  </Typography>
+                </CardContent>
+                <CardActions className={classes.footer}>
+                  <Link to={`/tools/questions/${item.qid}/answers`}>
+                    [{item.total_results} results]
+                  </Link>
+                </CardActions>
               </Card>
-            </Col>
+            </Grid>
           ))
         }
-      </Row>
+      </Grid>
     </>
   )
 }

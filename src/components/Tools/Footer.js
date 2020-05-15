@@ -1,10 +1,23 @@
 import React from 'react'
-import {Container, Row, Col} from 'react-bootstrap'
+import { Box, Container, Typography } from '@material-ui/core';
 
 export default function Footer () {
   return (
-    <>
-      
-    </>
+    <footer>
+      <Box textAlign="center" marginY={3}>
+        <Typography
+          component="p" 
+          variant="subtitle2"
+        >
+          Source:
+            <a
+              href="https://github.com/castorini/anserini/blob/master/docs/experiments-cord19.md#pre-built-indexes-all-versions"
+              target="_blank"
+            >
+              CORD-19 Dataset | Full-Text Anserini Pre-Built Index: 2020-04-10
+            </a>
+        </Typography>
+      </Box>
+    </footer>
   )
 }

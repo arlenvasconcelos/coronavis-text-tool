@@ -62,14 +62,18 @@ export default function Authors({author, index}) {
         disableRestoreFocus
       >
         <Typography>
-          <span style={{fontWeight: "bold"}}>Laboratory:</span> {author.affiliation.laboratory}
+          <span style={{fontWeight: "bold"}}>Laboratory:</span>
+          {author.affiliation.laboratory}
         </Typography>
         <Typography>
-          <span style={{fontWeight: "bold"}}>Institution:</span> {author.affiliation.institution}
+          <span style={{fontWeight: "bold"}}>Institution:</span>
+          {author.affiliation.institution}
         </Typography>
         <Typography>
           <span style={{fontWeight: "bold"}}>Location:</span> 
-          {author.affiliation.location ? (author.affiliation.location.settlement +", "+ author.affiliation.location.country) : ""}
+          {author.affiliation.location 
+            ? (author.affiliation.location.settlement +", "+ author.affiliation.location.country) 
+            : ""}
         </Typography>
       </Popover>
     </>
