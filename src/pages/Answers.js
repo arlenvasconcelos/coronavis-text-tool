@@ -12,7 +12,7 @@ import api from '../service/api';
 const useStyles = makeStyles((theme) => ({
   section: {
     flexGrow: 1,
-    backgroundColor: '#ddd',
+    backgroundColor: theme.palette.background.default,
     padding: theme.spacing(2),
     borderRadius: '5px',
   },

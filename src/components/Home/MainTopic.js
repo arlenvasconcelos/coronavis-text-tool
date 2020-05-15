@@ -9,14 +9,14 @@ import api from '../../service/api';
 const useStyles = makeStyles((theme) => ({
   root: {
     marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2)
+    marginBottom: theme.spacing(2),
+    backgroundColor: theme.palette.background.default,
+    padding:theme.spacing(2)
   },
   title: {
     fontSize:theme.typography.subtitle1,
     fontWeight: theme.typography.fontWeightBold,
     width:"100%",
-    marginTop: theme.spacing(2),
-    marginBottom: theme.spacing(2)
   },
   footer: {
     justifyContent: 'flex-end'

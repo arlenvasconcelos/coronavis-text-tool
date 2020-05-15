@@ -1,18 +1,10 @@
 import React, {useState, useEffect}  from 'react'; 
 import {Table, Card} from 'react-bootstrap';
 
-//components
-// import PaperModal from './PaperModal';
-
 export default function TableCard({dataSearched}){
-
-  // const [showModal, setShowModal] = useState(false);
-  // const [paper, setPaper] = useState({});
-  // const [index, setIndex] = useState(null);
 
   return (
     <>
-
     <Card className="home__card home__tablecard">
       <Card.Body>
         <Table striped responsive="sm" size="sm" className="card__table">
@@ -42,13 +34,6 @@ export default function TableCard({dataSearched}){
         </Table>
       </Card.Body>
     </Card>
-    
-    {/* <PaperModal
-      index={index}
-      paper={paper}
-      showModal={showModal}
-      setShowModal={setShowModal}
-    /> */}
     </>
   )
 
