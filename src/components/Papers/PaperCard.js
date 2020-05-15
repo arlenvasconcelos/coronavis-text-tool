@@ -1,6 +1,4 @@
 import React, {useState}  from 'react';
-import {Card, CardActions, CardContent, Typography, Button, Box, CircularProgress, CardHeader, Divider} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
 
 //import components
 import PaperModal from './PaperModal';
@@ -10,32 +8,8 @@ import CustomCard from '../utils/CustomCard';
 //import service
 import api from '../../service/api'
 
-const useStyles = makeStyles((theme) => ({
-  paper: {
-    margin: theme.spacing(1),
-  },
-  cardText : {
-    borderTop: "1px solid rgba(0,0,0,.125)",
-  },
-  highlight: {
-    backgroundColor: theme.palette.grey[400],
-  },
-  footer: {
-    justifyContent: 'flex-end'
-  },
-  buttonProgress: {
-    color: theme.palette.grey[500],
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginTop: -12,
-    marginLeft: -12,
-  },
-}));
-
 export default function PaperCard(props){
 
-  const classes = useStyles()
 
   const defaultValue = {
     title: "",

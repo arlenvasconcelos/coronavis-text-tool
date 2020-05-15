@@ -53,7 +53,7 @@ export default function ColumnChart(props) {
         }]
       })
     }))
-  }, [])
+  }, [dataSearched.word_frequency.datums])
 
   if (!dataFormated){
     return <></>

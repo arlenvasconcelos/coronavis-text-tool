@@ -14,10 +14,6 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Authors({author, index}) {
 
-  React.useEffect(()=>{
-    console.log(author)
-  },[])
-
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
 

@@ -1,7 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import Pagination from 'react-js-pagination';
-import {Box, Grid} from '@material-ui/core';
-import {makeStyles} from '@material-ui/core/styles';
+import { Box } from '@material-ui/core';
 
 //import components
 import PaperCard from '../Papers/PaperCard';

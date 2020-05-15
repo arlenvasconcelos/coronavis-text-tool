@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Container, Typography } from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 
 export default function Footer () {
   return (
@@ -12,7 +12,6 @@ export default function Footer () {
           Source:
             <a
               href="https://github.com/castorini/anserini/blob/master/docs/experiments-cord19.md#pre-built-indexes-all-versions"
-              target="_blank"
             >
               CORD-19 Dataset | Full-Text Anserini Pre-Built Index: 2020-04-10
             </a>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import {Grid, Box, Typography} from '@material-ui/core';
+import { Box, Typography } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 import logoInf from '../../assets/images/inf-logo-2.png';

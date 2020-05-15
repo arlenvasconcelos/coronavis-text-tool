@@ -1,21 +1,12 @@
-import React, {useState, useEffect, useRef} from 'react';
+import React, {useState, useEffect} from 'react';
 import {Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Box} from '@material-ui/core';
-import Popover from '@material-ui/core/Popover';
-import {makeStyles} from '@material-ui/core/styles';
-
 
 import Highlight from '../utils/Highlight'
 import Authors from '../PaperModal/Authors';
 
-const useStyles = makeStyles((theme) => ({
-  
-}));
-
 export default function PaperModal(props){
 
   const {index, paper, showModal, setShowModal} = props;
-
-  const classes = useStyles();
 
   const [terms, setTerms] = useState([]);
   const [types, setTypes] = useState([]);
@@ -94,7 +85,7 @@ export default function PaperModal(props){
             </Box>
             <Typography variant="body2">
               DOI: 
-              <a href={'https://doi.org/' + paper.doi} target="_blank">
+              <a href={'https://doi.org/' + paper.doi}>
                 {'https://doi.org/' + paper.doi}
               </a>
               <br/>
