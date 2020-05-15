@@ -22,11 +22,11 @@ export default function Searched({dataSearched}){
 
   return (
     <>
-      <Grid container spacing={3}>  
-        <Grid item lg="8">
+      <Grid container spacing={2}>
+        <Grid item xs={12} lg={8}>
           <Papers papers={dataSearched.papers} query={dataSearched.query}/>
         </Grid>
-        <Grid item lg="4">
+        <Grid item xs={12} lg={4}>
           {/* <Scatterplot/> */}
           <ColumnChart dataSearched={dataSearched}/>
         </Grid>

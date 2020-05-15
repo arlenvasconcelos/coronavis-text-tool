@@ -33,27 +33,6 @@ export default function Papers (props) {
 
   return (
     <>
-      {/* <Grid container spacing={3}>
-        {papers.slice(perPage * (papersFilter.page - 1),
-        perPage * (papersFilter.page)).map((paper, index) => (
-          <Grid key={(index + 1 + ((papersFilter.page - 1)*perPage))} item xs={6}>
-            <PaperCard 
-              index={index + 1 + ((papersFilter.page - 1)*perPage)} 
-              paper={paper} 
-              query={query}
-            />
-          </Grid>
-        ))}
-        <Pagination
-          activePage={papersFilter.page}
-          itemClass="page-item"
-          linkClass="page-link"
-          itemsCountPerPage={perPage}
-          totalItemsCount={papers.length}
-          onChange={page => handlePapersPageChange(page)}
-          innerClass={'papers__pagination'}
-        />
-      </Grid> */}
       <Box>
         {papers.slice(perPage * (papersFilter.page - 1),
         perPage * (papersFilter.page)).map((paper, index) => (
