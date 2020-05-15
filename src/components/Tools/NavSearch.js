@@ -68,7 +68,7 @@ export default function NavSearch(){
               label=""
               fullWidth
               id="input-search"
-              placeholder="Type here"
+              placeholder="Search by answers, keywords, entities or some metadata"
               variant="outlined"
               size="small"
               value={inputValue}
