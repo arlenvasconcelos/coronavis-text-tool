@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
 import {
   CircularProgress, 
@@ -9,6 +8,9 @@ import {
   Typography
 } from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
+
+//import components
+import LinePanel from '../Topics/LinePanel';
 
 //import api
 import api from '../../service/api';
@@ -71,11 +73,7 @@ export default function CustomExpansionPanel({topics}) {
             <Box className={classes.content}>
               {
                 questions.length && questions.map((question, index)=>(
-                  <Link key={question+index} to={`/tools/questions/${question.qid}/answers`}>
-                    <Box component="p" fontSize="body2.fontSize">
-                      {`[${index+1}] - ${question.question} - [${question.total_answers} answers]`}
-                    </Box>
-                  </Link>
+                  <LinePanel key={question.question+index} index={index} question={question}/>
                 ))
               }
             </Box>

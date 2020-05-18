@@ -46,7 +46,7 @@ export default function Highlight(props){
         <span key={i} 
           className="paper__words-highlight"
           style= {{
-            backgroundColor: `${types ? palette[types[index]] : '#ccc'}`, 
+            backgroundColor: `${types ? palette[types[index]] : '#8dd3c7'}`, 
           }}     
         >
           { part }

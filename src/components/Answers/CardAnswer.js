@@ -9,7 +9,7 @@ import CardCustom from '../utils/CardCustom';
 
 const useStyles = makeStyles((theme) => ({
   highlight: {
-    backgroundColor: theme.palette.grey[400],
+    backgroundColor: "#8dd3c7",
   }
 }))
 
