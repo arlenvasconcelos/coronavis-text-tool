@@ -1,5 +1,5 @@
 import React,{useState, useEffect} from 'react';
-import { Box, Grid } from '@material-ui/core';
+import { Box, Grid, Typography } from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 
 //import components
@@ -55,6 +55,9 @@ export default function Topics(){
           className={classes.title}
         >
           Topics
+          <Typography component="span" color="error">
+            *
+          </Typography>
         </Box>
         <CustomExpansionPanel topics={topics}/>
       </Grid>
