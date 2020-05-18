@@ -3,7 +3,7 @@ import React, {useState}  from 'react';
 //import components
 import PaperModal from './PaperModal';
 import Highlight from '../utils/Highlight';
-import CustomCard from '../utils/CustomCard';
+import CardCustom from '../utils/CardCustom';
 
 //import service
 import api from '../../service/api'
@@ -42,7 +42,7 @@ export default function PaperCard(props){
 
   return (
     <>
-      <CustomCard 
+      <CardCustom 
         title={"["+index+"] "+paper.title}
         authors={paper.authors}
         body={<Highlight text={paper.abstract.slice(0,200)+'...'} terms={query}/>}

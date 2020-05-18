@@ -3,6 +3,9 @@ import { Link } from 'react-router-dom';
 import {Grid, Typography, Box, Card, CardContent, CardActions} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
+//import components
+import ErrorCustom from '../utils/ErrorCustom';
+
 //import service
 import api from '../../service/api';
 
@@ -46,7 +49,7 @@ export default function MainTopic(){
   },[])
 
   if (!mainTopic){
-    return (<></>)
+    return (<ErrorCustom text="Cannot find topics" />)
   }
 
   return (

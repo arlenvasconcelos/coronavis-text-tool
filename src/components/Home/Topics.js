@@ -1,86 +1,64 @@
 import React,{useState, useEffect} from 'react';
-import {Link} from 'react-router-dom';
-import Box from '@material-ui/core/Box';
-import Pagination from '@material-ui/lab/Pagination';
+import { Box, Grid } from '@material-ui/core';
+import { makeStyles } from '@material-ui/core/styles';
 
 //import components
+import CustomExpansionPanel from '../Topics/CustomExpasionPanel';
+import ErrorCustom from '../utils/ErrorCustom';
 
 //import api
 import api from '../../service/api';
 
-import {Row, Table} from 'react-bootstrap';
-
-const QuestionLine = ({question, index}) => (
-  <tr>
-    <td>
-      <Link 
-        to={`/tools/questions/${question.qid}/answers`} 
-        className="answer__link"
-      >
-        {`${index}. ${question.text}`}
-      </Link>
-    </td>
-    <td>
-      [{question.total_answers} results]
-    </td>
-  </tr>
-)
+//makestyles
+const useStyles = makeStyles((theme) => ({
+  root: {
+    marginTop: theme.spacing(2),
+    marginBottom: theme.spacing(2),
+    backgroundColor: theme.palette.background.default,
+    padding:theme.spacing(2)
+  },
+  title: {
+    fontSize:theme.typography.subtitle1,
+    fontWeight: theme.typography.fontWeightBold,
+    width:"100%",
+  },
+}))
 
 export default function Topics(){
 
-  const [topic, setTopic] = useState({
-    questions: [],
-    topic: ""
-  })
+  const classes = useStyles();
 
-  const [lastPage, setLastPage] = useState(0);
-  const [currentPage, setCurrentPage] = useState(1)
+  const [topics, setTopics] = useState([]);
 
-  const handleChangePage = (event, value) => {
-    setCurrentPage(value); 
-  };
 
   useEffect(()=>{
-    const loadTopics = async (page) => {
+    const loadTopics = async () => {
       try {
-        const response = await api.get(`/topics?page=${page}`);
-        setLastPage(response.data.last ? response.data.last.split('?page=')[1] : response.data.current)
+        const response = await api.get(`/dev/topics`);
         console.log(response.data)
-        setTopic(response.data.data)
+        setTopics(response.data)
       } catch (err) {
         console.log(err);
       }
     }
-    loadTopics(currentPage);
-  },[currentPage])
+    loadTopics();
+  },[])
 
-  if (!topic) {
-    return (<></>)
+  if (!topics) {
+    return (<ErrorCustom text="Cannot find topics" />)
   }
 
   return (
     <>
-      <Row className="suggested__section ">
-        <div className="questions__section">
-          <h6 className="suggested__topic">{topic.topic}</h6>
-          <Table size="sm">
-            <tbody>
-              {
-                topic.questions.map((item, key)=> (
-                  <QuestionLine key={key} question={item} index={key+1}/>
-                ))
-              }
-            </tbody>
-          </Table>
-        </div>
-        <Box mt={2}>
-          <Pagination 
-            page={currentPage}
-            count={lastPage}
-            onChange={handleChangePage}
-          />
+      <Grid container className={classes.root} spacing={2}>
+        <Box 
+          component="h6" 
+          className={classes.title}
+        >
+          Topics
         </Box>
-      </Row>
+        <CustomExpansionPanel topics={topics}/>
+      </Grid>
     </>
   )
 }

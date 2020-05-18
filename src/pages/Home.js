@@ -13,10 +13,12 @@ export default function Home(){
     <>
       {dataSearched.papers 
         ? <Searched dataSearched={dataSearched}/> 
-        : <></>
+        : <>
+            <MainTopic />
+            <Topics />
+          </>
       }
-      <MainTopic />
-      <Topics />
+      
   </>
   )
 }

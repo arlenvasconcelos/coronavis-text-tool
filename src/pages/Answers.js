@@ -3,8 +3,10 @@ import Grid from '@material-ui/core/Grid';
 import Box from '@material-ui/core/Box';
 import {makeStyles} from '@material-ui/core/styles';
 
+//import components
 import CardAnswer from '../components/Answers/CardAnswer';
 import Pagination from '../components/utils/Pagination';
+import ErrorCustom from '../components/utils/ErrorCustom';
 
 //import api
 import api from '../service/api';
@@ -53,6 +55,10 @@ export default function Questions(props){
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [props.location])
+
+  if (!question){
+    return <ErrorCustom text="Cannot find this question"/>
+  }
 
   return (
     <Box className={classes.section}>

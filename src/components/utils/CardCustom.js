@@ -30,7 +30,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function CustomCard(props){
+export default function CardCustom(props){
 
   const {title, authors, body, secondarybody, button, loading, buttonAction} = props;
 

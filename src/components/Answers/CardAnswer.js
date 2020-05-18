@@ -5,7 +5,7 @@ import {makeStyles} from '@material-ui/core/styles';
 
 //components
 import ModalAnswer from './ModalAnswer';
-import CustomCard from '../utils/CustomCard';
+import CardCustom from '../utils/CardCustom';
 
 const useStyles = makeStyles((theme) => ({
   highlight: {
@@ -48,7 +48,7 @@ export default function CardAnswer({answer}) {
 
   return (
     <>
-      <CustomCard
+      <CardCustom
         title={answer.title}
         authors={answer.authors}
         body={
