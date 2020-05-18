@@ -1,11 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { makeStyles } from '@material-ui/core/styles';
-import ExpansionPanel from '@material-ui/core/ExpansionPanel';
-import ExpansionPanelDetails from '@material-ui/core/ExpansionPanelDetails';
-import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
-import {CircularProgress, Box} from '@material-ui/core';
-import Typography from '@material-ui/core/Typography';
+import {
+  CircularProgress, 
+  Box, 
+  ExpansionPanel, 
+  ExpansionPanelSummary, 
+  Typography
+} from '@material-ui/core';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 
 //import api
@@ -49,10 +51,6 @@ export default function CustomExpansionPanel({topics}) {
     }
   };
 
-  const loadQuestions = async (idTopic) => {
-    
-  }
-
   return (
     <div className={classes.root}>
       {topics &&
@@ -75,7 +73,7 @@ export default function CustomExpansionPanel({topics}) {
                 questions.length && questions.map((question, index)=>(
                   <Link key={question+index} to={`/tools/questions/${question.qid}/answers`}>
                     <Box component="p" fontSize="body2.fontSize">
-                      {`[${index+1}] - ${question.question}`}
+                      {`[${index+1}] - ${question.question} - [${question.total_answers} answers]`}
                     </Box>
                   </Link>
                 ))

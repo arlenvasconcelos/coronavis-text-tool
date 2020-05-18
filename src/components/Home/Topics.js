@@ -30,7 +30,6 @@ export default function Topics(){
 
   const [topics, setTopics] = useState([]);
 
-
   useEffect(()=>{
     const loadTopics = async () => {
       try {
