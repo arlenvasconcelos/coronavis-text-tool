@@ -1,25 +1,50 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import { Box, Typography } from '@material-ui/core';
+import { Grid, Box, Typography } from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 import logoInf from '../../assets/images/inf-logo-2.png';
 import logoUfrgs from '../../assets/images/ufrgs-logo-2.png';
 
 const useStyle = makeStyles((theme) => ({
+  root: {
+    display: 'flex',
+    alignItems: 'center'
+  },
   title: {
     fontWeight: theme.typography.fontWeightBold,
     fontSize: '28px',
+    order: 3,
     '& *': {
       color: theme.palette.common.black,
-    },
-    '& *:hover': {
       textDecoration: 'none',
-      color: theme.palette.common.black,
+    },
+    '& *:hover':{
+      textDecoration: 'none',
+    },  
+    [theme.breakpoints.up('sm')]: {
+      order: 2,
+    },
+  },
+  logoInf:{
+    order: 2,
+    [theme.breakpoints.up('sm')]: {
+      order: 3,
+    },
+    "& img": {
+      maxHeight: '100px',
     }
   },
-  image: {
-    maxHeight: '100px',
+  logoUfrgs:{
+    display: 'flex',
+    justifyContent: 'flex-end',
+    order: 1,
+    [theme.breakpoints.up('sm')]: {
+      order: 1,
+    },
+    "& img": {
+      maxHeight: '100px',
+    }
   }
 }))
 
@@ -29,17 +54,16 @@ export default function Header(){
 
   return (
     <header>
-      <Box display="flex" justifyContent="center">
-        <Box>
-          <img className={classes.image} alt="Logo UFRGS" src={logoUfrgs}/>
-        </Box>
-        <Box display="flex" alignItems="center" p={1}>
-          <Box>
+      <Grid container className={classes.root} spacing={2}>
+        <Grid xs={6} sm={4}item className={classes.logoUfrgs}>
+          <img alt="Logo UFRGS" src={logoUfrgs}/>
+        </Grid>
+        <Grid xs={12} sm={4} className={classes.title} item>
+          <Box alignItems="center">
             <Typography 
               component="h1"
               variant="h4"
               align="center"
-              className={classes.title}
             >
               <Link to="/">COVID-19 Analysis Tools</Link>
             </Typography>
@@ -47,11 +71,11 @@ export default function Header(){
               Text Analytics for the COVID-19 Literature
             </Typography>
           </Box>
-        </Box>
-        <Box>
-          <img className={classes.image} alt="Logo INF" src={logoInf}/>
-        </Box>
-      </Box>
+        </Grid>
+        <Grid xs={6} sm={4} item className={classes.logoInf}>
+          <img alt="Logo INF" src={logoInf}/>
+        </Grid>
+      </Grid>
     </header>
   )
 }
