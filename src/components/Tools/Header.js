@@ -56,24 +56,22 @@ export default function Header(){
   return (
     <header>
       <Grid container className={classes.root} spacing={2}>
-        <Grid xs={6} sm={4}item className={classes.logoUfrgs}>
+        <Grid xs={6} sm={3} md={4} mditem className={classes.logoUfrgs}>
           <img alt="Logo UFRGS" src={logoUfrgs}/>
         </Grid>
-        <Grid xs={12} sm={4} className={classes.title} item>
-          <Box alignItems="center">
-            <Typography 
-              component="h1"
-              variant="h4"
-              align="center"
-            >
-              <Link to="/">COVID-19 Analysis Tools</Link>
-            </Typography>
-            <Typography component="h3" variant="subtitle1" align="center" color="textSecondary">
-              Text Analytics for the COVID-19 Literature
-            </Typography>
-          </Box>
+        <Grid xs={12} sm={6} md={4} className={classes.title} item>
+          <Typography 
+            component="h1"
+            variant="h4"
+            align="center"
+          >
+            <Link to="/">COVID-19 Analysis Tools</Link>
+          </Typography>
+          <Typography component="h3" variant="subtitle1" align="center" color="textSecondary">
+            Text Analytics for the COVID-19 Literature
+          </Typography>
         </Grid>
-        <Grid xs={6} sm={4} item className={classes.logoInf}>
+        <Grid xs={6} sm={3} md={4} item className={classes.logoInf}>
           <img alt="Logo INF" src={logoInf}/>
         </Grid>
       </Grid>
