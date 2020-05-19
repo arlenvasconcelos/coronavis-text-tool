@@ -50,15 +50,15 @@ export default function Topics(){
   return (
     <>
       <Grid container className={classes.root} spacing={2}>
-        <Box 
-          component="h6" 
+        <Typography 
+          component="h6"
           className={classes.title}
         >
           Topics
-          <Typography component="span" color="error">
+          <Box component="span" color="error.main">
             *
-          </Typography>
-        </Box>
+          </Box>
+        </Typography>
         <CustomExpansionPanel topics={topics}/>
       </Grid>
     </>

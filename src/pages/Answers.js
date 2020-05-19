@@ -1,6 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import Grid from '@material-ui/core/Grid';
-import Box from '@material-ui/core/Box';
+import {Grid, Box, Typography} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 
 //import components
@@ -18,8 +17,14 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     borderRadius: '5px',
   },
+  topic: {
+    fontWeight: theme.typography.fontWeightBold,
+    color: theme.palette.grey[800]
+  },
+  question: {
+    fontWeight: theme.typography.fontWeightBold
+  }
 }))
-
 
 export default function Questions(props){
 
@@ -31,21 +36,21 @@ export default function Questions(props){
     answers: []
   });
   const [lastPage, setLastPage] = useState(0);
-  // const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   useEffect(()=>{
     const loadQuestion = async () => {
-      // setLoading(true)
+      setLoading(true)
       const path = props.location.pathname.split('tools')
       try{
         const response = await api.get(path[1]+props.location.search);
         setLastPage(response.data.last ? response.data.last.split('?page=')[1] : response.data.current)
         setQuestion(response.data.data)
         console.log(response.data)
-        // setLoading(false);
+        setLoading(false);
       }
       catch(err){
-        // setLoading(false);
+        setLoading(false);
         console.log(err)
       }
     }
@@ -62,12 +67,12 @@ export default function Questions(props){
 
   return (
     <Box className={classes.section}>
-      <Box component="h4" mb={1} fontSize="subtitle1.fontSize" color="grey.800" fontWeight="fontWeightBold"> 
-        Topic: {question.topic} 
-      </Box>
-      <Box component="h6" fontWeight="fontWeightBold" mb={2} fontSize="subtitle1.fontSize">
+      <Typography component="h4" variant="subtitle1" className={classes.topic}> 
+        Topic: {question.topic}
+      </Typography>
+      <Typography component="h6" variant="subtitle1" className={classes.question}>
         Question: {question.text}
-      </Box>
+      </Typography>
       <Grid container spacing={1}>
         {
           question.answers.map(( (answer, key) => (

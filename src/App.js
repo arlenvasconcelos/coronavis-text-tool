@@ -8,11 +8,6 @@ import Answers from './pages/Answers';
 import Tools from './template/Tools.js' 
 //Store
 import store from './store';
-//CSS
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './App.css';
-
-
 
 const ToolsRoute = ({ component: Component, ...rest }) => (
   <Route
@@ -27,7 +22,7 @@ const ToolsRoute = ({ component: Component, ...rest }) => (
 
 export default function App() {
   return (
-    <div className="App">
+    <div>
       <Provider store={store}>
         <Router>
           <Switch>
