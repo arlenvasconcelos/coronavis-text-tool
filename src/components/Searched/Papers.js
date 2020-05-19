@@ -1,9 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import Pagination from 'react-js-pagination';
 import { Box } from '@material-ui/core';
 
 //import components
 import PaperCard from '../Papers/PaperCard';
+import ErrorCustom from '../utils/ErrorCustom';
 
 export default function Papers (props) {
 
@@ -27,14 +27,13 @@ export default function Papers (props) {
   }, [papers])
 
   if (!papers){
-    return <></>
+    return <ErrorCustom text="Cannot find this query" />
   }
 
   return (
     <>
       <Box>
-        {papers.slice(perPage * (papersFilter.page - 1),
-        perPage * (papersFilter.page)).map((paper, index) => (
+        {papers.map((paper, index) => (
           <PaperCard 
             key={(index + 1 + ((papersFilter.page - 1)*perPage))} 
             index={index + 1 + ((papersFilter.page - 1)*perPage)} 
@@ -42,15 +41,6 @@ export default function Papers (props) {
             query={query}
           />
         ))}
-        <Pagination
-          activePage={papersFilter.page}
-          itemClass="page-item"
-          linkClass="page-link"
-          itemsCountPerPage={perPage}
-          totalItemsCount={papers.length}
-          onChange={page => handlePapersPageChange(page)}
-          innerClass={'papers__pagination'}
-        />
       </Box>
     </>
   )
