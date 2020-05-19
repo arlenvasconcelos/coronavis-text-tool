@@ -20,6 +20,7 @@ const useStyle = makeStyles((theme) => ({
       textDecoration: 'none',
     },
     '& *:hover':{
+      color: theme.palette.common.black,
       textDecoration: 'none',
     },  
     [theme.breakpoints.up('sm')]: {
