@@ -17,6 +17,9 @@ const useStyles = makeStyles((theme) => ({
   paper: {
     margin: theme.spacing(1),
   },
+  title: {
+    fontWeight: theme.typography.fontWeightBold,
+  },
   footer: {
     justifyContent: 'flex-end'
   },
@@ -41,13 +44,13 @@ export default function CardCustom(props){
       <Card className={classes.paper} variant="outlined">
         <CardHeader
           title={
-            <Box 
-              component="h6" 
-              variant="subtitle1" 
-              fontWeight="fontWeightBold"
+            <Typography 
+              component="h6"
+              variant="subtitle1"
+              className={classes.title}
             >
               {title}
-            </Box>
+            </Typography>
           }
           subheader={authors}
         />

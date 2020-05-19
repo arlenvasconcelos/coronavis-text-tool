@@ -8,8 +8,6 @@ import blue from '@material-ui/core/colors/blue';
 
 const theme = createMuiTheme({
   typography: {
-    // fontSize: 13,
-    // htmlFontSize: 16,
     fontFamily: [
       "Lato",
       "'Helvetica Neue'",
