@@ -1,10 +1,31 @@
 import React, {useState, useEffect} from 'react';
-import {Dialog, DialogActions, DialogContent, DialogTitle, Button, Typography, Box} from '@material-ui/core';
+import {
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogTitle,
+  Button,
+  Typography,
+  Box,
+} from '@material-ui/core';
+import {makeStyles} from '@material-ui/core/styles'
 
 import Highlight from '../utils/Highlight'
 import Authors from '../PaperModal/Authors';
 
+const useStyles = makeStyles((theme) => ({
+  key_word: {
+    fontSize: theme.typography.pxToRem(11),
+    fontWeight: theme.typography.fontWeightBold,
+    padding:'1px',
+    marginRight:theme.spacing(1),
+    borderRadius: '5px'
+  }
+}))
+
 export default function PaperModal(props){
+
+  const classes = useStyles()
 
   const {index, paper, showModal, setShowModal} = props;
 
@@ -95,42 +116,43 @@ export default function PaperModal(props){
           </Typography>
         </DialogTitle>
         <DialogContent dividers>
-          <Typography component="div">
-            <Box>
-              <Typography component="span">Abstract: </Typography>
+          <Box>
+            <Typography variant="body2" component="body2">
+              <Box 
+                component="span" 
+                fontWeight="700"
+              >
+                Abstract: 
+              </Box>
               {
                 (paper.abstract) ? (
-                  <p>
                     <Highlight 
                       text={paper.abstract} 
                       terms={terms} 
                       types={types} 
                       palette={palette}
                     />
-                  </p>
                 ) : (
                   <p>There is no abstract</p>
                 )
               }
               {/* Show entities with its marker (background color) */}
-              <p>
+              <Box mt={2}>
                 {
-                  Object.entries(palette).map((value, index) => 
-                    <span
-                      className="paper__words-highlight"
+                  Object.entries(palette).map((value, index) =>
+                    <Box
                       key={index}
-                      style={{
-                        fontSize:'0.7em',
-                        backgroundColor: `${value[1] || 'yellow'}`, 
-                      }}
+                      className={classes.key_word}
+                      component="span"
+                      bgcolor={value[1]}
                     >
                       {value[0]}
-                    </span>
+                    </Box>
                   )
                 }
-              </p>
-            </Box>
-          </Typography>
+              </Box >
+            </Typography>
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button 

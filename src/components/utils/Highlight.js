@@ -1,4 +1,5 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect} from 'react';
+import {Box} from '@material-ui/core'
 
 
 export default function Highlight(props){
@@ -20,8 +21,20 @@ export default function Highlight(props){
   }
   
   useEffect(()=>{ 
-    if (terms)
+    if (terms){
+      const getRegExp = () => {
+
+        let exp = "";
+        terms.forEach((value, index)=>{
+          if (index === terms.length-1)
+            exp = exp + `${value}[ ,.()]`;
+          else 
+            exp = exp + `${value}[ ,.()]|`;
+        })
+        setParts(text.split(new RegExp(`(${exp})`, 'gi')));
+      }
       getRegExp();
+    }
   },[terms])
 
   const verifyTerms = (term) => {
@@ -29,7 +42,12 @@ export default function Highlight(props){
     var eArr = terms.values();
 
     for (let item of eArr) {
-      if (term.toLowerCase() === (item.toLowerCase() + (" " || "," || + "." + "(" + ")"))){
+      if (term.toLowerCase() === item.toLowerCase() + " " ||
+        term.toLowerCase() === item.toLowerCase() + "." ||
+        term.toLowerCase() === item.toLowerCase() + "," ||
+        term.toLowerCase() === item.toLowerCase() + "("  ||
+        term.toLowerCase() === item.toLowerCase() + ")"
+      ){
         return terms.indexOf(item);
       } 
     }
@@ -43,21 +61,21 @@ export default function Highlight(props){
 
     if ( index >= 0) {
       return (
-        <span key={i} 
-          className="paper__words-highlight"
+        <Box key={i}
+          component="span"
           style= {{
             backgroundColor: `${types ? palette[types[index]] : '#8dd3c7'}`, 
           }}     
         >
           { part }
-        </span>
+        </Box>
       )
     }
     else {
       return (
-        < span key={i}>
+        <Box key={i} component="span">
           {part}
-        </span>
+        </Box>
       )
     }
   }
