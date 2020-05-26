@@ -13,26 +13,16 @@ export default function Highlight(props){
     let exp = "";
     terms.forEach((value, index)=>{
       if (index === terms.length-1)
-        exp = exp + `${value}[ ,.()]`;
+        exp = exp + ` +${value}[ ,.()]`;
       else 
-        exp = exp + `${value}[ ,.()]|`;
+        exp = exp + ` +${value}[ ,.()]|`;
     })
     setParts(text.split(new RegExp(`(${exp})`, 'gi')));
   }
   
+
   useEffect(()=>{ 
     if (terms){
-      const getRegExp = () => {
-
-        let exp = "";
-        terms.forEach((value, index)=>{
-          if (index === terms.length-1)
-            exp = exp + `${value}[ ,.()]`;
-          else 
-            exp = exp + `${value}[ ,.()]|`;
-        })
-        setParts(text.split(new RegExp(`(${exp})`, 'gi')));
-      }
       getRegExp();
     }
   },[terms])
@@ -42,11 +32,11 @@ export default function Highlight(props){
     var eArr = terms.values();
 
     for (let item of eArr) {
-      if (term.toLowerCase() === item.toLowerCase() + " " ||
-        term.toLowerCase() === item.toLowerCase() + "." ||
-        term.toLowerCase() === item.toLowerCase() + "," ||
-        term.toLowerCase() === item.toLowerCase() + "("  ||
-        term.toLowerCase() === item.toLowerCase() + ")"
+      if (term.toLowerCase().trim() === item.toLowerCase() ||
+        term.toLowerCase().trim() === item.toLowerCase() + "." ||
+        term.toLowerCase().trim() === item.toLowerCase() + "," ||
+        term.toLowerCase().trim() === item.toLowerCase() + "(" ||
+        term.toLowerCase().trim() === item.toLowerCase() + ")"
       ){
         return terms.indexOf(item);
       } 
@@ -64,8 +54,10 @@ export default function Highlight(props){
         <Box key={i}
           component="span"
           style= {{
-            backgroundColor: `${types ? palette[types[index]] : '#8dd3c7'}`, 
-          }}     
+            backgroundColor: `${types ? palette[types[index]] : '#8dd3c7'}`,
+            marginLeft: '1px',
+            marginRight: '1px' 
+          }}
         >
           { part }
         </Box>

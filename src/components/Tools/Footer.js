@@ -13,7 +13,7 @@ export default function Footer () {
             <a
               href="https://github.com/castorini/anserini/blob/master/docs/experiments-cord19.md#pre-built-indexes-all-versions"
             >
-              CORD-19 Dataset | Full-Text Anserini Pre-Built Index: 2020-04-10
+              CORD-19 Dataset | Full-Text Anserini Pre-Built Index: 2020-05-19
             </a>
         </Typography>
       </Box>
