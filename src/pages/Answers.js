@@ -76,7 +76,7 @@ export default function Questions(props){
       <Grid container spacing={1}>
         {
           question.answers.map(( (answer, key) => (
-            <Grid key={key} item xs={6}>
+            <Grid key={key} item xs={12} sm={6}>
               <CardAnswer answer={answer}/>
             </Grid>
           )))
