@@ -88,6 +88,7 @@ export default function PaperModal(props){
         onClose={() => setShowModal(false)} 
         aria-labelledby="customized-dialog-title" 
         open={showModal}
+        scroll="body"
         maxWidth="md"
       >
         <DialogTitle id="customized-dialog-title" onClose={() => setShowModal(false)}>

@@ -57,7 +57,7 @@ export default function ModalAnswer({open, setOpen, title, body,}) {
 
   return (
     <>
-      <Dialog onClose={handleClose} aria-labelledby="customized-dialog-title" open={open}>
+      <Dialog onClose={handleClose} scroll="body" aria-labelledby="customized-dialog-title" open={open}>
         <DialogTitle id="customized-dialog-title" onClose={handleClose}>
           {title}
         </DialogTitle>
