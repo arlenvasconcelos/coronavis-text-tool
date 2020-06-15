@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
-import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 import Box from "@material-ui/core/Box";
 import { useSelector } from "react-redux";
@@ -43,7 +41,6 @@ const useStyles = makeStyles((theme) => ({
     flexGrow: 1,
     backgroundColor: theme.palette.background.paper,
   },
-  navigation: {},
 }));
 
 export default function NavTabs({ tabs }) {
@@ -67,7 +64,7 @@ export default function NavTabs({ tabs }) {
   return (
     <section className={classes.root}>
       <Container>
-        <div className={classes.navigation}>
+        <div>
           <Tabs
             indicatorColor="primary"
             textColor="primary"

@@ -1,19 +1,21 @@
 import React, { useEffect, useState } from "react";
-import { Grid, Box, Typography, CircularProgress } from "@material-ui/core";
+import {
+  Box,
+  Typography,
+  CircularProgress,
+  Container,
+} from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
-//import components
 import CardAnswer from "../components/Answers/CardAnswer";
 import Pagination from "../components/utils/Pagination";
 import ErrorCustom from "../components/utils/ErrorCustom";
 
-//import api
 import api from "../service/api";
 
 const useStyles = makeStyles((theme) => ({
   answers: {
     flexGrow: 1,
-    backgroundColor: theme.palette.background.default,
     padding: theme.spacing(2),
     borderRadius: "5px",
     display: "flex",
@@ -52,7 +54,7 @@ export default function Questions(props) {
             ? response.data.last.split("?page=")[1]
             : response.data.current
         );
-        // setQuestion(response.data.data);
+        setQuestion(response.data.data);
         console.log(response.data);
         setLoading(false);
       } catch (err) {
@@ -73,8 +75,8 @@ export default function Questions(props) {
 
   return (
     <section className={classes.answers}>
-      {question.answers.length ? (
-        <div>
+      {!loading ? (
+        <Container>
           <Typography
             component="h4"
             variant="subtitle1"
@@ -89,20 +91,18 @@ export default function Questions(props) {
           >
             Question: {question.text}
           </Typography>
-          <Grid container spacing={1}>
-            {question.answers.map((answer, key) => (
-              <Grid key={key} item xs={12} sm={6}>
-                <CardAnswer answer={answer} />
-              </Grid>
-            ))}
-          </Grid>
+
+          {question.answers.map((answer, key) => (
+            <CardAnswer answer={answer} />
+          ))}
+
           <Box mt={2}>
             <Pagination
               lastPage={lastPage}
               path={`/tools/questions/${question.qid}/answers`}
             />
           </Box>
-        </div>
+        </Container>
       ) : (
         <CircularProgress />
       )}

@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Grid, Box, Typography } from "@material-ui/core";
+import { Grid, Typography } from "@material-ui/core";
 import { makeStyles } from "@material-ui/core/styles";
 
 import logoInf from "../../assets/images/inf-logo-2.png";
 import logoUfrgs from "../../assets/images/ufrgs-logo-2.png";
 
 const useStyle = makeStyles((theme) => ({
-  root: {
+  header: {
     padding: theme.spacing(2, 0),
     backgroundColor: theme.palette.grey[100],
   },
@@ -53,7 +53,7 @@ export default function Header() {
   const classes = useStyle();
 
   return (
-    <header className={classes.root}>
+    <header className={classes.header}>
       <Grid container spacing={2} flex alignItems="center">
         <Grid xs={6} sm={3} md={4} mditem className={classes.logoUfrgs}>
           <img alt="Logo UFRGS" src={logoUfrgs} />

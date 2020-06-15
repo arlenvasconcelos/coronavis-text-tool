@@ -2,11 +2,8 @@ import React, { useState } from "react";
 import { Redirect } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
-  Container,
-  Grid,
   OutlinedInput,
   InputAdornment,
-  Button,
   CircularProgress,
   IconButton,
 } from "@material-ui/core";
@@ -17,7 +14,7 @@ import api from "../../service/api";
 import { setResults } from "../../store/ducks/content";
 
 const useStyles = makeStyles((theme) => ({
-  root: {
+  navsearch: {
     padding: theme.spacing(3, 0),
     backgroundColor: theme.palette.common.white,
     display: "flex",
@@ -70,7 +67,7 @@ export default function NavSearch() {
   }
 
   return (
-    <div className={classes.root}>
+    <div className={classes.navsearch}>
       <div className={classes.content}>
         <form onSubmit={(e) => handleSubmit(e)}>
           <OutlinedInput

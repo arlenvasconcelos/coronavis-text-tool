@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { Box, Typography } from "@material-ui/core";
+import { Box } from "@material-ui/core";
 
 export default function LinePainel({ question, index }) {
   return (

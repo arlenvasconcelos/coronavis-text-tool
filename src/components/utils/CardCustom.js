@@ -1,4 +1,4 @@
-import React  from 'react';
+import React from "react";
 import {
   Card,
   CardActions,
@@ -8,10 +8,8 @@ import {
   CircularProgress,
   CardHeader,
   Divider,
-  Box
-} from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
-
+} from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -21,30 +19,37 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: theme.typography.fontWeightBold,
   },
   footer: {
-    justifyContent: 'flex-end'
+    justifyContent: "flex-end",
   },
   buttonProgress: {
     color: theme.palette.grey[500],
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
     marginTop: -12,
     marginLeft: -12,
   },
 }));
 
-export default function CardCustom(props){
+export default function CardCustom(props) {
+  const {
+    title,
+    authors,
+    body,
+    secondarybody,
+    button,
+    loading,
+    buttonAction,
+  } = props;
 
-  const {title, authors, body, secondarybody, button, loading, buttonAction} = props;
-
-  const classes = useStyles()
+  const classes = useStyles();
 
   return (
     <>
       <Card className={classes.paper} variant="outlined">
         <CardHeader
           title={
-            <Typography 
+            <Typography
               component="h6"
               variant="subtitle1"
               className={classes.title}
@@ -55,7 +60,7 @@ export default function CardCustom(props){
           subheader={authors}
         />
         <Divider variant="middle" />
-        <CardContent >
+        <CardContent>
           <Typography variant="body1" color="textPrimary" component="p">
             {body}
           </Typography>
@@ -64,18 +69,20 @@ export default function CardCustom(props){
           </Typography>
         </CardContent>
         <CardActions className={classes.footer}>
-          <Button 
-            size="small" 
-            color="primary" 
-            variant="contained" 
+          <Button
+            size="small"
+            color="primary"
+            variant="contained"
             onClick={buttonAction}
             disabled={loading}
           >
             {button}
-            {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
+            {loading && (
+              <CircularProgress size={24} className={classes.buttonProgress} />
+            )}
           </Button>
         </CardActions>
       </Card>
     </>
-  )
+  );
 }
