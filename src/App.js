@@ -8,7 +8,7 @@ import Routes from "./routes";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    backgroundColor: theme.palette.grey[100],
+    backgroundColor: theme.palette.common.white,
   },
 }));
 

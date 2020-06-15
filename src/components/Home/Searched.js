@@ -1,26 +1,28 @@
-import React from 'react';
-import {Grid} from '@material-ui/core';
+import React from "react";
+import { Grid } from "@material-ui/core";
+import { useSelector } from "react-redux";
 
-//import components
-// import Scatterplot from '../Searched/Scatterplot'
-import ColumnChart from '../Searched/ColumnChart'
-import Papers from '../Searched/Papers'
+import ColumnChart from "../Searched/ColumnChart";
+import Papers from "../Searched/Papers";
+import ErrorCustom from "../utils/ErrorCustom";
 
-
-export default function Searched({dataSearched}){
-
+export default function Searched() {
+  const { results } = useSelector((state) => state.content, []);
 
   return (
     <>
-      <Grid container spacing={2}>
-        <Grid item xs={12} lg={8}>
-          <Papers papers={dataSearched.papers} query={dataSearched.query}/>
+      {results.papers ? (
+        <Grid container spacing={2}>
+          <Grid item xs={12} lg={8}>
+            <Papers papers={results.papers} query={results.query} />
+          </Grid>
+          <Grid item xs={12} lg={4}>
+            <ColumnChart dataSearched={results} />
+          </Grid>
         </Grid>
-        <Grid item xs={12} lg={4}>
-          {/* <Scatterplot/> */}
-          <ColumnChart dataSearched={dataSearched}/>
-        </Grid>
-      </Grid>
+      ) : (
+        <ErrorCustom text="Cannot find results." />
+      )}
     </>
-  )
+  );
 }

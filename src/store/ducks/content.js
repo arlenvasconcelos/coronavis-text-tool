@@ -1,8 +1,9 @@
 const initialState = {
-  results: [],
+  results: {},
   queriesHistoric: [],
   errorStatus: false,
   errorMessage: "",
+  topics: [],
 };
 
 export default function reducer(state = initialState, action) {
@@ -11,6 +12,13 @@ export default function reducer(state = initialState, action) {
       return {
         ...state,
         results: action.data,
+        errorMessage: "",
+        errorStatus: false,
+      };
+    case "SET_TOPICS":
+      return {
+        ...state,
+        topics: action.data,
         errorMessage: "",
         errorStatus: false,
       };
@@ -36,6 +44,9 @@ export default function reducer(state = initialState, action) {
 function setResults(data) {
   return { type: "SET_RESULTS", data };
 }
+function setTopics(data) {
+  return { type: "SET_TOPICS", data };
+}
 
 function setError(data) {
   return { type: "SET_ERROR", data };
@@ -45,4 +56,4 @@ function addQuery(data) {
   return { type: "ADD_QUERY", data };
 }
 
-export { setResults, setError, addQuery };
+export { setResults, setError, addQuery, setTopics };
