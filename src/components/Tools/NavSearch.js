@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Redirect } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {
   OutlinedInput,
@@ -11,7 +11,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles } from "@material-ui/core/styles";
 
 import api from "../../service/api";
-import { setResults } from "../../store/ducks/content";
+import { setResults, setError } from "../../store/ducks/content";
 
 const useStyles = makeStyles((theme) => ({
   navsearch: {
@@ -36,12 +36,11 @@ const useStyles = makeStyles((theme) => ({
 
 export default function NavSearch() {
   const classes = useStyles();
-
+  const history = useHistory();
   const dispatch = useDispatch();
 
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
-  const [redirect, setRedirect] = useState(false);
 
   const handleChange = (event) => {
     setInputValue(event.target.value);
@@ -50,21 +49,18 @@ export default function NavSearch() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    setRedirect(false);
     try {
       const response = await api.post(`/search?query=${inputValue}`);
       dispatch(setResults({ ...response.data, searchTerm: inputValue }));
       setLoading(false);
-      setRedirect(true);
+      history.push("/tools/home");
     } catch (err) {
+      dispatch(setResults({}));
+      // dispatch(setError("No results found. Please, search above again."));
       setLoading(false);
       console.log(err);
     }
   };
-
-  if (redirect) {
-    return <Redirect to="/" />;
-  }
 
   return (
     <div className={classes.navsearch}>
