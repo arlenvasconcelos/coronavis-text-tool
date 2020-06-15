@@ -17,7 +17,7 @@ export default function reducer(state = initialState, action) {
     case "ADD_QUERY":
       return {
         ...state,
-        queriesHistoric: [...state.queriesHistoric, data],
+        queriesHistoric: [...state.queriesHistoric, action.data],
         errorMessage: "",
         errorStatus: false,
       };
@@ -25,7 +25,7 @@ export default function reducer(state = initialState, action) {
     case "SET_ERROR":
       return {
         ...state,
-        errorMessage: "",
+        errorMessage: action.data,
         errorStatus: true,
       };
     default:
@@ -33,7 +33,16 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-// Actions Creators
-export function setResults(data) {
+function setResults(data) {
   return { type: "SET_RESULTS", data };
 }
+
+function setError(data) {
+  return { type: "SET_ERROR", data };
+}
+
+function addQuery(data) {
+  return { type: "ADD_QUERY", data };
+}
+
+export { setResults, setError, addQuery };
