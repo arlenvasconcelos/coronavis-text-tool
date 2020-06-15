@@ -1,7 +1,7 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import dataSearched from './dataSearched';
+import content from "./content";
 
 export default combineReducers({
-  dataSearched,
+  content,
 });

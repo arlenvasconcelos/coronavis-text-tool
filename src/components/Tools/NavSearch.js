@@ -1,13 +1,18 @@
-import React, {useState} from 'react'
-import {Container, Grid, TextField, Button, CircularProgress } from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import { makeStyles } from '@material-ui/core/styles'
-import { useDispatch } from 'react-redux';
+import React, { useState } from "react";
+import { Redirect } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import {
+  Container,
+  Grid,
+  TextField,
+  Button,
+  CircularProgress,
+} from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
+import { makeStyles } from "@material-ui/core/styles";
 
-import api from '../../service/api'
-
-import { dataSearched } from '../../store/ducks/dataSearched';
-import { Redirect} from 'react-router-dom';
+import api from "../../service/api";
+import { setResults } from "../../store/ducks/content";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -17,22 +22,21 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(1),
   },
   gridButton: {
-    display: 'flex',
-    alignItems: 'center'
+    display: "flex",
+    alignItems: "center",
   },
   buttonProgress: {
     color: theme.palette.grey[500],
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
+    position: "absolute",
+    top: "50%",
+    left: "50%",
     marginTop: -12,
     marginLeft: -12,
   },
 }));
 
-export default function NavSearch(){
-
-  const classes = useStyles()
+export default function NavSearch() {
+  const classes = useStyles();
 
   const dispatch = useDispatch();
 
@@ -46,17 +50,17 @@ export default function NavSearch(){
     setRedirect(false);
     try {
       const response = await api.post(`/search?query=${inputValue}`);
-      dispatch(dataSearched(response.data));
+      dispatch(setResults(response.data));
       setLoading(false);
       setRedirect(true);
     } catch (err) {
       setLoading(false);
       console.log(err);
     }
-  }
+  };
 
-  if (redirect){
-    return <Redirect to="/"/>
+  if (redirect) {
+    return <Redirect to="/" />;
   }
 
   return (
@@ -82,18 +86,22 @@ export default function NavSearch(){
               color="primary"
               size="small"
               className={classes.button}
-              endIcon={<SearchIcon/>}
+              endIcon={<SearchIcon />}
               disabled={loading}
             >
               Submit
-              {loading && <>
-                <CircularProgress size={24} className={classes.buttonProgress} />
+              {loading && (
+                <>
+                  <CircularProgress
+                    size={24}
+                    className={classes.buttonProgress}
+                  />
                 </>
-              }
+              )}
             </Button>
           </Grid>
         </Grid>
       </form>
     </Container>
-  )
+  );
 }
