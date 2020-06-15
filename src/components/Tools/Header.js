@@ -60,7 +60,7 @@ export default function Header() {
         </Grid>
         <Grid item xs={12} sm={6} md={4} className={classes.title}>
           <Typography component="h1" variant="h4" align="center">
-            <Link to="/">COVID-19 Analysis Tools</Link>
+            <Link to="/tools/home">COVID-19 Analysis Tools</Link>
           </Typography>
           <Typography
             component="h3"

@@ -12,6 +12,7 @@ import Pagination from "../components/utils/Pagination";
 import ErrorCustom from "../components/utils/ErrorCustom";
 
 import api from "../service/api";
+import { setError } from "../store/ducks/content";
 
 const useStyles = makeStyles((theme) => ({
   answers: {
@@ -42,10 +43,12 @@ export default function Questions(props) {
   });
   const [lastPage, setLastPage] = useState(0);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     const loadQuestion = async () => {
       setLoading(true);
+      setError(false);
       const path = props.location.pathname.split("tools");
       try {
         const response = await api.get(path[1] + props.location.search);
@@ -59,6 +62,7 @@ export default function Questions(props) {
         setLoading(false);
       } catch (err) {
         setLoading(false);
+        setError(true);
         console.log(err);
       }
     };
@@ -69,40 +73,40 @@ export default function Questions(props) {
     window.scrollTo(0, 0);
   }, [props.location]);
 
-  if (!question) {
-    return <ErrorCustom text="Cannot find this question" />;
-  }
-
   return (
     <section className={classes.answers}>
       {!loading ? (
-        <Container>
-          <Typography
-            component="h4"
-            variant="subtitle1"
-            className={classes.topic}
-          >
-            Topic: {question.topic}
-          </Typography>
-          <Typography
-            component="h6"
-            variant="subtitle1"
-            className={classes.question}
-          >
-            Question: {question.text}
-          </Typography>
+        error ? (
+          <ErrorCustom text="Cannot find this question" />
+        ) : (
+          <Container>
+            <Typography
+              component="h4"
+              variant="subtitle1"
+              className={classes.topic}
+            >
+              Topic: {question.topic}
+            </Typography>
+            <Typography
+              component="h6"
+              variant="subtitle1"
+              className={classes.question}
+            >
+              Question: {question.text}
+            </Typography>
 
-          {question.answers.map((answer, key) => (
-            <CardAnswer answer={answer} />
-          ))}
+            {question.answers.map((answer, key) => (
+              <CardAnswer answer={answer} />
+            ))}
 
-          <Box mt={2}>
-            <Pagination
-              lastPage={lastPage}
-              path={`/tools/questions/${question.qid}/answers`}
-            />
-          </Box>
-        </Container>
+            <Box mt={2}>
+              <Pagination
+                lastPage={lastPage}
+                path={`/tools/questions/${question.qid}/answers`}
+              />
+            </Box>
+          </Container>
+        )
       ) : (
         <CircularProgress />
       )}

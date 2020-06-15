@@ -17,10 +17,6 @@ export default function Papers(props) {
     if (papers) setPapersFilter(defaultValue);
   }, [papers]);
 
-  if (!papers) {
-    return <ErrorCustom text="Cannot find this query" />;
-  }
-
   return (
     <>
       {papers.map((paper, index) => (
