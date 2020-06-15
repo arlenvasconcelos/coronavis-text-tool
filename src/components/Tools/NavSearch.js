@@ -4,9 +4,11 @@ import { useDispatch } from "react-redux";
 import {
   Container,
   Grid,
-  TextField,
+  OutlinedInput,
+  InputAdornment,
   Button,
   CircularProgress,
+  IconButton,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,14 +18,14 @@ import { setResults } from "../../store/ducks/content";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    margin: theme.spacing(1),
-  },
-  button: {
-    margin: theme.spacing(1),
-  },
-  gridButton: {
+    padding: theme.spacing(3, 0),
+    backgroundColor: theme.palette.common.white,
     display: "flex",
-    alignItems: "center",
+    justifyContent: "center",
+  },
+  content: {
+    width: "800px",
+    margin: theme.spacing(0, 1),
   },
   buttonProgress: {
     color: theme.palette.grey[500],
@@ -43,6 +45,10 @@ export default function NavSearch() {
   const [inputValue, setInputValue] = useState("");
   const [loading, setLoading] = useState(false);
   const [redirect, setRedirect] = useState(false);
+
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -64,44 +70,38 @@ export default function NavSearch() {
   }
 
   return (
-    <Container>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <Grid container className={classes.root}>
-          <Grid item xs={12} sm={10} md={10} lg={11}>
-            <TextField
-              label=""
-              fullWidth
-              id="input-search"
-              placeholder="Search by answers, keywords, entities or some metadata"
-              variant="outlined"
-              size="small"
-              value={inputValue}
-              onChange={(e) => setInputValue(e.target.value)}
-            />
-          </Grid>
-          <Grid item xs={2} sm={2} md={2} lg={1}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              size="small"
-              className={classes.button}
-              endIcon={<SearchIcon />}
-              disabled={loading}
-            >
-              Submit
-              {loading && (
-                <>
-                  <CircularProgress
-                    size={24}
-                    className={classes.buttonProgress}
-                  />
-                </>
-              )}
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-    </Container>
+    <div className={classes.root}>
+      <div className={classes.content}>
+        <form onSubmit={(e) => handleSubmit(e)}>
+          <OutlinedInput
+            aria-placeholder="Search by answers, keywords, entities or some metadata"
+            placeholder="Search by answers, keywords, entities or some metadata"
+            fullWidth
+            id="input-search"
+            value={inputValue}
+            onChange={handleChange}
+            color="primary"
+            autoFocus
+            endAdornment={
+              <InputAdornment position="end">
+                <IconButton
+                  type="submit"
+                  disabled={loading || inputValue === ""}
+                >
+                  {!loading ? (
+                    <SearchIcon />
+                  ) : (
+                    <CircularProgress
+                      size={24}
+                      className={classes.buttonProgress}
+                    />
+                  )}
+                </IconButton>
+              </InputAdornment>
+            }
+          />
+        </form>
+      </div>
+    </div>
   );
 }
