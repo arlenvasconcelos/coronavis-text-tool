@@ -53,7 +53,7 @@ export default function NavSearch() {
     setRedirect(false);
     try {
       const response = await api.post(`/search?query=${inputValue}`);
-      dispatch(setResults(response.data));
+      dispatch(setResults({ ...response.data, searchTerm: inputValue }));
       setLoading(false);
       setRedirect(true);
     } catch (err) {

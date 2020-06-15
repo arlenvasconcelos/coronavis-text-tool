@@ -74,12 +74,12 @@ export default function NavTabs({ tabs }) {
             aria-label="tab-home-navigation"
           >
             {tabs.map((item, key) => (
-              <Tab label={item.title} {...a11yProps(key)} />
+              <Tab key={item.title} label={item.title} {...a11yProps(key)} />
             ))}
           </Tabs>
         </div>
         {tabs.map((item, key) => (
-          <TabPanel value={value} index={key}>
+          <TabPanel key={item.title} value={value} index={key}>
             {item.body}
           </TabPanel>
         ))}

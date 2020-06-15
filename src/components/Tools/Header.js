@@ -54,11 +54,11 @@ export default function Header() {
 
   return (
     <header className={classes.header}>
-      <Grid container spacing={2} flex alignItems="center">
-        <Grid xs={6} sm={3} md={4} mditem className={classes.logoUfrgs}>
+      <Grid container spacing={2} alignItems="center">
+        <Grid item xs={6} sm={3} md={4} className={classes.logoUfrgs}>
           <img alt="Logo UFRGS" src={logoUfrgs} />
         </Grid>
-        <Grid xs={12} sm={6} md={4} className={classes.title} item>
+        <Grid item xs={12} sm={6} md={4} className={classes.title}>
           <Typography component="h1" variant="h4" align="center">
             <Link to="/">COVID-19 Analysis Tools</Link>
           </Typography>
@@ -71,7 +71,7 @@ export default function Header() {
             Text Analytics for the COVID-19 Literature
           </Typography>
         </Grid>
-        <Grid xs={6} sm={3} md={4} item className={classes.logoInf}>
+        <Grid item xs={6} sm={3} md={4} className={classes.logoInf}>
           <img alt="Logo INF" src={logoInf} />
         </Grid>
       </Grid>

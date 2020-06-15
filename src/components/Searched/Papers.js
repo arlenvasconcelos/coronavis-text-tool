@@ -23,16 +23,14 @@ export default function Papers(props) {
 
   return (
     <>
-      <Box>
-        {papers.map((paper, index) => (
-          <PaperCard
-            key={index + 1 + (papersFilter.page - 1) * perPage}
-            index={index + 1 + (papersFilter.page - 1) * perPage}
-            paper={paper}
-            query={query}
-          />
-        ))}
-      </Box>
+      {papers.map((paper, index) => (
+        <PaperCard
+          key={index + 1 + (papersFilter.page - 1) * perPage}
+          index={index + 1 + (papersFilter.page - 1) * perPage}
+          paper={paper}
+          query={query}
+        />
+      ))}
     </>
   );
 }
