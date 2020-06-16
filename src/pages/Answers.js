@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import {
   Box,
   Typography,
@@ -12,7 +13,6 @@ import Pagination from "../components/utils/Pagination";
 import ErrorCustom from "../components/utils/ErrorCustom";
 
 import api from "../service/api";
-import { setError } from "../store/ducks/content";
 
 const useStyles = makeStyles((theme) => ({
   answers: {
@@ -35,6 +35,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Questions(props) {
   const classes = useStyles();
+  const location = useLocation();
 
   const [question, setQuestion] = useState({
     topic: "",
@@ -42,23 +43,22 @@ export default function Questions(props) {
     answers: [],
   });
   const [lastPage, setLastPage] = useState(0);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
     const loadQuestion = async () => {
       setLoading(true);
       setError(false);
-      const path = props.location.pathname.split("tools");
+      const path = location.pathname.split("tools");
       try {
-        const response = await api.get(path[1] + props.location.search);
+        const response = await api.get(path[1] + location.search);
         setLastPage(
           response.data.last
             ? response.data.last.split("?page=")[1]
             : response.data.current
         );
         setQuestion(response.data.data);
-        console.log(response.data);
         setLoading(false);
       } catch (err) {
         setLoading(false);
@@ -67,11 +67,11 @@ export default function Questions(props) {
       }
     };
     loadQuestion();
-  }, [props.location]);
+  }, [location]);
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [props.location]);
+  }, [location]);
 
   return (
     <section className={classes.answers}>
@@ -96,7 +96,7 @@ export default function Questions(props) {
             </Typography>
 
             {question.answers.map((answer, key) => (
-              <CardAnswer answer={answer} />
+              <CardAnswer key={key} answer={answer} />
             ))}
 
             <Box mt={2}>

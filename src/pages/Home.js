@@ -6,7 +6,7 @@ import Searched from "../components/Home/Searched";
 import Topics from "../components/Home/Topics";
 import NavTabs from "../components/Home/NavTabs";
 
-import { setError, setTopics } from "../store/ducks/content";
+import { setError, setTopics } from "../store/ducks/topics";
 import api from "../service/api";
 
 const useStyles = makeStyles((theme) => ({
@@ -35,7 +35,6 @@ export default function Home() {
     const loadTopics = async () => {
       try {
         const response = await api.get(`/dev/topics`);
-        console.log(response.data);
         dispatch(setTopics(response.data));
       } catch (err) {
         dispatch(setError("Cannot find topics"));
@@ -43,7 +42,7 @@ export default function Home() {
       }
     };
     loadTopics();
-  }, []);
+  }, [dispatch]);
 
   return (
     <div className={classes.home}>

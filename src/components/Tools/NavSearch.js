@@ -11,7 +11,7 @@ import SearchIcon from "@material-ui/icons/Search";
 import { makeStyles } from "@material-ui/core/styles";
 
 import api from "../../service/api";
-import { setResults, setError } from "../../store/ducks/content";
+import { setResults, setError } from "../../store/ducks/results";
 
 const useStyles = makeStyles((theme) => ({
   navsearch: {
@@ -53,10 +53,9 @@ export default function NavSearch() {
       const response = await api.post(`/search?query=${inputValue}`);
       dispatch(setResults({ ...response.data, searchTerm: inputValue }));
       setLoading(false);
-      history.push("/tools/home");
+      history.push("/tools/home/");
     } catch (err) {
-      dispatch(setResults({}));
-      // dispatch(setError("No results found. Please, search above again."));
+      dispatch(setError("No results found. Please, search above again."));
       setLoading(false);
       console.log(err);
     }

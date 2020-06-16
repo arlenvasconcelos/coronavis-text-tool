@@ -5,13 +5,13 @@ import CustomExpansionPanel from "../Topics/CustomExpasionPanel";
 import ErrorCustom from "../utils/ErrorCustom";
 
 export default function Topics() {
-  const { topics, errorStatus, errorMessage } = useSelector(
-    (state) => state.content
+  const { data, errorStatus, errorMessage } = useSelector(
+    (state) => state.topics
   );
 
   if (errorStatus) {
     return <ErrorCustom text={errorMessage} />;
   }
 
-  return <CustomExpansionPanel topics={topics} />;
+  return <CustomExpansionPanel topics={data} />;
 }

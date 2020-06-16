@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import {
   CircularProgress,
@@ -35,9 +35,9 @@ const useStyles = makeStyles((theme) => ({
 
 export default function CustomExpansionPanel({ topics }) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
-  const [loading, setLoading] = React.useState(false);
-  const [questions, setQuestions] = React.useState([]);
+  const [expanded, setExpanded] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [questions, setQuestions] = useState([]);
 
   const handleChange = async (panel, idTopic, isExpanded) => {
     setLoading(`topic-${idTopic}`);

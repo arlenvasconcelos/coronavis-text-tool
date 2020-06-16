@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { Box } from "@material-ui/core";
 
 import PaperCard from "../Papers/PaperCard";
-import ErrorCustom from "../utils/ErrorCustom";
 
 export default function Papers(props) {
   const { papers, query } = props;

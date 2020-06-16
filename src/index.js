@@ -16,9 +16,6 @@ const theme = createMuiTheme({
       "sans-serif",
     ].join(","),
   },
-  // palette: {
-  //   primary: blue,
-  // },
 });
 
 ReactDOM.render(
