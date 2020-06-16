@@ -26,7 +26,6 @@ export default function PaperCard(props) {
     try {
       setLoading(true);
       const response = await api.get(`/documents/${id}`);
-      console.log(response.data);
       setPaperModal(response.data);
       setShowModal(true);
       setLoading(false);

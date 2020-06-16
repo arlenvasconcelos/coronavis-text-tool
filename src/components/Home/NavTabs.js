@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { makeStyles } from "@material-ui/core/styles";
 import Tabs from "@material-ui/core/Tabs";
@@ -46,19 +46,19 @@ const useStyles = makeStyles((theme) => ({
 export default function NavTabs({ tabs }) {
   const classes = useStyles();
   const [value, setValue] = useState(0);
+  const { results } = useSelector((state) => state);
 
   const handleChange = (event, newValue) => {
     setValue(newValue);
   };
 
-  // useEffect(() => {
-  //   console.log(results);
-  //   if (results.data.papers) {
-  //     setValue(1);
-  //   } else {
-  //     setValue(0);
-  //   }
-  // }, [results]);
+  useEffect(() => {
+    if (results.data.papers) {
+      setValue(1);
+    } else {
+      setValue(0);
+    }
+  }, [results]);
 
   return (
     <section className={classes.root}>

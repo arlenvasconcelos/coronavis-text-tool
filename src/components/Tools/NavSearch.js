@@ -53,7 +53,7 @@ export default function NavSearch() {
       const response = await api.post(`/search?query=${inputValue}`);
       dispatch(setResults({ ...response.data, searchTerm: inputValue }));
       setLoading(false);
-      history.push("/tools/home/");
+      history.push("/tools/home");
     } catch (err) {
       dispatch(setError("No results found. Please, search above again."));
       setLoading(false);

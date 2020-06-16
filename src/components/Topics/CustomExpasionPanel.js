@@ -43,7 +43,6 @@ export default function CustomExpansionPanel({ topics }) {
     setLoading(`topic-${idTopic}`);
     try {
       const response = await api.get(`/topics/${idTopic}`);
-      console.log(response.data.data);
       setQuestions(response.data.data);
       setExpanded(isExpanded ? panel : false);
       setLoading(false);
