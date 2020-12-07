@@ -1,10 +1,10 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import * as serviceWorker from './serviceWorker';
-import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import blue from '@material-ui/core/colors/blue';
+import React from "react";
+import ReactDOM from "react-dom";
+import "./index.css";
+import App from "./App";
+import * as serviceWorker from "./serviceWorker";
+import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
+// import blue from '@material-ui/core/colors/blue';
 
 const theme = createMuiTheme({
   typography: {
@@ -13,11 +13,8 @@ const theme = createMuiTheme({
       "'Helvetica Neue'",
       "Arial",
       "Helvetica",
-      "sans-serif"
-    ].join(',')
-  },
-  palette: {
-    primary: blue,
+      "sans-serif",
+    ].join(","),
   },
 });
 
@@ -27,7 +24,7 @@ ReactDOM.render(
       <App />
     </ThemeProvider>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById("root")
 );
 
 // If you want your app to work offline and load faster, you can change

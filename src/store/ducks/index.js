@@ -1,7 +1,9 @@
-import { combineReducers } from 'redux';
+import { combineReducers } from "redux";
 
-import dataSearched from './dataSearched';
+import results from "./results";
+import topics from "./topics";
 
 export default combineReducers({
-  dataSearched,
+  results,
+  topics,
 });
