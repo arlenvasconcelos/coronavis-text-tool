@@ -77,7 +77,7 @@ export default function CustomExpansionPanel({ topics }) {
               <Typography className={classes.heading}>{topic.topic}</Typography>
               <Typography
                 className={classes.secondaryHeading}
-              >{`[${topic.total} questions]`}</Typography>
+              >{`[${topic.total} results]`}</Typography>
             </ExpansionPanelSummary>
             <Box className={classes.content}>
               {questions.length &&
