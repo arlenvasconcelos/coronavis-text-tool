@@ -111,20 +111,20 @@ export default function PaperModal(props) {
         </DialogTitle>
         <DialogContent dividers>
           <div>
-            <Box component="span" font fontWeight="700">
+            <Box component="span" fontWeight="700">
               Abstract:
             </Box>
             {paper.abstract ? (
-              <Highlight
-                text={paper.abstract}
-                terms={terms}
-                types={types}
-                palette={palette}
-              />
+              // <Highlight
+              //   text={paper.abstract}
+              //   terms={terms}
+              //   types={types}
+              //   palette={palette}
+              // />
+              <p>{paper.abstract}</p>
             ) : (
               <p>There is no abstract</p>
             )}
-            {/* Show entities with its marker (background color) */}
             <Box mt={2}>
               {Object.entries(palette).map((value, index) => (
                 <Box

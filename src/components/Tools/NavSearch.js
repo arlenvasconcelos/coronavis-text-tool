@@ -50,7 +50,7 @@ export default function NavSearch() {
     e.preventDefault();
     setLoading(true);
     try {
-      const response = await api.post(`/search?query=${inputValue}`);
+      const response = await api.get(`/search?query=${inputValue}`);
       dispatch(setResults({ ...response.data, searchTerm: inputValue }));
       setLoading(false);
       history.push("/tools/home");
