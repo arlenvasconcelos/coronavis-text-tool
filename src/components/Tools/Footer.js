@@ -8,7 +8,7 @@ export default function Footer() {
         <Typography component="p" variant="subtitle2">
           Source:
           <a href="https://ai2-semanticscholar-cord-19.s3-us-west-2.amazonaws.com/historical_releases.html">
-            CORD-19 Dataset | Full-Text Anserini Pre-Built Index: 2021-01-19
+            CORD-19 Dataset | Full-Text Anserini Pre-Built Index: 2021-01-26
           </a>
         </Typography>
       </Box>
