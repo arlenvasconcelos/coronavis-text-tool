@@ -1,23 +1,12 @@
 import React, {useState} from 'react';
 import Typography from '@material-ui/core/Typography';
 import Box from '@material-ui/core/Box';
-import {makeStyles} from '@material-ui/core/styles';
 
 //components
 import ModalAnswer from './ModalAnswer';
 import CardCustom from '../utils/CardCustom';
 
-const useStyles = makeStyles((theme) => ({
-  highlight: {
-    backgroundColor: "#8dd3c7",
-  }
-}))
-
 export default function CardAnswer({answer}) {
-
-  const classes = useStyles();
-
-  const Highlight = (props) => <span className={classes.highlight}>{props.children}</span>;
 
   const [open, setOpen] = useState(false);
 
@@ -54,7 +43,7 @@ export default function CardAnswer({answer}) {
         body={
           <>
             Answer: {answer.sentence_beginning}
-            <Highlight>{answer.answer}</Highlight>
+            {answer.answer}
             {answer.sentence_ending}
           </>
         }
