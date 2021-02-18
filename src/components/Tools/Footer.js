@@ -13,7 +13,7 @@ export default function Footer() {
   useEffect(() => {
     const getReleaseDate = async () => {
       try {
-        const response = await api.get(`/dataset`);
+        const response = await api.get(`/release-date`);
         setReleaseDate(response.data.data.date);
       } catch (err) {
         console.log(err);
